@@ -1,0 +1,42 @@
+name: csp_surname_name
+channels:
+- defaults
+dependencies:
+- python=3.9
+- bokeh::bokeh
+- conda-forge::sklearn-pandas
+- conda-forge::datalad
+- conda-forge::spyder
+- conda-forge::scikit-learn
+- conda-forge::nilearn
+- conda-forge::nipype
+- conda-forge::dash
+- conda-forge::dash-bootstrap-components
+- conda-forge::fastcluster
+- conda-forge::pingouin
+- districtdatalabs::yellowbrick
+- ejolly::pymer4
+- plotly::plotly-orca
+- plotly::plotly
+- pyviz::holoviews
+- conda-forge::r-base=4.1
+- conda-forge::r-essentials
+- conda-forge::r-matrixstats
+- conda-forge::r-repr
+- conda-forge::r-devtools
+- conda-forge::jupyterlab
+- conda-forge::r-pma
+- r::rtools
+- pip
+- pip:
+  - xmltodict
+  - adjustText
+  - dash-cytoscape
+  - brainrender
+  - statannotations
+  - network_control
+  - semopy
+  - cca-zoo
+  - bctpy
+  - gemmr
+  - gower
