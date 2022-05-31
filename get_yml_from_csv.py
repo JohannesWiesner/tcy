@@ -22,16 +22,17 @@ future, this script is not necessary anymore.
 """
 
 import pandas as pd
+import os
 
 ###############################################################################
 ## User settings ##############################################################
 ###############################################################################
 
-# specifiy your name and surname
 name = 'name'
 surname = 'surname'
 python_version=3.9
 r_version=4.1
+pip_requirements_file=True
 
 ###############################################################################
 ## General preparation ########################################################
@@ -116,18 +117,29 @@ with open('install_cran_packages.sh','a') as f:
 ## Specify installation commands for pip-packages #############################
 ###############################################################################
 
+df_pip = df_python.loc[df['package_manager'] == 'pip']
+
 with open('environment.yml', 'a') as f:
     f.write('- pip\n')
     f.write('- pip:\n')
-
-df_pip = df_python.loc[df['package_manager'] == 'pip']
 
 def write_pip_command(row):
     with open('environment.yml','a') as f:
         install_command = '  ' + '-' + ' ' + row['package_name'] + '\n'
         f.write(install_command)
 
-df_pip.apply(write_pip_command,axis=1)
+def write_to_pip_requirements(row):
+    with open('requirements.txt','a') as f:
+        install_command = row['package_name'] + '\n'
+        f.write(install_command)
+
+if pip_requirements_file:
+    with open('environment.yml','a') as f:
+        install_command = '  ' + '-' + ' ' + '-r' + ' ' + 'requirements.txt'
+        f.write(install_command)
+    df_pip.apply(write_to_pip_requirements,axis=1)
+else:
+    df_pip.apply(write_pip_command,axis=1)
 
 ###############################################################################
 ## Specify optional additional bash script that can be run in case 
@@ -148,7 +160,6 @@ def write_pip_package(row):
 df_pip.apply(write_pip_package,axis=1)
 
 # delete last '\' character
-import os
 with open('install_pip_packages.sh', 'rb+') as filehandle:
     filehandle.seek(-4, os.SEEK_END)
     filehandle.truncate()

@@ -29,14 +29,4 @@ dependencies:
 - r::rtools
 - pip
 - pip:
-  - xmltodict
-  - adjustText
-  - dash-cytoscape
-  - brainrender
-  - statannotations
-  - network_control
-  - semopy
-  - cca-zoo
-  - bctpy
-  - gemmr
-  - gower
+  - -r requirements.txt
