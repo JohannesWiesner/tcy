@@ -2,13 +2,14 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
-- districtdatalabs
-- bokeh
 - r
-- ejolly
 - pyviz
+- bokeh
+- ejolly
+- districtdatalabs
 - defaults
 dependencies:
+- python=3.9
 - bokeh
 - sklearn-pandas
 - datalad

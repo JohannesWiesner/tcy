@@ -48,7 +48,7 @@ write_conda_channels=False # Should the conda channels be directly specified for
 def write_python(python_version=None):
     '''Write the Python language to the .yml file. Optionally, define version'''
     
-    with open('environment.yml', 'w') as f:
+    with open('environment.yml', 'a') as f:
         if python_version:
             f.write(f'- python={python_version}\n')
         else:
@@ -134,7 +134,7 @@ df = df.loc[df['bug_flag'] != True]
 df.sort_values(by=['language','package_manager','conda_channel'],inplace=True)
 
 # start to write .yml file
-with open('environment.yml', 'w') as f:
+with open('environment.yml', 'a') as f:
     f.write(f"name: csp_{surname}_{name}\n")
     
     # if conda-channels should not be directly specified, write channels 
@@ -156,6 +156,9 @@ with open('environment.yml', 'w') as f:
 
 # only consider python packages
 df_python = df.loc[df['language'] == 'python']
+
+# write python
+write_python(python_version)
 
 # write python conda packages to .yml file
 df_python_conda = df_python.loc[df['package_manager'] == 'conda']
