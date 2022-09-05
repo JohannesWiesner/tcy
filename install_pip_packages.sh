@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-conda activate csp_johannes_2_wiesner
+conda activate csp_johannes_wiesner
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org \
 xmltodict \
 adjustText \
@@ -13,4 +13,5 @@ cca-zoo \
 bctpy \
 gemmr \
 gower \
-antropy
+antropy \
+pyvi

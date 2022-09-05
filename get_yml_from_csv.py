@@ -34,7 +34,7 @@ import os
 ## User settings ##############################################################
 ###############################################################################
 
-name = 'johannes_2'
+name = 'johannes'
 surname = 'wiesner'
 python_version=3.9
 r_version=4.1

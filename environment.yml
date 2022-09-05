@@ -1,12 +1,12 @@
-name: csp_wiesner_johannes_2
+name: csp_wiesner_johannes
 channels:
 - conda-forge
 - plotly
-- districtdatalabs
-- ejolly
-- bokeh
 - pyviz
 - r
+- ejolly
+- districtdatalabs
+- bokeh
 - defaults
 dependencies:
 - python=3.9

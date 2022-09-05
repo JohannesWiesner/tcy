@@ -10,3 +10,4 @@ bctpy
 gemmr
 gower
 antropy
+pyvis
