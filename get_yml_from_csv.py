@@ -34,8 +34,8 @@ import os
 ## User settings ##############################################################
 ###############################################################################
 
-name = 'name'
-surname = 'surname'
+name = 'johannes_2'
+surname = 'wiesner'
 python_version=3.9
 r_version=4.1
 pip_requirements_file=True # Should pip packages be written to a requirements.txt?
@@ -69,7 +69,6 @@ def write_R(df,r_version=None,write_conda_channels=False):
         conda_channel = row['conda_channel']
         conda_package = row['package_name']
         
-        
         install_command = "- "
         
         if write_conda_channels == True:
@@ -88,7 +87,6 @@ def write_conda_package(row,write_conda_channels):
     '''Write a conda package to the .csv file'''
     
     with open('environment.yml','a') as f:
-        
         row = row.to_dict()
         conda_channel = row['conda_channel']
         package_name = row['package_name']
@@ -104,7 +102,6 @@ def write_pip_package(row):
     '''Write a pip-package directly to the .yml file'''
     
     with open('environment.yml','a') as f:
-        
         row = row.to_dict()
         package_name = row['package_name']
         install_command = f"  - {package_name}\n"
@@ -114,7 +111,6 @@ def write_to_pip_requirements(row):
     '''Write a pip-package to the requirements.txt file'''
     
     with open('requirements.txt','a') as f:
-        
         row = row.to_dict()
         package_name = row['package_name']
         install_command = f"{package_name}\n"
@@ -134,7 +130,7 @@ df = df.loc[df['bug_flag'] != True]
 df.sort_values(by=['language','package_manager','conda_channel'],inplace=True)
 
 # start to write .yml file
-with open('environment.yml', 'a') as f:
+with open('environment.yml','w') as f:
     f.write(f"name: csp_{surname}_{name}\n")
     
     # if conda-channels should not be directly specified, write channels 
@@ -201,7 +197,7 @@ with open('install_cran_packages.sh','a') as f:
 
 df_pip = df_python.loc[df['package_manager'] == 'pip']
 
-with open('environment.yml', 'a') as f:
+with open('environment.yml','a') as f:
     f.write('- pip\n')
     f.write('- pip:\n')
 
@@ -209,7 +205,9 @@ if pip_requirements_file:
     with open('environment.yml','a') as f:
         install_command = '  ' + '-' + ' ' + '-r' + ' ' + 'requirements.txt'
         f.write(install_command)
-        df_pip.apply(write_to_pip_requirements,axis=1)
+        
+        with open('requirements.txt','w') as f:
+            df_pip.apply(write_to_pip_requirements,axis=1)
 else:
     df_pip.apply(write_pip_package,axis=1)
 

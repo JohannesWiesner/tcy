@@ -1,12 +1,12 @@
-name: csp_surname_name
+name: csp_wiesner_johannes_2
 channels:
 - conda-forge
 - plotly
-- r
-- pyviz
-- bokeh
-- ejolly
 - districtdatalabs
+- ejolly
+- bokeh
+- pyviz
+- r
 - defaults
 dependencies:
 - python=3.9
@@ -21,6 +21,7 @@ dependencies:
 - dash-bootstrap-components
 - fastcluster
 - pingouin
+- mne
 - yellowbrick
 - pymer4
 - plotly-orca
