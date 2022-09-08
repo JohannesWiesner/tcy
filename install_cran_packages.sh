@@ -1,4 +1,4 @@
 #!/bin/bash
-conda activate johannes_wiesner
+conda activate katie_reh
 R
 install.packages(c("PMA","lme4"))

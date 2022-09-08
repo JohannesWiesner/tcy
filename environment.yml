@@ -1,10 +1,11 @@
-name: csp_wiesner_johannes
+name: csp_reh_katie
 channels:
 - conda-forge
 - plotly
-- pyviz
-- r
+- pytorch
 - ejolly
+- r
+- pyviz
 - districtdatalabs
 - bokeh
 - defaults
