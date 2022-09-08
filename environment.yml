@@ -2,12 +2,12 @@ name: csp_reh_katie
 channels:
 - conda-forge
 - plotly
-- pytorch
-- ejolly
 - r
+- bokeh
+- pytorch
 - pyviz
 - districtdatalabs
-- bokeh
+- ejolly
 - defaults
 dependencies:
 - python=3.9
@@ -23,10 +23,12 @@ dependencies:
 - fastcluster
 - pingouin
 - mne
+- tensorboardx
 - yellowbrick
 - pymer4
 - plotly-orca
 - plotly
+- pytorch
 - holoviews
 - r-base=4.1
 - r-essentials

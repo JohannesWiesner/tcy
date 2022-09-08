@@ -14,4 +14,4 @@ bctpy \
 gemmr \
 gower \
 antropy \
-pyvis
+pyvi
