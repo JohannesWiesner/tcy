@@ -45,5 +45,5 @@ lme4	install.packages('lme4')	cran		statistical modelling	https://cran.r-project
 antropy	pip install antropy	pip		statistical modelling	https://github.com/raphaelvallat/antropy	required	AntroPy is a Python 3 package providing several time-efficient algorithms for computing the complexity of time-series.		python	
 mne	conda install -c conda-forge mne	conda	conda-forge	statistical modelling	https://mne.tools/stable/index.html	optional	Python package for analyzing MEG/EEG data		python	
 pyvis	pip install pyvis	pip		plotting	https://pyvis.readthedocs.io/en/latest/index.html	optional	Visualizing graphs/networks in an interactive fashion	This will automatically install networkx as a dependency	python	
-pytorch	conda install -c pytorch pytorch	conda	pytorch	machine learning	https://anaconda.org/pytorch/pytorch	optional	Tensor library for deep learning using GPUs and CPUs	python	
-tensorboardx	conda install -c conda-forge tensorboardx	conda	conda-forge	machine learning	https://anaconda.org/conda-forge/tensorboardx	optional	Allows researchers to use simple interface to log events within PyTorch	python	
+pytorch	conda install -c pytorch pytorch	conda	pytorch	machine learning	https://anaconda.org/pytorch/pytorch	optional	Tensor library for deep learning using GPUs and CPUs		python	
+tensorboardx	conda install -c conda-forge tensorboardx	conda	conda-forge	machine learning	https://anaconda.org/conda-forge/tensorboardx	optional	Allows researchers to use simple interface to log events within PyTorch		python	
