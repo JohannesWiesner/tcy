@@ -34,8 +34,8 @@ import os
 ## User settings ##############################################################
 ###############################################################################
 
-name = 'katie'
-surname = 'reh'
+name = 'name'
+surname = 'surname'
 python_version=3.9
 r_version=4.1
 pip_requirements_file=True # Should pip packages be written to a requirements.txt?

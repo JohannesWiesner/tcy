@@ -11,3 +11,4 @@ gemmr
 gower
 antropy
 pyvis
+distro

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-conda activate csp_katie_reh
+conda activate csp_name_surname
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org \
 xmltodict \
 adjustText \
@@ -14,4 +14,5 @@ bctpy \
 gemmr \
 gower \
 antropy \
-pyvi
+pyvis \
+distr

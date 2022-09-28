@@ -1,13 +1,13 @@
-name: csp_reh_katie
+name: csp_surname_name
 channels:
 - conda-forge
 - plotly
 - r
 - bokeh
-- pytorch
-- pyviz
 - districtdatalabs
 - ejolly
+- pytorch
+- pyviz
 - defaults
 dependencies:
 - python=3.9
