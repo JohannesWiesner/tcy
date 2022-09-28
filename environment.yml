@@ -2,7 +2,6 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
-- r
 - bokeh
 - districtdatalabs
 - ejolly
@@ -37,7 +36,6 @@ dependencies:
 - r-devtools
 - jupyterlab
 - r-pma
-- rtools
 - pip
 - pip:
   - -r requirements.txt
