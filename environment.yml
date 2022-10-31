@@ -2,11 +2,12 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
-- bokeh
-- districtdatalabs
-- ejolly
-- pytorch
 - pyviz
+- bokeh
+- forge
+- ejolly
+- districtdatalabs
+- pytorch
 - defaults
 dependencies:
 - python=3.9
@@ -25,6 +26,7 @@ dependencies:
 - tensorboardx
 - yellowbrick
 - pymer4
+- neurokit2
 - plotly-orca
 - plotly
 - pytorch

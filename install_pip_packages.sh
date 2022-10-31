@@ -15,4 +15,5 @@ gemmr \
 gower \
 antropy \
 pyvis \
-distr
+distro \
+abage
