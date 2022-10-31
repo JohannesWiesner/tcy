@@ -2,6 +2,7 @@
 set -e
 conda activate csp_name_surname
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org \
+lckr-jupyterlab-variableinspector \
 xmltodict \
 adjustText \
 dash-cytoscape \
@@ -16,4 +17,4 @@ gower \
 antropy \
 pyvis \
 distro \
-abage
+abagen

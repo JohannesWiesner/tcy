@@ -9,7 +9,13 @@ channels:
 - districtdatalabs
 - defaults
 dependencies:
-- python=3.9
+- r-essentials
+- r-matrixstats
+- r-repr
+- r-devtools
+- jupyterlab
+- r-base=4.1
+- r-pma
 - bokeh
 - sklearn-pandas
 - datalad
@@ -30,13 +36,7 @@ dependencies:
 - plotly
 - pytorch
 - holoviews
-- r-base=4.1
-- r-essentials
-- r-matrixstats
-- r-repr
-- r-devtools
-- jupyterlab
-- r-pma
+- python=3.9
 - pip
 - pip:
   - -r requirements.txt

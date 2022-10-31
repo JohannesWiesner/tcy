@@ -1,3 +1,4 @@
+lckr-jupyterlab-variableinspector
 xmltodict
 adjustText
 dash-cytoscape
