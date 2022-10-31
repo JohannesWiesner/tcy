@@ -4,10 +4,9 @@ channels:
 - plotly
 - pyviz
 - bokeh
-- forge
+- pytorch
 - ejolly
 - districtdatalabs
-- pytorch
 - defaults
 dependencies:
 - python=3.9
@@ -24,9 +23,9 @@ dependencies:
 - pingouin
 - mne
 - tensorboardx
+- neurokit2
 - yellowbrick
 - pymer4
-- neurokit2
 - plotly-orca
 - plotly
 - pytorch

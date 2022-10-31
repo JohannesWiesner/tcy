@@ -36,10 +36,20 @@ import os
 
 name = 'name'
 surname = 'surname'
-python_version=3.9
-r_version=4.1
-pip_requirements_file=True # Should pip packages be written to a requirements.txt?
-write_conda_channels=False # Should the conda channels be directly specified for each package?
+python_version = 3.9
+r_version = 4.1
+# Should pip packages be written to a requirements.txt or should they directly 
+# appear in the .yml file itself? Default is True.
+pip_requirements_file = True 
+# Should the conda channels be directly specified for each package (e.g. conda-forge::spyder)
+# If true, only the 'default' channel appears in the 'channels:' section and all other channels
+# are specified directly (see: https://stackoverflow.com/a/65983247/8792159). If false,
+# all found channels are put in the 'channel:' section in the order from most frequent
+# to least frequent. Default is False
+write_conda_channels = False 
+# Specify your operating system (some bugs only appear in windows, other only
+# in linux, some exist across all platform)
+operating_system = 'linux' # Specify your operating system (can be 'linux' or 'windows')
 
 ###############################################################################
 ## Create functions ###########################################################
@@ -123,8 +133,12 @@ def write_to_pip_requirements(row):
 # read in the .tsv file
 df = pd.read_csv('./csp_packages.tsv',sep='\t',index_col=None,header=0)
 
-# remove packates that were flagged as buggy by repository owner
-df = df.loc[df['bug_flag'] != True]
+# remove packages that generally don't work (for now) on all platforms
+df = df.loc[df['bug_flag'] != 'cross-platform']
+
+# remove pacakges that won't work for the specified operating system
+if operating_system:
+    df = df.loc[df['bug_flag'] != operating_system]
 
 # sort by language, then by package manager, then by conda channel
 df.sort_values(by=['language','package_manager','conda_channel'],inplace=True)
