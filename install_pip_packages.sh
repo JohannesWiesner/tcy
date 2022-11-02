@@ -7,7 +7,6 @@ xmltodict \
 adjustText \
 dash-cytoscape \
 brainrender \
-statannotations \
 network_control \
 semopy \
 cca-zoo \

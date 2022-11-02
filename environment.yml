@@ -2,11 +2,11 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
+- ejolly
+- districtdatalabs
 - pyviz
 - bokeh
 - pytorch
-- ejolly
-- districtdatalabs
 - defaults
 dependencies:
 - r-essentials
@@ -25,6 +25,7 @@ dependencies:
 - nipype
 - dash
 - dash-bootstrap-components
+- statannotations
 - fastcluster
 - pingouin
 - mne
