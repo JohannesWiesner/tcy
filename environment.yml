@@ -2,11 +2,11 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
+- pytorch
 - ejolly
 - districtdatalabs
 - pyviz
 - bokeh
-- pytorch
 - defaults
 dependencies:
 - r-essentials
@@ -19,6 +19,7 @@ dependencies:
 - bokeh
 - sklearn-pandas
 - datalad
+- tableone
 - spyder
 - scikit-learn
 - nilearn
