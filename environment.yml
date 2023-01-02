@@ -2,9 +2,9 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
-- pytorch
 - ejolly
 - districtdatalabs
+- pytorch
 - pyviz
 - bokeh
 - defaults
@@ -16,6 +16,8 @@ dependencies:
 - jupyterlab
 - r-base=4.1
 - r-pma
+- r-dendextend
+- r-circlize
 - bokeh
 - sklearn-pandas
 - datalad
