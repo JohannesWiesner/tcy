@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-conda activate csp_name_surname
+conda activate csp_surname_name
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org \
 lckr-jupyterlab-variableinspector \
 xmltodict \
@@ -16,4 +16,5 @@ gower \
 antropy \
 pyvis \
 distro \
-abagen
+abagen \
+openpyxl

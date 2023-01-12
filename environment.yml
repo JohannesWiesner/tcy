@@ -2,9 +2,9 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
+- pytorch
 - ejolly
 - districtdatalabs
-- pytorch
 - pyviz
 - bokeh
 - defaults

@@ -1,20 +1,27 @@
-# Description
-This repository contains a spreadsheet `csp_packages.tsv` that gives information about `conda` and `pip` packages that are used by the CSP lab. It also contains a `environment.yml` file that is supposed to contain the same information as `csp_packages.tsv` in order to create a conda environment that contains all the packages found in the spreadsheet.
-# Aims
+# TCY
+**T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files. This repository contains a spreadsheet `packages.tsv` that holds information about `conda` and `pip` packages that are used by the CSP lab. It also contains a `environment.yml` file that is supposed to contain the same information as `packages.tsv` in order to create a conda environment that contains all the packages found in the spreadsheet.
+## Aims
 New lab members can download this repository and use `environment.yml` to create a conda environment that contains all the packages that the CSP lab needs. `environment.yml`  contains all the packages that can be found in the  spreadsheets (with a few exceptions packages that are bug flagged but may be available in the future when the developers of these packages fixed the bugs). This will allow users to get a computational environment with `R`,  `python` and all the packages they need to perform their analyses.
-# How to use
-1.) After  installing Miniconda on their machines, users specify these variables in `get_yml_from_csv`:
+## How to use
+With a python installation on their machines, users can run the  `tcy.py` script in the console:
 
-- `name` (your first name)
-- `surname` (your surname)
-- `pip_requirements_file` (should pip packages be written to a `requirements.txt`file or should they directly
-be written in the .yml file itself? Default is True)
-- `write_conda_channels` (should the conda channels be directly specified for each package (e.g. `conda-forge::spyder`)? If true, only the `default` channel appears in the `channels` section and all other channels
-are specified directly. If false, all found channels are put in the `channel` section in the order from most frequent
-to least frequent channel. Default is False)
-- `operating_system` (Specify your operating system to handle os-specific bugs. Some bugs only appear in windows, other only in linux, some exist across all platforms)
+ `python tcy.py --surname Doe --name John --os linux`.
 
-2.) After that, useres are able to execute the following command to create their environment:
+The following arguments have to be specified:
+- `--name` (your first name)
+- `--surname` (your surname)
+- `--os` (Can be 'linux' or 'windows'. Depending on the input, only packages
+        that run bug-free under the specified OS are selected. Packages
+        that are flagged with 'cross-platform' in the `bug_flag` column of the
+        input `.tsv` file are never included)
+
+The following flags can be set for further customization:
+- `--ignore_yml_name` (Don\'t set the \"name:\" attribute in the environment.yml file. This is useful if the resulting .yml file should only be used for updating  an existing environment (not to create a new one)).
+- `--no_pip_requirements_file` (Do not write pip packages to a separate `requirements.txt` file. Instead, pip packages appear in `environment.yml` file under the \"pip:\" section.)
+- `write_conda_channels` (Specify conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview.)
+
+
+2.) After that, users are able to execute the following command to create their environment:
 
     conda env create -f environment.yml
 
@@ -24,8 +31,8 @@ Note: There is no need to specify `-n environment_name` in this command because 
 
 ## Current workarounds
 In case something goes wrong with the installation of pip-packages, this repository also contains a script `install_pip_packages.sh` wich can be used to install the pip packages found in `environment.yml`. Note that in general this is not the desired way to do this.
-# How to contribute
-1.) Whenever you find a new package that you find interesting and/or have to install for your project, this should be added to `csp_packages.tsv`. The spreadsheet contains the following columns:
+## How to contribute
+1.) Whenever you find a new package that you find interesting and/or have to install for your project, this should be added to `packages.tsv`. The spreadsheet contains the following columns:
 
 - `package_name` (the name of the package as found on conda or pip pages)
 - `version` (specify the version of the package you need)
@@ -40,7 +47,7 @@ In case something goes wrong with the installation of pip-packages, this reposit
 - `language` (python, R)
 - `bug_flag` (can be 'linux' or 'windows')
 
-2.) After adding the information for the new package, you can run `get_yml_from_csv.py` to create an updated version of `environment.yml`. `get_yml_from_csv.py` simply parses the information in `csp_packages.tsv` in order to not have to do this tedious work yourself.
+2.) After adding the information for the new package, you can run `tcy.py` to create an updated version of `environment.yml`. `tcy.py` simply parses the information in `packages.tsv` in order to not have to do this tedious work yourself.
 
 3.) Push your changes
 

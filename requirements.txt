@@ -13,3 +13,4 @@ antropy
 pyvis
 distro
 abagen
+openpyxl
