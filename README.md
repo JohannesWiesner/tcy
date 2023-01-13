@@ -1,3 +1,4 @@
+
 # TCY
 **T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files. This repository contains a spreadsheet `packages.tsv` that holds information about `conda` and `pip` packages that are used by the CSP lab. It also contains a `environment.yml` file that is supposed to contain the same information as `packages.tsv` in order to create a conda environment that contains all the packages found in the spreadsheet.
 ## Aims
@@ -18,8 +19,9 @@ The following arguments have to be specified:
 The following flags can be set for further customization:
 - `--ignore_yml_name` (Don\'t set the \"name:\" attribute in the environment.yml file. This is useful if the resulting .yml file should only be used for updating  an existing environment (not to create a new one)).
 - `--no_pip_requirements_file` (Do not write pip packages to a separate `requirements.txt` file. Instead, pip packages appear in `environment.yml` file under the \"pip:\" section.)
-- `write_conda_channels` (Specify conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview.)
-
+- `--write_conda_channels` (Specify conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview.)
+- `--tsv_path` (Optional Path to the `packages.tsv` file. If not given, the function will expect  `packages.tsv` to be in the current working directory)
+- `--yml_dir`(Path to a valid directory where `environment.yml` should be placed in. If not given, `environment.yml` will  be placed in the current working directory. If a `requirements.txt` for pip is generated it will always be placed in the same directory  as the `environment.yml` file)
 
 2.) After that, users are able to execute the following command to create their environment:
 

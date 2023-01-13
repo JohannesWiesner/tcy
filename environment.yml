@@ -2,11 +2,11 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
+- pyviz
+- bokeh
 - pytorch
 - ejolly
 - districtdatalabs
-- pyviz
-- bokeh
 - defaults
 dependencies:
 - r-essentials
