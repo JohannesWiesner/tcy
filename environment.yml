@@ -3,8 +3,9 @@ channels:
 - conda-forge
 - plotly
 - pyviz
-- bokeh
 - pytorch
+- r
+- bokeh
 - ejolly
 - districtdatalabs
 - defaults
@@ -18,6 +19,7 @@ dependencies:
 - r-pma
 - r-dendextend
 - r-circlize
+- rtools
 - bokeh
 - sklearn-pandas
 - datalad
@@ -43,4 +45,18 @@ dependencies:
 - python=3.9
 - pip
 - pip:
-  - -r requirements.txt
+  - xmltodict
+  - adjustText
+  - dash-cytoscape
+  - brainrender
+  - network_control
+  - semopy
+  - cca-zoo
+  - bctpy
+  - gemmr
+  - gower
+  - antropy
+  - pyvis
+  - distro
+  - abagen
+  - openpyxl
