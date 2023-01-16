@@ -275,14 +275,16 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser(description='Parse the information from packages.tsv and return environment.yml file')
 
-    # add required arguments 
-    parser.add_argument('--surname',type=str,required=True,help='Surname of user')
-    parser.add_argument('--name',type=str,required=True,help='Name of user')
-    parser.add_argument('--os',type=str,required=True,choices=['linux','windows'],
-                        help="Can be \'linux\' or \'windows\'. Depending on the \
-                        input only packages that run bug-free under the specified \
-                        OS are selected. Packages that are flagged with 'cross-platform' \
-                        in the bug_flag column of the input .tsv file are never included.")
+    # add positional arguments
+    parser.add_argument('surname',type=str,help='Surname of user')
+    parser.add_argument('name',type=str,help='Name of user')
+    parser.add_argument('os',type=str,choices=['linux','windows'],
+                        help="Operating system under which the environment.yml file \
+                        will be used to create a conda environment. Can be \'linux\' \
+                        or \'windows\'. Depending on the input only packages that run \
+                        bug-free under the specified OS are selected. Packages that are \
+                        flagged with 'cross-platform' in the bug_flag column of the \
+                        input .tsv file are never included.")
     # add keyword arguments
     parser.add_argument('--ignore_yml_name',action='store_true',
                         help='Don\'t set the \"name:\" attribute in the environment.yml file.\
@@ -298,7 +300,7 @@ if __name__ == '__main__':
                         is the only channel that appears in the \'channels:\' section. See: \
                         https://stackoverflow.com/a/65983247/8792159 for a preview.')
     parser.add_argument('--tsv_path',type=str,required=False,
-                        help='Optional Path to the packages.tsv file. If not given, \
+                        help='Optional Path to the input packages.tsv file. If not given, \
                         the function will expect  packages.tsv to be in the current \
                         working directory')
     parser.add_argument('--yml_dir',type=str,required=False,

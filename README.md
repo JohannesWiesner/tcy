@@ -1,37 +1,39 @@
-
 # TCY
-**T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files. This repository contains a spreadsheet `packages.tsv` that holds information about `conda` and `pip` packages that are used by the CSP lab. It also contains a `environment.yml` file that is supposed to contain the same information as `packages.tsv` in order to create a conda environment that contains all the packages found in the spreadsheet.
-## Aims
-New lab members can download this repository and use `environment.yml` to create a conda environment that contains all the packages that the CSP lab needs. `environment.yml`  contains all the packages that can be found in the  spreadsheets (with a few exceptions packages that are bug flagged but may be available in the future when the developers of these packages fixed the bugs). This will allow users to get a computational environment with `R`,  `python` and all the packages they need to perform their analyses.
-## How to use
+**T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files using a `.tsv` file as input.
+## Standard Usage
+New lab members can download this repository and use `environment.yml` to create a conda environment. `environment.yml`  contains all the packages that can be found in `packges.tsv` (with a few exceptions packages that are bug flagged but may be available in the future when the developers of these packages have fixed the bugs). This will allow users to get a computational environment with `R`,  `python` and all the packages they need to perform their analyses.
+
+ 1. After downloading this repo users only have to set their name
+    `name:csp_surname_name` attribute in `environment.yml`
+ 2. After that they execute the following command to create their
+    environment conda env create -f environment.yml (Note: There is no
+    need to specify `-n environment_name` in this command because the
+    name of the environment is specified in the file itself. More
+    information can be found
+    [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
+
+## How to generate a custom environment.yml file
 With a python installation on their machines, users can run the  `tcy.py` script in the console:
 
- `python tcy.py --surname Doe --name John --os linux`.
+ `python tcy.py Doe John linux`
 
-The following arguments have to be specified:
-- `--name` (your first name)
-- `--surname` (your surname)
-- `--os` (Can be 'linux' or 'windows'. Depending on the input, only packages
-        that run bug-free under the specified OS are selected. Packages
-        that are flagged with 'cross-platform' in the `bug_flag` column of the
-        input `.tsv` file are never included)
+The following positional arguments have to be specified:
 
-The following flags can be set for further customization:
+- `surname` (Surname of user)
+- `name` (Name of user)
+- `{linux,windows}` (Operating system under which the `environment.yml` file will be used to create a conda environment. Can be 'linux' or 'windows'. Depending on the input only packages that run bug-free under the specified OS are  selected. Packages that are flagged with `cross-platform` in the `bug_flag` column of the input `.tsv` file are never included.
+
+The following optional arguments can be set for further customization:
 - `--ignore_yml_name` (Don\'t set the \"name:\" attribute in the environment.yml file. This is useful if the resulting .yml file should only be used for updating  an existing environment (not to create a new one)).
 - `--no_pip_requirements_file` (Do not write pip packages to a separate `requirements.txt` file. Instead, pip packages appear in `environment.yml` file under the \"pip:\" section.)
 - `--write_conda_channels` (Specify conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview.)
 - `--tsv_path` (Optional Path to the `packages.tsv` file. If not given, the function will expect  `packages.tsv` to be in the current working directory)
 - `--yml_dir`(Path to a valid directory where `environment.yml` should be placed in. If not given, `environment.yml` will  be placed in the current working directory. If a `requirements.txt` for pip is generated it will always be placed in the same directory  as the `environment.yml` file)
 
-2.) After that, users are able to execute the following command to create their environment:
+### R-packages
+Some R-packages are not (yet) available as conda-packages. In order to semi-automate the installation process of these packages in your conda environment, run `install_cran_packages.sh`. This script will activate the conda environment, start R in this environment and then install the CRAN-packages via `install.packages()` Note that this is not the recommended way to do it, but some R-packages are simply not available as conda-packages (this should be checked though on a regular basis).
 
-    conda env create -f environment.yml
-
-Note: There is no need to specify `-n environment_name` in this command because the name of the environment is specified in the file itself. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
-
-3.) Some R-packages are not (yet) available as conda-packages. In order to semi-automate the installation process of these packages in your conda environment, run `install_cran_packages.sh`. This script will activate the conda environment, start R in this environment and then install the CRAN-packages via `install.packages()` Note that this is not the recommended way to do it, but some R-packages are simply not available as conda-packages (this should be checked though on a regular basis).
-
-## Current workarounds
+### Current workarounds
 In case something goes wrong with the installation of pip-packages, this repository also contains a script `install_pip_packages.sh` wich can be used to install the pip packages found in `environment.yml`. Note that in general this is not the desired way to do this.
 ## How to contribute
 1.) Whenever you find a new package that you find interesting and/or have to install for your project, this should be added to `packages.tsv`. The spreadsheet contains the following columns:
