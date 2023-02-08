@@ -7,8 +7,11 @@ New lab members can download this repository and use `environment.yml` to create
  1. After downloading this repo users only have to set their name
     `name:csp_surname_name` attribute in `environment.yml`
  2. After that they execute the following command to create their
-    environment conda env create -f environment.yml (Note: There is no
-    need to specify `-n environment_name` in this command because the
+    environment:
+
+    `conda env create -f environment.yml`
+
+    (Note: There is no need to specify `-n environment_name` in this command because the
     name of the environment is specified in the file itself. More
     information can be found
     [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
