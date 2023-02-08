@@ -2,25 +2,27 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
-- pyviz
-- pytorch
-- r
 - bokeh
-- ejolly
 - districtdatalabs
+- ejolly
+- pytorch
+- pyviz
+- r
 - defaults
 dependencies:
+- arrow
 - r-essentials
 - r-matrixstats
 - r-repr
 - r-devtools
 - jupyterlab
-- r-base=4.1
+- r-base>=4.1
 - r-pma
 - r-dendextend
 - r-circlize
-- rtools
+- rstudio
 - bokeh
+- pyarrow
 - sklearn-pandas
 - datalad
 - tableone
@@ -42,9 +44,10 @@ dependencies:
 - plotly
 - pytorch
 - holoviews
-- python=3.9
+- python>=3.11
 - pip
 - pip:
+  - lckr-jupyterlab-variableinspector
   - xmltodict
   - adjustText
   - dash-cytoscape
@@ -55,6 +58,7 @@ dependencies:
   - bctpy
   - gemmr
   - gower
+  - resample
   - antropy
   - pyvis
   - distro

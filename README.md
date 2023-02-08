@@ -1,3 +1,4 @@
+
 # TCY
 **T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files using a `.tsv` file as input.
 ## Standard Usage
@@ -15,18 +16,16 @@ New lab members can download this repository and use `environment.yml` to create
 ## How to generate a custom environment.yml file
 With a python installation on their machines, users can run the  `tcy.py` script in the console:
 
- `python tcy.py Doe John linux`
+ `python tcy.py linux`
 
 The following positional arguments have to be specified:
 
-- `surname` (Surname of user)
-- `name` (Name of user)
 - `{linux,windows}` (Operating system under which the `environment.yml` file will be used to create a conda environment. Can be 'linux' or 'windows'. Depending on the input only packages that run bug-free under the specified OS are  selected. Packages that are flagged with `cross-platform` in the `bug_flag` column of the input `.tsv` file are never included.
 
 The following optional arguments can be set for further customization:
-- `--ignore_yml_name` (Don\'t set the \"name:\" attribute in the environment.yml file. This is useful if the resulting .yml file should only be used for updating  an existing environment (not to create a new one)).
-- `--no_pip_requirements_file` (Do not write pip packages to a separate `requirements.txt` file. Instead, pip packages appear in `environment.yml` file under the \"pip:\" section.)
-- `--write_conda_channels` (Specify conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview.)
+- `--yml_name` (Sets the \"name:\" attribute of the .yml file. If not given, the .yml file will not have a \"name:\" attribute. This is useful if the resulting .yml file should only be used for updating an existing environment that already has a name, i.e. not to create a new one).
+- `--pip_requirements_file` (Write pip packages to a separate requirements.txt file.)
+- `--write_conda_channels` (Specifies conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview.)
 - `--tsv_path` (Optional Path to the `packages.tsv` file. If not given, the function will expect  `packages.tsv` to be in the current working directory)
 - `--yml_dir`(Path to a valid directory where `environment.yml` should be placed in. If not given, `environment.yml` will  be placed in the current working directory. If a `requirements.txt` for pip is generated it will always be placed in the same directory  as the `environment.yml` file)
 
