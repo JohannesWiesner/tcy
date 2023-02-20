@@ -2,11 +2,11 @@ name: csp_surname_name
 channels:
 - conda-forge
 - plotly
+- pyviz
 - bokeh
 - districtdatalabs
 - ejolly
 - pytorch
-- pyviz
 - r
 - defaults
 dependencies:
@@ -20,6 +20,7 @@ dependencies:
 - r-pma
 - r-dendextend
 - r-circlize
+- reticulate
 - rstudio
 - bokeh
 - pyarrow
@@ -38,12 +39,14 @@ dependencies:
 - mne
 - tensorboardx
 - neurokit2
+- oct2py
 - yellowbrick
 - pymer4
 - plotly-orca
 - plotly
 - pytorch
 - holoviews
+- hvplot
 - python>=3.11
 - pip
 - pip:
