@@ -20,7 +20,7 @@ dependencies:
 - r-pma
 - r-dendextend
 - r-circlize
-- reticulate
+- r-reticulate
 - rstudio
 - bokeh
 - pyarrow
