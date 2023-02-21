@@ -52,7 +52,6 @@ dependencies:
   - dash-cytoscape
   - brainrender
   - network_control
-  - semopy
   - cca-zoo
   - bctpy
   - gemmr
