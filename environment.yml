@@ -7,10 +7,8 @@ channels:
 - districtdatalabs
 - ejolly
 - pytorch
-- r
 - defaults
 dependencies:
-- arrow
 - r-essentials
 - r-matrixstats
 - r-repr
@@ -21,9 +19,7 @@ dependencies:
 - r-dendextend
 - r-circlize
 - r-reticulate
-- rstudio
 - bokeh
-- pyarrow
 - sklearn-pandas
 - datalad
 - tableone
@@ -61,7 +57,6 @@ dependencies:
   - bctpy
   - gemmr
   - gower
-  - resample
   - antropy
   - pyvis
   - distro

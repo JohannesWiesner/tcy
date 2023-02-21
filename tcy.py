@@ -118,6 +118,9 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
     # not be interpreted. 
     # remove packages that generally don't work (for now) on all platforms
     df = pd.read_csv(tsv_path,sep='\t',index_col=None,header=0)
+
+    # remove packages that generally don't work (for now) on all platforms
+    df = df.loc[df['bug_flag'] != 'cross-platform']
     
     # remove packages that won't work for the specified operating system
     df = df.loc[df['bug_flag'] != operating_system]
