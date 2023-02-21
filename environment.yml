@@ -43,7 +43,7 @@ dependencies:
 - pytorch
 - holoviews
 - hvplot
-- python>=3.11
+- python>=3.9
 - pip
 - pip:
   - lckr-jupyterlab-variableinspector
