@@ -57,3 +57,4 @@ openpyxl		pip install openpyxl	pip		dependency	https://openpyxl.readthedocs.io/e
 oct2py		conda install -c conda-forge oct2py	conda	conda-forge	system	https://pypi.org/project/oct2py/	optional	Oct2py allows use to run Octave from Python (so you can execute .m files)		python	
 hvplot		conda install -c pyviz hvplot	conda	pyviz	plotting	https://hvplot.holoviz.org/index.html	optional	hvplot allows to use all the pandas plotting functions (e.g. df.hist()) but outputs interactive instead of static figures		python	
 r-reticulate		conda install -c conda-forge r-reticulate	conda	conda-forge	data wrangling	https://cran.r-project.org/web/packages/RcppCNPy/vignettes/UsingReticulate.pdf	optional	reticulate allows you to read in data generated from Python (e.g. .npy files)		R	
+groupyr		pip install groupyr	pip		statistical modelling	https://richiehalford.org/groupyr/index.html	optional	Allows you to compute group sparse regression / classification		python	

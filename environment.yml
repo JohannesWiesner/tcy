@@ -1,12 +1,12 @@
 name: csp_surname_name
 channels:
 - conda-forge
-- plotly
 - pyviz
-- bokeh
-- districtdatalabs
-- ejolly
+- plotly
 - pytorch
+- ejolly
+- districtdatalabs
+- bokeh
 - defaults
 dependencies:
 - r-essentials
@@ -61,3 +61,4 @@ dependencies:
   - distro
   - abagen
   - openpyxl
+  - groupyr
