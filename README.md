@@ -1,6 +1,7 @@
-
 # TCY
 **T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files using a `.tsv` file as input.
+## Aims
+Using `.yml` files as recipes to create conda environments is already a good step towards reproducible scientific computing environments. However, sometimes we want to know **why** a particular package was included (or not), **what** it does (improving transparency), and whether it runs without errors on all common operating systems (Linux, Mac OS, Windows). `.tsv` files offer much more possibilities to document this. The goal of this repository is to have the documentation capabilities of a `.tsv` file and then be able to export the packages that are described in it to a `.yml` file.es of a `.tsv` file while simultaneoulsy being able to export it to a `.yml` file
 ## Standard Usage
 New lab members can download this repository and use `environment.yml` to create a conda environment. `environment.yml`  contains all the packages that can be found in `packges.tsv` (with a few exceptions packages that are bug flagged but may be available in the future when the developers of these packages have fixed the bugs). This will allow users to get a computational environment with `R`,  `python` and all the packages they need to perform their analyses.
 
