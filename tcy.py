@@ -8,15 +8,8 @@ Notes:
 - environment.yml: This file can be used to create a conda environment
 - requirements.txt: This file can be used to install pip packages
 - install_cran_packages.sh: This bash script can be used to install CRAN-packages
-  inside your environment (it has to be run after creating your environment using
-  the environment.yml file) for which not conda-version exists (yet)
-- install_pip_packages.sh: This bash script can be used to install pip packages
-  inside your environment (it has to be run after creating your environment using
-  the environment.yml file). Note: This file is only a workaround when getting
-  installation errors (as described here: 
-  https://stackoverflow.com/questions/25981703/pip-install-fails-with-connection-error-ssl-certificate-verify-failed-certiPip-packages are already defined in environment.yml in the 
-  pip-section. In case the installation works fine with environment.yml in the
-  future, this script is not necessary anymore.
+  inside a conda environment (it has to be run after creating  a conda environment 
+  using the environment.yml file)
 
 @author: Johannes.Wiesner
 """
@@ -25,43 +18,9 @@ import pandas as pd
 import os
 import argparse
 
-# FIXME: Issue 5
-def write_cran_installation_script(df,surname,name):
-    '''Create a file 'install_cran_packages.sh' that activates the environment
-    and installs all CRAN-packages in that environemnt'''
-
-    df = df.loc[(df['language'] == 'R') & (df['package_manager'] == 'cran'),:]
-    cran_packages = ','.join(f"\"{package}\"" for package in df['package_name'])
-
-    with open('install_cran_packages.sh','w') as f:
-        f.write('#!/bin/bash\n')
-        f.write(f'conda activate csp_{surname}_{name}\n')
-        f.write('R\n')
-        install_command = f'install.packages(c({cran_packages}))'
-        f.write(install_command)            
-
-# FIXME: Issue 5
-def write_pip_installation_script(df,surname,name):
-    
-    df = df.loc[df['package_manager'] == 'pip']
-
-    with open('install_pip_packages.sh','w') as f:
-        f.write('#!/bin/bash\n')
-        f.write('set -e\n')
-        f.write(f'conda activate csp_{surname}_{name}\n')
-        f.write('pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org \\\n')
-        
-        for pip_package in df['package_name']:
-            f.write(f"{pip_package} \\\n")
-
-    # delete last '\' character
-    with open('install_pip_packages.sh', 'rb+') as filehandle:
-        filehandle.seek(-3, os.SEEK_END)
-        filehandle.truncate()
-
-
 def run(operating_system,yml_name=None,pip_requirements_file=False,
-        write_conda_channels=False,tsv_path='./packages.tsv',yml_dir=None):
+        write_conda_channels=False,tsv_path='./packages.tsv',yml_dir=None,
+        cran_installation_script=False,cran_mirror='https://cloud.r-project.org'):
     '''Parses the .tsv file and creates an environment.yml file
     
     Parameters
@@ -96,6 +55,14 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
         If a requirements.txt or pip is generated it will always be placed in 
         the same directory as the environment.yml file
         The default is None.
+    cran_installation_script: boolean, optional
+        If True, generates a bash script that allows to install CRAN-packages
+        within the conda-environment. Only valid when yml_name is set.
+        The default is False.
+    cran_mirror: str, optional
+        A valid URL to a CRAN-Mirror where packages should be downloaded from.
+        The default is 'https://cloud.r-project.org'
+        
     
     Returns
     -------
@@ -107,9 +74,11 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
     if yml_dir:
         yml_path = os.path.join(yml_dir,'environment.yml')
         requirements_path = os.path.join(yml_dir,'requirements.txt')
+        cran_installation_script_path = os.path.join(yml_dir,'install_cran_packages.sh')
     else:
         yml_path = './environment.yml'
         requirements_path = './requirements.txt'
+        cran_installation_script_path = './install_cran_packages.sh'
         
     # read in .tsv file
     # FIXME: See issue #21: After reading in the .tsv file, there should be a sanity
@@ -128,7 +97,7 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
     # sort by language, then by package manager, then by conda channel
     df.sort_values(by=['language','package_manager','conda_channel'],inplace=True)
     
-    # get all conda channels, sort by frequency and if there are ties, alphabetically
+    # get all conda channels, sort by frequency and if there are ties sort alphabetically
     conda_channels = df['conda_channel'].value_counts().sort_index(ascending=False).sort_values(ascending=False).index
         
     # write yml-header
@@ -197,6 +166,29 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
                     command = f"{package_name}\n"
                     rf.write(command)
     
+    if cran_installation_script:
+        
+        if not yml_name:
+            raise TypeError('When creating installation scripts for CRAN-packages you must specify a yml_name')
+                    
+        # subset dataframe to CRAN-packages 
+        df_cran = df.loc[(df['language'] == 'R') & (df['package_manager'] == 'cran'),:]
+        
+        # parse list of CRAN-packages to a single string with packages separated by comma
+        cran_packages = ','.join(f"'{package}'" for package in df_cran['package_name'])
+        
+        # write bash script that allows you to:
+        # 1. activate the conda environment from within a bash-script as suggested here:
+        # https://github.com/conda/conda/issues/7980#issuecomment-472648567
+        # 2. use RScript to install packages within the conda environment. 
+        # We have to specify a mirror because otherwise script will halt because 
+        # we would have to choose one:
+        # https://stackoverflow.com/questions/50870927/using-install-packages-inside-a-shell-script-through-terminal-to-automatically
+        with open(cran_installation_script_path,'w') as f:
+            f.write('#!/bin/bash\n')
+            f.write("CONDA_BASE=$(conda info --base) && source $CONDA_BASE/etc/profile.d/conda.sh\n")
+            f.write(f"conda activate {yml_name} && Rscript -e \"install.packages(c({cran_packages}),repos=\'{cran_mirror}\')\"")
+    
 if __name__ == '__main__':
     
     parser = argparse.ArgumentParser(description='Parse the information from packages.tsv and return environment.yml file')
@@ -232,6 +224,12 @@ if __name__ == '__main__':
                         be placed in the current working directory. If a requirements.txt \
                         for pip is generated it will always be placed in the same directory \
                         as the environment.yml file')
+    parser.add_argument('--cran_installation_script',action='store_true',
+                        help=' If True, generates a bash script that allows to install \
+                        CRAN-packages within the conda-environment. Only valid when --yml_name is set.')
+    parser.add_argument('--cran_mirror',type=str,required=False,default='https://cloud.r-project.org',
+                        help="A valid URL to a CRAN-Mirror where packages should be downloaded from. \
+                        The default is \'https://cloud.r-project.org\'")
 
     # parse arguments
     args = parser.parse_args()
@@ -242,4 +240,6 @@ if __name__ == '__main__':
         write_conda_channels=args.write_conda_channels,
         pip_requirements_file=args.pip_requirements_file,
         tsv_path=args.tsv_path,
-        yml_dir=args.yml_dir)
+        yml_dir=args.yml_dir,
+        cran_installation_script=args.cran_installation_script,
+        cran_mirror=args.cran_mirror)
