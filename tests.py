@@ -57,7 +57,7 @@ def test_check_filled_out_columns():
     df = df[columns_to_check]
     nan_mask = df.isna()
     
-    if any(nan_mask):
+    if any(nan_mask.any()):
         cells = get_concerned_cells(nan_mask)
         message = f"These cells must not contain NaNs, i.e. be filled out: {cells}"
         pytest.fail(message)
