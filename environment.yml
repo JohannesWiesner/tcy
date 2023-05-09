@@ -7,7 +7,6 @@ channels:
 - districtdatalabs
 - ejolly
 - pytorch
-- r
 - defaults
 dependencies:
 - r-essentials
@@ -15,13 +14,13 @@ dependencies:
 - r-repr
 - r-devtools
 - jupyterlab
-- r-base>=4.1,<4.2
+- r-base
 - r-pma
 - r-dendextend
 - r-circlize
 - r-reticulate
-- rtools
 - bokeh
+- python>=3.9
 - sklearn-pandas
 - datalad
 - tableone
@@ -45,9 +44,9 @@ dependencies:
 - pytorch
 - holoviews
 - hvplot
-- python>=3.9
 - pip
 - pip:
+  - lckr-jupyterlab-variableinspector
   - xmltodict
   - adjustText
   - dash-cytoscape
@@ -61,6 +60,7 @@ dependencies:
   - pyvis
   - distro
   - abagen
-  - openpyxl
   - groupyr
   - clustergrammer
+  - nisupply
+  - fmriprep-docker
