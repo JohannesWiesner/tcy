@@ -58,3 +58,4 @@ hvplot		conda install -c pyviz hvplot	conda	pyviz	plotting	https://hvplot.holovi
 r-reticulate		conda install -c conda-forge r-reticulate	conda	conda-forge	data wrangling	https://cran.r-project.org/web/packages/RcppCNPy/vignettes/UsingReticulate.pdf	optional	reticulate allows you to read in data generated from Python (e.g. .npy files)		R	
 groupyr		pip install groupyr	pip		statistical modelling	https://richiehalford.org/groupyr/index.html	optional	Allows you to compute group sparse regression / classification		python	
 clustergrammer		pip install clustergrammer	pip		plotting	https://clustergrammer.readthedocs.io/clustergrammer_py.html	optional	Let’s you create interactive clustermaps		python	
+nisupply		pip install nisupply	pip		data wrangling	https://github.com/JohannesWiesner/nisupply	optional	Johannes Wiesner’s repository to deal with unstructured neuroimaging datasets		python	
