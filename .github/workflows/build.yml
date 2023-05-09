@@ -22,4 +22,4 @@ jobs:
         python -m pip install pandas
         python -m pip install pytest
     - name: run tests
-      run: pytest tests.py
+      run: pytest test_tsv_file.py
