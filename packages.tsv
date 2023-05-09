@@ -59,3 +59,4 @@ r-reticulate		conda install -c conda-forge r-reticulate	conda	conda-forge	data w
 groupyr		pip install groupyr	pip		statistical modelling	https://richiehalford.org/groupyr/index.html	optional	Allows you to compute group sparse regression / classification		python	
 clustergrammer		pip install clustergrammer	pip		plotting	https://clustergrammer.readthedocs.io/clustergrammer_py.html	optional	Let’s you create interactive clustermaps		python	
 nisupply		pip install nisupply	pip		data wrangling	https://github.com/JohannesWiesner/nisupply	optional	Johannes Wiesner’s repository to deal with unstructured neuroimaging datasets		python	
+fmriprep-docker		pip install fmriprep-docker	pip		neuroimaging	https://fmriprep.org/en/20.2.0/installation.html#the-fmriprep-docker-wrapper	optional	This package makes the invocation of fmriprep easier		python	
