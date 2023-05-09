@@ -17,6 +17,7 @@ Notes:
 import pandas as pd
 import os
 import argparse
+import pytest
 
 def run(operating_system,yml_name=None,pip_requirements_file=False,
         write_conda_channels=False,tsv_path='./packages.tsv',yml_dir=None,
@@ -80,12 +81,10 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
         requirements_path = './requirements.txt'
         cran_installation_script_path = './install_cran_packages.sh'
         
+    # check provided .tsv file for errors using pytest
+    pytest.main(["test_tsv_file.py","--tsv_path",tsv_path,'-qqqq','--tb','no'])
+    
     # read in .tsv file
-    # FIXME: See issue #21: After reading in the .tsv file, there should be a sanity
-    # check running that makes sure no cell in the .tsv file ends with a space
-    # We had an issue that user typed in "conda " instead of "conda" which could
-    # not be interpreted. 
-    # remove packages that generally don't work (for now) on all platforms
     df = pd.read_csv(tsv_path,sep='\t',index_col=None,header=0)
 
     # remove packages that generally don't work (for now) on all platforms
