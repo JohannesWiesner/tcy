@@ -21,7 +21,8 @@ import pytest
 
 def run(operating_system,yml_name=None,pip_requirements_file=False,
         write_conda_channels=False,tsv_path='./packages.tsv',yml_dir=None,
-        cran_installation_script=False,cran_mirror='https://cloud.r-project.org'):
+        cran_installation_script=False,cran_mirror='https://cloud.r-project.org',
+        languages='all',necessity='all'):
     '''Parses the .tsv file and creates an environment.yml file
     
     Parameters
@@ -63,6 +64,12 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
     cran_mirror: str, optional
         A valid URL to a CRAN-Mirror where packages should be downloaded from.
         The default is 'https://cloud.r-project.org'
+    languages: str or list of str, optional
+        Filter for languages. Valid arguments are Python, Julia, R.
+        The default is 'all'
+    necessity: str or list of str, optional
+        Filter for necessity. Valid arguments are optional, required.
+        The default is 'all'
         
     
     Returns
@@ -92,6 +99,14 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
     
     # remove packages that won't work for the specified operating system
     df = df.loc[df['bug_flag'] != operating_system]
+    
+    # filter for languages if specified by user
+    if not languages == 'all':
+        df = df.loc[df['language'].isin(languages),:]
+    
+    # filter for necessitiy if specified by user
+    if not necessity == 'all':
+        df = df.loc[df['necessity'].isin(necessity),:]
     
     # sort by language, then by package manager, then by conda channel
     df.sort_values(by=['language','package_manager','conda_channel'],inplace=True)
@@ -229,6 +244,11 @@ if __name__ == '__main__':
     parser.add_argument('--cran_mirror',type=str,required=False,default='https://cloud.r-project.org',
                         help="A valid URL to a CRAN-Mirror where packages should be downloaded from. \
                         The default is \'https://cloud.r-project.org\'")
+    parser.add_argument('--languages',type=str,required=False,default='all',nargs='+',
+                        help="Filter for certain programming languages. Valid inputs \
+                        are Python, R, Julia.")
+    parser.add_argument('--necessity',type=str,required=False,default='all',nargs='+',
+                        help="Filter for necessity. Valid inputs are \'required\', \'optional\'")
 
     # parse arguments
     args = parser.parse_args()
@@ -241,4 +261,6 @@ if __name__ == '__main__':
         tsv_path=args.tsv_path,
         yml_dir=args.yml_dir,
         cran_installation_script=args.cran_installation_script,
-        cran_mirror=args.cran_mirror)
+        cran_mirror=args.cran_mirror,
+        languages=args.languages,
+        necessity=args.necessity)

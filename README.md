@@ -1,4 +1,3 @@
-
 # TCY
 **T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files using a `.tsv` file as input.
 ## Aims
@@ -18,6 +17,24 @@ New lab members can download this repository and use `environment.yml` to create
     information can be found
     [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
 
+## The packages.tsv file
+The `packages.tsv` spreadsheet contains the following columns:
+
+- `package_name` (the name of the package as found on conda or pip pages)
+- `version` (specify the version of the package you need)
+- `installation_command` (the full installation command)
+- `package_manager` (pip, conda, cran)
+- `conda_channel` (which conda channel to install from)
+- `area` (e.g. "data wrangling", "plotting", etc.)
+- `link` (the link to the package itself)
+- `necessity` ("required": you find that this package should be available for all lab members, "optional": only you need it for your current project but maybe any future lab member might find it also useful in the future)
+- `description` (a short description of what this package does)
+- `comment` (optional comments if something is buggy or if you want to tell other users some useful information)
+- `language` (Python, R, Julia)
+- `bug_flag` (can be 'linux' or 'windows')
+
+Whenever you find a new package that you find interesting and/or have to install for your project, you can open an Issue in this repository or even better, fork this repo, add your package to the .tsv file and send a pull request!
+
 ## How to generate a custom environment.yml file
 With a python installation on their machines, users can run the  `tcy.py` script in the console:
 
@@ -35,29 +52,12 @@ The following optional arguments can be set for further customization:
 - `--yml_dir`(Path to a valid directory where `environment.yml` should be placed in. If not given, `environment.yml` will  be placed in the current working directory. If a `requirements.txt` for pip is generated it will always be placed in the same directory  as the `environment.yml` file)
 - `--cran_installation_script` (If set, generates a bash script `install_cran_packages.sh`that allows to install CRAN-packages within the conda-environment. Only valid when `--yml_name` is set)
 - `--cran_mirror`(A valid URL to a CRAN-Mirror where packages should be downloaded from. The default is https://cloud.r-project.org)
+- `--languages` (Filter for certain languages. Valid inputs are 'Python', 'R' & 'Julia')
+- `--necessity` (Filter for necessity. Valid inputs are 'optional' and 'required').
 
 ### CRAN-packages
 Some R-packages are not (yet) available as conda-packages. In order to semi-automate the installation process of these packages in your conda environment, run `install_cran_packages.sh`. This script will activate the conda environment, start R in this environment and then install the CRAN-packages via `install.packages()` Note that this is not the recommended way to do it, but some R-packages are simply not available as conda-packages (this should be checked though on a regular basis).
 
-## How to contribute
-1.) Whenever you find a new package that you find interesting and/or have to install for your project, this should be added to `packages.tsv`. The spreadsheet contains the following columns:
-
-- `package_name` (the name of the package as found on conda or pip pages)
-- `version` (specify the version of the package you need)
-- `installation_command` (the full installation command)
-- `package_manager` (pip, conda, cran)
-- `conda_channel` (which conda channel to install from)
-- `area` (e.g. "data wrangling", "plotting", etc.)
-- `link` (the link to the package itself)
-- `necessity` (required: you find that this package should be available for all lab members, optional: only you need it for your current project but maybe any future lab member might find it also useful in the future)
-- `description` (a short description of what this package does)
-- `comment` (optional comments if something is buggy or if you want to tell other users some useful information)
-- `language` (python, R)
-- `bug_flag` (can be 'linux' or 'windows')
-
-2.) After adding the information for the new package, you can run `tcy.py` to create an updated version of `environment.yml`. `tcy.py` simply parses the information in `packages.tsv` in order to not have to do this tedious work yourself.
-
-3.) Push your changes
 
 # Q & A
 ## What about dependencies?
@@ -65,4 +65,5 @@ Some R-packages are not (yet) available as conda-packages. In order to semi-auto
 It's not necesary to specifiy dependencies in the `.tsv` file! Conda will take care of that. So for example, there's no need to put `numpy` in the `.tsv` file because `numpy` is a common dependency of most scientific python packages (e.g. `scikit-learn`,`pytorch`, etc.) There might however be cases where there are optional dependencies that can but must not be installed (Example: The plotting package `plotly` works completely fine if we install it as it is. But if we want the nice feature of creating interactive plots we also have to install the dependency `orca`). Optional dependencies should be marked as `dependency` in the `area` column of the `.tsv` file.
 
 ## Why not create the  environment and share the exported .yml file?
-Theoretically there would be an even better option than everyone creating the same environment over and over: First, one user would create an environment using `environment.yml` (which can take a long time because conda has to resolve the dependency graph to create an environment where each of the packages is ‘happy’ with the versions of all other packages). Then this environment could be exported via `conda env export > environment.yml` . Finally, other users could then take this `.yml` file to directly create the environment (without the need to resolve the dependency graph one more time, because this file already contains the ‘solution’. More information on that can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-the-environment-yml-file)). But here comes the catch: This file often does not work across platforms (e.g. your own personal laptop which might run on Windows vs. Linux servers). The longterm solution for this is to create a containerized solution with this environment as aimed in [csp_neurodocker](https://github.com/JohannesWiesner/csp_neurodocker)
+Theoretically there would be an even better option than everyone creating the same environment over and over: First, one user would create an environment using `environment.yml` (which can take a long time because conda has to resolve the dependency graph to create an environment where each of the packages is ‘happy’ with the versions of all other packages). Then this environment could be exported via `conda env export > environment.yml` . Finally, other users could then take this `.yml` file to directly create the environment (without the need to resolve the dependency graph one more time, because this file already contains the ‘solution’. More information on that can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-the-environment-yml-file)). But here comes the catch: This file often does not work across platforms (e.g. your own personal laptop which might run on Windows vs. Linux servers). The longterm solution for
+this is to create a containerized solution with this environment as aimed in [csp_docker](https://github.com/JohannesWiesner/csp_neurodocker)

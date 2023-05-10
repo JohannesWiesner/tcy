@@ -31,7 +31,7 @@ class TestTsvFile:
                               'bug_flag']
         
         self.valid_options = {'package_manager':['conda','pip','cran'],
-                              'language':['python','R','julia'],
+                              'language':['Python','R','Julia'],
                               'bug_flag':['linux','windows','cross-platform',np.nan]
                               }
         self.filled_out_columns = ['package_name','language']
