@@ -8,6 +8,7 @@ on:
 
 jobs:
   check-tsv-file:
+    name: check-tsv-file
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
@@ -24,6 +25,7 @@ jobs:
     - name: check tsv file using pytest
       run: pytest test_tsv_file.py
   test-yml-file:
+    name: test-yml-file
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
