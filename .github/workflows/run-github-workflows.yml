@@ -28,16 +28,34 @@ jobs:
   test-yml-file:
     name: test-yml-file
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
     - name: checkout repository
       uses: actions/checkout@v3
-    - name: setup miniconda
+    - name: setup miniconda and solve environment
       uses: conda-incubator/setup-miniconda@v2
       with:
         channel-priority: strict
         environment-file: environment.yml
     - name: print conda info
-      shell: bash -el {0}
       run: |
         conda info
         conda list
+    - name: export conda environment
+      run: |
+        echo "$PWD"
+        conda env export --name test | grep -v "^prefix: " > environment_solved_ubuntu.yml.yml
+        ls -la
+    - name: add and commit exported conda environment
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add environment_solved_ubuntu.yml.yml
+        git commit -a -m "add and commit changed .yml file"
+    - name: push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
