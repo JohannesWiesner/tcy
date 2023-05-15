@@ -1,4 +1,4 @@
-name: test
+name: csp_surname_name
 channels:
 - conda-forge
 - plotly
@@ -8,7 +8,7 @@ channels:
 - defaults
 dependencies:
 - bokeh
-- Python>=3.9
+- python
 - sklearn-pandas
 - datalad
 - tableone
@@ -19,6 +19,7 @@ dependencies:
 - statannotations
 - fastcluster
 - pingouin
+- mne
 - oct2py
 - pymer4
 - plotly-orca
@@ -31,8 +32,6 @@ dependencies:
 - jupyterlab
 - r-base
 - r-reticulate
-- pandas>=1.2
-- mne
 - pip
 - pip:
   - network_control
