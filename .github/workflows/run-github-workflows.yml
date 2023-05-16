@@ -46,7 +46,7 @@ jobs:
         create-args: --name csp_surname_name
     - name: export conda environment created using micromamba
       run: |
-        micromamba env export --name csp_surname_name | grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
+        micromamba env export --name csp_surname_name | grep -v "^prefix: " > ./environments/environment_solved_ubuntu.yml
     - name: add and commit exported conda environment
       uses: stefanzweifel/git-auto-commit-action@v4
 
