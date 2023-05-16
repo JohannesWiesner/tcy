@@ -35,6 +35,22 @@ jobs:
       uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: environment.yml
+    - name: export conda environment
+      run: |
+        echo "$PWD"
+        conda env export --name test | grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
+        ls -la
+    - name: add and commit exported conda environment
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add environment_solved_ubuntu_micromamba.yml
+        git commit -a -m "add and commit changed .yml file"
+    - name: push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
   test-yml-file:
     name: test-yml-file
     runs-on: ubuntu-latest
