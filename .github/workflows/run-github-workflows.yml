@@ -39,7 +39,7 @@ jobs:
     - name: export conda environment
       run: |
         echo "$PWD"
-        mambda env export --name test_micromamba| grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
+        mamba env export --name test_micromamba| grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
         ls -la
     - name: add and commit exported conda environment
       run: |
