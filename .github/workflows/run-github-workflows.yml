@@ -29,12 +29,16 @@ jobs:
     needs: check-tsv-file
     name: solve .yml file with micromamba
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     defaults:
       run:
         shell: bash -el {0}
     steps:
     - name: checkout repository
       uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
@@ -44,13 +48,5 @@ jobs:
       run: |
         micromamba env export --name csp_surname_name | grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
     - name: add and commit exported conda environment
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add environment_solved_ubuntu_micromamba.yml
-        git commit -a -m "add and commit changed .yml file"
-    - name: push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+      uses: stefanzweifel/git-auto-commit-action@v4
+
