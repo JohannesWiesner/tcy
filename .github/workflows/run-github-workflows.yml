@@ -37,7 +37,7 @@ jobs:
         environment-file: environment.yml
         create-args: --name csp_surname_name
     - name: export conda environment created using micromamba
-      run: micromamba env export --name csp_surname_name | grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
+      run: conda env export --name csp_surname_name | grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
       shell: bash -el {0}
     - name: add and commit exported conda environment
       run: |
