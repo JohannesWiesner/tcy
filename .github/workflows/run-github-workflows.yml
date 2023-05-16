@@ -28,6 +28,9 @@ jobs:
   test-yml-micromamba:
     name: test-yml-file-micromamba
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
     - name: checkout repository
       uses: actions/checkout@v3
