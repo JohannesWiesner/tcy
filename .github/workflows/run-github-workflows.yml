@@ -35,8 +35,8 @@ jobs:
       uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: environment.yml
-        create-args: -v test_micromamba
-    - name: export conda environment
+        create-args: --name test_micromamba
+    - name: export conda environment created using micromamba
       run: |
         echo "$PWD"
         mamba env export --name test_micromamba| grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
