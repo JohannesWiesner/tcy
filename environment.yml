@@ -1,48 +1,7 @@
 name: csp_surname_name
 channels:
 - conda-forge
-- plotly
-- pyviz
-- bokeh
-- ejolly
 - defaults
 dependencies:
-- bokeh
 - python
-- sklearn-pandas
-- datalad
-- tableone
-- spyder
-- scikit-learn
-- nilearn
-- nipype
-- statannotations
-- fastcluster
-- pingouin
-- mne
-- oct2py
-- pymer4
-- plotly-orca
-- plotly
-- holoviews
-- hvplot
-- r-essentials
-- r-repr
-- r-devtools
-- jupyterlab
-- r-base
-- r-reticulate
-- pip
-- pip:
-  - network_control
-  - cca-zoo
-  - bctpy
-  - gower
-  - antropy
-  - pyvis
-  - distro
-  - abagen
-  - groupyr
-  - clustergrammer
-  - nisupply
-  - lckr-jupyterlab-variableinspector
+

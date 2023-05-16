@@ -25,6 +25,16 @@ jobs:
         python -m pip install pytest
     - name: check tsv file using pytest
       run: pytest test_tsv_file.py
+  test-yml-micromamba:
+    name: test-yml-file-micromamba
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+    - name: setup micromamba and solve environment
+      uses: mamba-org/setup-micromamba@v1
+      with:
+        environment-file: environment.yml
   test-yml-file:
     name: test-yml-file
     runs-on: ubuntu-latest
