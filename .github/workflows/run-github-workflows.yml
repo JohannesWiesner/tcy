@@ -28,9 +28,6 @@ jobs:
   test-yml-micromamba:
     name: test-yml-file-micromamba
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -el {0}
     steps:
     - name: checkout repository
       uses: actions/checkout@v3
@@ -40,10 +37,8 @@ jobs:
         environment-file: environment.yml
         create-args: --name csp_surname_name
     - name: export conda environment created using micromamba
-      run: |
-        echo "$PWD"
-        mamba env export --name csp_surname_name| grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
-        ls -la
+      run: mamba env export --name csp_surname_name| grep -v "^prefix: " > environment_solved_ubuntu_micromamba.yml
+      shell: bash -el {0}
     - name: add and commit exported conda environment
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
