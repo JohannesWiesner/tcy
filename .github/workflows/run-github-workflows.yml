@@ -39,13 +39,22 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
+        - name: setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.7
+    - name: install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pandas
+        python -m pip install pytest
     - name: run tcy to create .yml file
       run: |
-           if [ "$RUNNER_OS" == "Linux" ]; then
-              python tcy.py linux --yml_dir=./environments --yml_name=test_${{ runner.os }}
-           elif [ "$RUNNER_OS" == "Windows" ]; then
-              python tcy.py windows --yml_dir=./environments --yml_name=test_${{ runner.os }}
-           fi
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          python tcy.py linux --yml_dir=./environments --yml_name=test_${{ runner.os }}
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          python tcy.py windows --yml_dir=./environments --yml_name=test_${{ runner.os }}
+        fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
