@@ -52,7 +52,7 @@ jobs:
       run: |
         echo "$RUNNER_OS"
     - name: run tcy to create .yml file
-      run: |´
+      run: |
         if [ '$RUNNER_OS' == 'Linux' ]; then
           python tcy.py linux --yml_dir=./environments --yml_name=test_${{ runner.os }}
           echo "tcy for linux was run"
