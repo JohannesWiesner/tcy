@@ -53,9 +53,9 @@ jobs:
         echo "$RUNNER_OS"
     - name: run tcy to create .yml file
       run: |
-        if [ '$RUNNER_OS' == 'Linux' ]; then
+        if [ "$RUNNER_OS" == "Linux" ]; then
           echo "foo"
-        elif [ '$RUNNER_OS' == 'Windows' ]; then
+        elif [ "$RUNNER_OS" == "Windows" ]; then
           echo "bar"
         fi
     - name: setup micromamba and solve environment
