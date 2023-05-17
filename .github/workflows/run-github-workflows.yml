@@ -49,20 +49,19 @@ jobs:
         python -m pip install pandas
         python -m pip install pytest
     - name: run tcy to create .yml file
+      if: runner.os == 'Linux'
       run: |
-        if [ "$RUNNER_OS" == "Linux" ]; then
           python tcy.py linux --yml_dir=./environments --yml_name=test_${{ runner.os }}
-        elif [ "$RUNNER_OS" == "Windows" ]; then
+      if: runner.os == 'Windows'
+      run: |
           python tcy.py windows --yml_dir=./environments --yml_name=test_${{ runner.os }}
-        fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: ./environments/test_${{ runner.os }}.yml
-        environment-name: ${{ runner.os }}
     - name: export conda environment created using micromamba
       run: |
-        micromamba env export --name ${{ runner.os }} | grep -v "^prefix: " > ./environments/${{ runner.os }}_solved.yml
+        micromamba env export --name ${{ runner.os }} | grep -v "^prefix: " > ./environments/test_${{ runner.os }}_solved.yml
     - name: add and commit exported conda environment
       uses: stefanzweifel/git-auto-commit-action@v4
 
