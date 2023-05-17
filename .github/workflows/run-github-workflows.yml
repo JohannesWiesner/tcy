@@ -63,7 +63,7 @@ jobs:
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: ./environments/test_${{ runner.os }}.yml
+        environment-file: ./environments/environment.yml
     - name: export conda environment created using micromamba
       run: |
         micromamba env export --name ${{ runner.os }} | grep -v "^prefix: " > ./environments/${{ runner.os }}_solved.yml
