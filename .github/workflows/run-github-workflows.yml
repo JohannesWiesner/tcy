@@ -39,14 +39,24 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
+    - name: run tcy to create .yml file
+      run: |
+           if [ "$RUNNER_OS" == "Linux" ]; then
+              python tcy.py linux --yml_dir=./environments --yml_name=test_${{ runner.os }}
+           elif [ "$RUNNER_OS" == "Windows" ]; then
+              python tcy.py windows --yml_dir=./environments --yml_name=test_${{ runner.os }}
+           fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: environment.yml
-        create-args: --name csp_surname_name
+        environment-file: ./environments/test_${{ runner.os }}.yml
+        environment-name: ${{ runner.os }}
     - name: export conda environment created using micromamba
       run: |
-        micromamba env export --name csp_surname_name | grep -v "^prefix: " > ./environments/environment_solved_ubuntu.yml
+        micromamba env export --name ${{ runner.os }} | grep -v "^prefix: " > ./environments/${{ runner.os }}_solved.yml
     - name: add and commit exported conda environment
       uses: stefanzweifel/git-auto-commit-action@v4
+
+
+
 
