@@ -54,13 +54,9 @@ jobs:
     - name: run tcy to create .yml file
       run: |
         if [ '$RUNNER_OS' == 'Linux' ]; then
-          python tcy.py linux --yml_dir=./environments --yml_name=test_${{ runner.os }}
-          echo "tcy for linux was run"
-          ls
+          echo "foo"
         elif [ '$RUNNER_OS' == 'Windows' ]; then
-          python tcy.py windows --yml_dir=./environments --yml_name=test_${{ runner.os }}
-          echo "tcy for linux was run"
-          ls
+          echo "bar"
         fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
