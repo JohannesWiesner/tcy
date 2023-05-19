@@ -19,7 +19,7 @@ import os
 import argparse
 import pytest
 
-def run(operating_system,yml_name=None,pip_requirements_file=False,
+def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requirements_file=False,
         write_conda_channels=False,tsv_path='./packages.tsv',yml_dir=None,
         cran_installation_script=False,cran_mirror='https://cloud.r-project.org',
         languages='all',necessity='all'):
@@ -36,6 +36,9 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
         If not given, don't set the "name:" attribute in the environment.yml file.
         This is useful if the resulting .yml file should only be used for updating 
         an existing environment (not to create a new one). The default is False.
+    yml_file_name: str, optional
+        Sets a custom name for the .yml file.
+        The default is 'environment.yml'
     pip_requirements_file : boolean, optional
         If True, pip packages are written to a separate requirements.txt file. 
         If False, pip packages appear in environment.yml file under the "pip:"
@@ -80,13 +83,13 @@ def run(operating_system,yml_name=None,pip_requirements_file=False,
 
     # get path to .yml file
     if yml_dir:
-        yml_path = os.path.join(yml_dir,'environment.yml')
+        yml_path = os.path.join(yml_dir,yml_file_name)
         requirements_path = os.path.join(yml_dir,'requirements.txt')
         cran_installation_script_path = os.path.join(yml_dir,'install_cran_packages.sh')
     else:
-        yml_path = './environment.yml'
-        requirements_path = './requirements.txt'
-        cran_installation_script_path = './install_cran_packages.sh'
+        yml_path = yml_file_name
+        requirements_path = 'requirements.txt'
+        cran_installation_script_path = 'install_cran_packages.sh'
         
     # check provided .tsv file for errors using pytest
     pytest.main(["test_tsv_file.py","--tsv_path",tsv_path,'-qqqq','--tb','no'])
@@ -221,6 +224,8 @@ if __name__ == '__main__':
                         The .yml file will not have a \"name:\" attribute.\
                         This is useful if the resulting .yml file should only be used for updating \
                         an existing environment that already has a name (i.e. not to create a new one).')
+    parser.add_argument('--yml_file_name',type=str,required=False,default='environment.yml',
+                        help='Sets the name of the .yml file. The default is is environment.yml')
     parser.add_argument('--pip_requirements_file',action='store_true',dest='pip_requirements_file',
                         help='Write pip packages to a separate requirements.txt file.')
     parser.add_argument('--write_conda_channels',action='store_true',
@@ -256,6 +261,7 @@ if __name__ == '__main__':
     # parse .tsv file and get .yml file
     run(operating_system=args.os,
         yml_name=args.yml_name,
+        yml_file_name=args.yml_file_name,
         write_conda_channels=args.write_conda_channels,
         pip_requirements_file=args.pip_requirements_file,
         tsv_path=args.tsv_path,

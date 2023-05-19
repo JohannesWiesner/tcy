@@ -1,0 +1,2 @@
+package_name	version	installation_command	package_manager	conda_channel	area	link	necessity	description	comment	language	bug_flag
+python		conda install -c conda-forge python	conda	conda-forge	language	https://anaconda.org/conda-forge/python	required	the python programming language itself		Python	

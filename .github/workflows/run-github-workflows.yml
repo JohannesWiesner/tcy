@@ -55,10 +55,10 @@ jobs:
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
           echo "foo"
-          python tcy.py linux --yml_dir=./environments
+          python tcy.py linux --yml_dir=./environments --yml_name=${{ runner.os }}.yml --tsv_path=packages_test.tsv
           cd ./environments && ls -la
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          python tcy.py windows --yml_dir=./environments
+          python tcy.py windows --yml_dir=./environments ---yml_name=${{ runner.os }}.yml --tsv_path=packages_test.tsv
         fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
