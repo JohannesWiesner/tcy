@@ -32,7 +32,7 @@ class TestTsvFile:
         
         self.valid_options = {'package_manager':['conda','pip','cran'],
                               'language':['Python','R','Julia'],
-                              'bug_flag':['linux','windows','cross-platform',np.nan]
+                              'bug_flag':['linux','windows','cross-platform']
                               }
         self.filled_out_columns = ['package_name','language']
 
@@ -102,7 +102,7 @@ class TestTsvFile:
     
         # check each column and throw error if necessary
         for column,options in self.valid_options.items():
-            current_column_values = self.df[column].unique()
+            current_column_values = self.df[column].dropna().unique()
             column_check = set(current_column_values).issubset(options)    
             if column_check == False:
                 message = f"The column '{column}' must only contain the following values: {options} but contains {current_column_values}"
