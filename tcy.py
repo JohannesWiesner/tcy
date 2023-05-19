@@ -155,56 +155,60 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
             f.write(command)
     
     # write pip packages
-    with open(yml_path,'a') as f:
-        
-        df_pip = df.loc[df['package_manager'] == 'pip']
-        
-        # these two lines are needed in any case
-        f.write('- pip\n')
-        f.write('- pip:\n')
+    if 'pip' in df['package_manager'].values:
     
-        if pip_requirements_file == False:
-                    
-            for idx,row in df_pip.iterrows():
-                row = row.to_dict()
-                package_name = row['package_name']
-                command = f"{package_name}"
-                command = f"  - {command}\n"
-                f.write(command)
-                
-        if pip_requirements_file == True:
+        with open(yml_path,'a') as f:
             
-            f.write('  - -r requirements.txt')
+            df_pip = df.loc[df['package_manager'] == 'pip']
+            
+            # these two lines are needed in any case
+            f.write('- pip\n')
+            f.write('- pip:\n')
         
-            with open(requirements_path,'w') as rf:
+            if pip_requirements_file == False:
+                        
                 for idx,row in df_pip.iterrows():
                     row = row.to_dict()
                     package_name = row['package_name']
-                    command = f"{package_name}\n"
-                    rf.write(command)
-    
-    if cran_installation_script:
-        
-        if not yml_name:
-            raise TypeError('When creating installation scripts for CRAN-packages you must specify a yml_name')
+                    command = f"{package_name}"
+                    command = f"  - {command}\n"
+                    f.write(command)
                     
-        # subset dataframe to CRAN-packages 
-        df_cran = df.loc[(df['language'] == 'R') & (df['package_manager'] == 'cran'),:]
-        
-        # parse list of CRAN-packages to a single string with packages separated by comma
-        cran_packages = ','.join(f"'{package}'" for package in df_cran['package_name'])
-        
-        # write bash script that allows you to:
-        # 1. activate the conda environment from within a bash-script as suggested here:
-        # https://github.com/conda/conda/issues/7980#issuecomment-472648567
-        # 2. use RScript to install packages within the conda environment. 
-        # We have to specify a mirror because otherwise script will halt because 
-        # we would have to choose one:
-        # https://stackoverflow.com/questions/50870927/using-install-packages-inside-a-shell-script-through-terminal-to-automatically
-        with open(cran_installation_script_path,'w') as f:
-            f.write('#!/bin/bash\n')
-            f.write("CONDA_BASE=$(conda info --base) && source $CONDA_BASE/etc/profile.d/conda.sh\n")
-            f.write(f"conda activate {yml_name} && Rscript -e \"install.packages(c({cran_packages}),repos=\'{cran_mirror}\')\"")
+            if pip_requirements_file == True:
+                
+                f.write('  - -r requirements.txt')
+            
+                with open(requirements_path,'w') as rf:
+                    for idx,row in df_pip.iterrows():
+                        row = row.to_dict()
+                        package_name = row['package_name']
+                        command = f"{package_name}\n"
+                        rf.write(command)
+    
+    if 'cran' in df['package_manager'].values:
+    
+        if cran_installation_script:
+            
+            if not yml_name:
+                raise TypeError('When creating installation scripts for CRAN-packages you must specify a yml_name')
+                        
+            # subset dataframe to CRAN-packages 
+            df_cran = df.loc[(df['language'] == 'R') & (df['package_manager'] == 'cran'),:]
+            
+            # parse list of CRAN-packages to a single string with packages separated by comma
+            cran_packages = ','.join(f"'{package}'" for package in df_cran['package_name'])
+            
+            # write bash script that allows you to:
+            # 1. activate the conda environment from within a bash-script as suggested here:
+            # https://github.com/conda/conda/issues/7980#issuecomment-472648567
+            # 2. use RScript to install packages within the conda environment. 
+            # We have to specify a mirror because otherwise script will halt because 
+            # we would have to choose one:
+            # https://stackoverflow.com/questions/50870927/using-install-packages-inside-a-shell-script-through-terminal-to-automatically
+            with open(cran_installation_script_path,'w') as f:
+                f.write('#!/bin/bash\n')
+                f.write("CONDA_BASE=$(conda info --base) && source $CONDA_BASE/etc/profile.d/conda.sh\n")
+                f.write(f"conda activate {yml_name} && Rscript -e \"install.packages(c({cran_packages}),repos=\'{cran_mirror}\')\"")
     
 if __name__ == '__main__':
     
