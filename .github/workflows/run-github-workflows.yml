@@ -54,7 +54,6 @@ jobs:
     - name: run tcy to create .yml file
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-          echo "foo"
           python tcy.py linux --yml_dir=./environments --yml_file_name=${{ runner.os }}_input.yml --tsv_path=packages_test.tsv
         elif [ "$RUNNER_OS" == "Windows" ]; then
           python tcy.py windows --yml_dir=./environments ---yml_file_name=${{ runner.os }}_input.yml --tsv_path=packages_test.tsv
