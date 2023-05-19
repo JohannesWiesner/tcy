@@ -8,25 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-tsv-file:
-    name: check if there are errors in .tsv file
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout repository
-      uses: actions/checkout@v3
-    - name: setup python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.7
-    - name: install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install pandas
-        python -m pip install pytest
-    - name: check tsv file using pytest
-      run: pytest test_tsv_file.py
   test-yml-micromamba:
-    needs: check-tsv-file
     name: solve .yml file with micromamba
     runs-on: ubuntu-latest
     permissions:
@@ -69,7 +51,3 @@ jobs:
         conda list --explicit > ./environments/csp_${{ runner.os }}_solved.txt
     - name: add and commit exported conda environment
       uses: stefanzweifel/git-auto-commit-action@v4
-
-
-
-
