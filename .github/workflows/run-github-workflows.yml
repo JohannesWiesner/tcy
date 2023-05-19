@@ -54,19 +54,19 @@ jobs:
     - name: run tcy to create .yml file
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-          python tcy.py linux --yml_dir=./environments --yml_file_name=${{ runner.os }}_input.yml --tsv_path=packages_test.tsv
+          python tcy.py linux --yml_dir=./environments --yml_file_name=csp_${{ runner.os }}_input.yml --tsv_path=./environments/csp.tsv
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          python tcy.py windows --yml_dir=./environments ---yml_file_name=${{ runner.os }}_input.yml --tsv_path=packages_test.tsv
+          python tcy.py windows --yml_dir=./environments ---yml_file_name=csp_${{ runner.os }}_input.yml --tsv_path=./environments/csp.tsv
         fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: ./environments/${{ runner.os }}_input.yml
+        environment-file: ./environments/csp_${{ runner.os }}_input.yml
         environment-name: ${{ runner.os }}
     - name: export conda environment created using micromamba
       run: |
-        micromamba env export --name ${{ runner.os }} | grep -v "^prefix: " > ./environments/${{ runner.os }}_solved.yml
-        conda list --explicit > ./environments/${{ runner.os }}_solved.txt
+        micromamba env export --name ${{ runner.os }} | grep -v "^prefix: " > ./environments/csp_${{ runner.os }}_solved.yml
+        conda list --explicit > ./environments/csp_${{ runner.os }}_solved.txt
     - name: add and commit exported conda environment
       uses: stefanzweifel/git-auto-commit-action@v4
 
