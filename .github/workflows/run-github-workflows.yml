@@ -30,9 +30,6 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install pandas
         python -m pip install pytest
-    - name: check what's going on
-      run: |
-        echo "$RUNNER_OS"
     - name: run tcy to create .yml file
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
