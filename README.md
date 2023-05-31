@@ -1,27 +1,12 @@
+
 # TCY
 **T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files using a `.tsv` file as input.
 ## Aims
-Using `.yml` files as recipes to create conda environments is already a good step towards reproducible scientific computing environments. However, sometimes we want to know **why** a particular package was included (or not), **what** it does (improving transparency), and whether it runs without errors on all common operating systems (Linux, Mac OS, Windows). `.tsv` files offer much more possibilities to document this. The goal of this repository is to have the documentation capabilities of a `.tsv` file and then be able to export the packages that are described in it to a `.yml` file.
-## Standard Usage
-New lab members can download this repository and use `environment.yml` to create a conda environment. `environment.yml`  contains all the packages that can be found in `packages.tsv` (with a few exceptions packages that are bug flagged but may be available in the future when the developers of these packages have fixed the bugs). This will allow users to get a computational environment with `R`,  `python` and all the packages they need to perform their analyses.
-
- 1. After downloading this repo users only have to set their name
-    `name:csp_surname_name` attribute in `environment.yml`
- 2. After that they execute the following command to create their
-    environment:
-
-    `conda env create -f environment.yml`
-
-    (Note: There is no need to specify `-n environment_name` in this command because the
-    name of the environment is specified in the file itself. More
-    information can be found
-    [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
-
+Using `.yml` files as recipes to create conda environments is already a good step towards reproducible scientific computing environments. However, sometimes we want to know **why** a particular package was included (or not), **what** it does (improving transparency), and whether it runs without errors on all common operating systems (Linux, Mac OS, Windows). Spreadsheet files offer much more possibilities to document this. The goal of this repository is to have the documentation capabilities of a `.tsv` file and then be able to export the packages that are described in it to a `.yml` file.
 ## The packages.tsv file
-The `packages.tsv` spreadsheet contains the following columns:
-
-- `package_name` (the name of the package as found on conda or pip pages)
-- `version` (specify the version of the package you need)
+The input spreadsheet file has the following columns:
+- `package_name` (the offical name of the package)
+- `version` (specify the version of the package you need, this can include )
 - `installation_command` (the full installation command)
 - `package_manager` (pip, conda, cran)
 - `conda_channel` (which conda channel to install from)
@@ -32,9 +17,6 @@ The `packages.tsv` spreadsheet contains the following columns:
 - `comment` (optional comments if something is buggy or if you want to tell other users some useful information)
 - `language` (Python, R, Julia)
 - `bug_flag` (can be 'linux' or 'windows')
-
-Whenever you find a new package that you find interesting and/or have to install for your project, you can open an Issue in this repository or even better, fork this repo, add your package to the .tsv file and send a pull request!
-
 ## How to generate a custom environment.yml file
 With a python installation on their machines, users can run the  `tcy.py` script in the console:
 
@@ -49,7 +31,7 @@ The following optional arguments can be set for further customization:
 - `--yml_file_name` (Sets the name of the .yml file. The default is 'environment.yml')
 - `--pip_requirements_file` (Write pip packages to a separate `requirements.txt` file. This will file will always be placed in the same directory as the .yml file)
 - `--write_conda_channels` (Specifies conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview)
-- `--tsv_path` (Optional path to the `packages.tsv` file. If not given, the function will expect  `packages.tsv` to be in the current working directory)
+- `--tsv_path` (Optional path to the `.tsv` file. If not given, the function will expect a  `"packages.tsv"` file to be in the current working directory)
 - `--yml_dir`(Path to a valid directory where the .yml file should be placed in. If not given the file will  be placed in the current working directory. If a `requirements.txt` for pip is generated it will always be placed in the same directory  as the .yml file)
 - `--cran_installation_script` (If set, generates a bash script `install_cran_packages.sh`that allows to install CRAN-packages within the conda-environment. Only valid when `--yml_name` is set)
 - `--cran_mirror`(A valid URL to a CRAN-Mirror where packages should be downloaded from. The default is https://cloud.r-project.org)
@@ -59,6 +41,15 @@ The following optional arguments can be set for further customization:
 ### CRAN-packages
 Some R-packages are not (yet) available as conda-packages. In order to semi-automate the installation process of these packages in your conda environment, run `install_cran_packages.sh`. This script will activate the conda environment, start R in this environment and then install the CRAN-packages via `install.packages()` Note that this is not the recommended way to do it, but some R-packages are simply not available as conda-packages (this should be checked though on a regular basis).
 
+## Notes for CSP lab members
+This repository contains a subfolder called `environments` . New lab members can download this repository and use the file  `csp_Linux_solved.yml` within that folder to create a conda environment. This file contains a solved solution of the package specifications found in `csp_Linux_input.yml` derived from a GitHub-Action Workflow. The file contains all the packages that can be found in `csp.tsv` and that run bug-free under Linux (with a few exceptions of packages that are bug flagged but may be available in the future when the developers of these packages have fixed the bugs). This will allow users to get a computational environment with `R`,  `python` and all the packages they need to perform their analyses.
+
+ 1. After downloading this repo users have to set their name
+    `name:csp_surname_name` attribute in the `.yml` file.
+ 2. After that they execute the following command to create their
+    environment: `conda env create -f environment.yml` (Note: There is no need to specify `-n environment_name` in this command because the name of the environment is alredy specified in the file itself. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
+
+Whenever you find a new package that you find interesting and/or have to install for your project, you can open an issue in this repository or even better, fork this repo, add your package to the `csp.tsv` file and send a pull request!
 
 # Q & A
 ## What about dependencies?
