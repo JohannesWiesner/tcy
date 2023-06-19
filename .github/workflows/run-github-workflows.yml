@@ -38,7 +38,7 @@ jobs:
         if [ "$RUNNER_OS" == "Linux" ]; then
           python tcy.py linux --yml_dir=./environments --yml_file_name=csp_${{ matrix.os }}_input.yml --tsv_path=./environments/csp.tsv
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          python tcy.py windows --yml_dir=./environments ---yml_file_name=csp_${{ matrix.os }}_input.yml --tsv_path=./environments/csp.tsv
+          python tcy.py windows --yml_dir=./environments --yml_file_name=csp_${{ matrix.os }}_input.yml --tsv_path=./environments/csp.tsv
         fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
