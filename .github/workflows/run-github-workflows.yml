@@ -48,6 +48,7 @@ jobs:
         environment-name: ${{ matrix.os }}
     - name: export conda environment created using micromamba
       run: |
+        conda init bash
         conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
         conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
     - name: upload artifacts
