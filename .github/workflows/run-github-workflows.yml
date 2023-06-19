@@ -8,9 +8,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-yml-micromamba:
+  solve-environments-and-upload-artifacts:
     name: solve .yml file with micromamba
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest,windows-latest]
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: write
     defaults:
@@ -33,18 +36,42 @@ jobs:
     - name: run tcy to create .yml file
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-          python tcy.py linux --yml_dir=./environments --yml_file_name=csp_${{ runner.os }}_input.yml --tsv_path=./environments/csp.tsv
+          python tcy.py linux --yml_dir=./environments --yml_file_name=csp_${{ matrix.os }}_input.yml --tsv_path=./environments/csp.tsv
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          python tcy.py windows --yml_dir=./environments ---yml_file_name=csp_${{ runner.os }}_input.yml --tsv_path=./environments/csp.tsv
+          python tcy.py windows --yml_dir=./environments ---yml_file_name=csp_${{ matrix.os }}_input.yml --tsv_path=./environments/csp.tsv
         fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: ./environments/csp_${{ runner.os }}_input.yml
-        environment-name: ${{ runner.os }}
+        environment-file: ./environments/csp_${{ matrix.os }}_input.yml
+        environment-name: ${{ matrix.os }}
     - name: export conda environment created using micromamba
       run: |
-        conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ runner.os }}" | grep -v "^prefix: " > ./environments/csp_${{ runner.os }}_solved.yml
-        conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ runner.os }}" > ./environments/csp_${{ runner.os }}_solved.txt
+        conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
+        conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
+    - name: upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.os }}
+        path: |
+          ./environments/csp_${{ matrix.os }}_solved.txt
+          ./environments/csp_${{ matrix.os }}_solved.yml
+  download-artifacts-and-push:
+    name: download artifacts and push to repo
+    needs: solve-ymls
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+    - name: download multiple artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: ./environments
+    - name: Print the final result
+      shell: bash
+      run: |
+        ls -la
     - name: add and commit exported conda environment
       uses: stefanzweifel/git-auto-commit-action@v4
