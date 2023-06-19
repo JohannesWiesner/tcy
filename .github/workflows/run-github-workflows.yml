@@ -43,6 +43,7 @@ jobs:
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
+        init-shell: bash powershell
         environment-file: ./environments/csp_${{ matrix.os }}_input.yml
         environment-name: ${{ matrix.os }}
     - name: export conda environment created using micromamba
