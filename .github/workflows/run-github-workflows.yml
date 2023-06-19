@@ -58,7 +58,7 @@ jobs:
           ./environments/csp_${{ matrix.os }}_solved.yml
   download-artifacts-and-push:
     name: download artifacts and push to repo
-    needs: solve-ymls
+    needs: solve-environments-and-upload-artifacts
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
