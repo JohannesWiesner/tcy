@@ -48,8 +48,8 @@ jobs:
     - name: export conda environment created using micromamba
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
-          conda init && /c/Miniconda/_conda.exe env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
-          conda init && /c/Miniconda/_conda.exe list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
+          conda init bash && /c/Miniconda/_conda.exe env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
+          conda init bash && /c/Miniconda/_conda.exe list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
         elif [ "$RUNNER_OS" == "Linux" ]; then
           conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
           conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
