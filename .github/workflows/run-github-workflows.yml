@@ -43,7 +43,6 @@ jobs:
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
-        init-shell: bash powershell
         environment-file: ./environments/csp_${{ matrix.os }}_input.yml
         environment-name: ${{ matrix.os }}
     - name: export conda environment created using micromamba
@@ -52,8 +51,8 @@ jobs:
           /c/Users/runneradmin/micromamba-bin/micromamba.exe env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
           /c/Users/runneradmin/micromamba-bin/micromamba.exe env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
         elif [ "$RUNNER_OS" == "Linux" ]; then
-          conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
-          conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
+          micromamba env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
+          micromamba env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
         fi
     - name: upload artifacts
       uses: actions/upload-artifact@v3
