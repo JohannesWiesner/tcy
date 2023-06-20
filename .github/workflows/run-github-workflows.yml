@@ -48,9 +48,12 @@ jobs:
         environment-name: ${{ matrix.os }}
     - name: export conda environment created using micromamba
       run: |
-        conda init bash
-        conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
-        conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
+        if [ "$RUNNER_OS" == "Windows" ]; then
+          c/Miniconda/_conda.exe env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
+          c/Miniconda/_conda.exe list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
+          conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
     - name: upload artifacts
       uses: actions/upload-artifact@v3
       with:
