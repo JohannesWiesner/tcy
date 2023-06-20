@@ -45,9 +45,11 @@ jobs:
       with:
         environment-file: ./environments/csp_${{ matrix.os }}_input.yml
         environment-name: ${{ matrix.os }}
-    - name: initialize conda
+    - name: initialize conda for Git Bash (will be skipped for Linux)
       run: |
-        conda init
+        if [ "$RUNNER_OS" == "Windows" ]; then
+          echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bashrc
+        fi
     - name: export conda environment created using micromamba
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
