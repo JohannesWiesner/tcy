@@ -50,7 +50,7 @@ jobs:
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
           /c/Users/runneradmin/micromamba-bin/micromamba.exe env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
-          /c/Users/runneradmin/micromamba-bin/micromamba.exe list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
+          /c/Users/runneradmin/micromamba-bin/micromamba.exe env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
         elif [ "$RUNNER_OS" == "Linux" ]; then
           conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
           conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
