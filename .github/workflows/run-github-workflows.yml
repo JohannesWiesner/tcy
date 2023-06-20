@@ -75,9 +75,5 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         path: ./environments
-    - name: Print the final result
-      shell: bash
-      run: |
-        ls -la
     - name: add and commit exported conda environment
       uses: stefanzweifel/git-auto-commit-action@v4
