@@ -54,6 +54,7 @@ jobs:
         elif [ "$RUNNER_OS" == "Linux" ]; then
           conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
           conda list --explicit -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" > ./environments/csp_${{ matrix.os }}_solved.txt
+        fi
     - name: upload artifacts
       uses: actions/upload-artifact@v3
       with:
