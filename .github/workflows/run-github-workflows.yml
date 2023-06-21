@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  solve-environments-and-upload-artifacts:
-    name: solve .yml file with micromamba
+  solve-environments-and-upload-files:
+    name: run tcy, create environment, export environment files and push files back to repo
     strategy:
       matrix:
         os: [ubuntu-latest,windows-latest]
@@ -28,57 +28,56 @@ jobs:
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
           echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bashrc
-          echo "Something happened!"
         fi
-    - name: setup python
+    - name: setup python in order to run tcy.py
       uses: actions/setup-python@v4
       with:
         python-version: 3.7
-    - name: install dependencies
+    - name: install python dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install pandas
         python -m pip install pytest
-    - name: run tcy to create .yml file
+    - name: run tcy.py to create .yml file
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-          python tcy.py linux --yml_dir=./environments --yml_file_name=csp_${{ matrix.os }}_input.yml --tsv_path=./environments/csp.tsv
+          python tcy.py linux --yml_dir=./environments --yml_file_name=${{ matrix.os }}_input.yml --tsv_path=./environments/packages.tsv
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          python tcy.py windows --yml_dir=./environments --yml_file_name=csp_${{ matrix.os }}_input.yml --tsv_path=./environments/csp.tsv
+          python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}_input.yml --tsv_path=./environments/packages.tsv
         fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: ./environments/csp_${{ matrix.os }}_input.yml
+        environment-file: ./environments/${{ matrix.os }}_input.yml
         environment-name: ${{ matrix.os }}
-    - name: export conda environment created using micromamba
+    - name: export conda environment as .yml file and as spec-file.txt
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
-          conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
-          conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
+          conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/${{ matrix.os }}_solved.yml
+          conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
         elif [ "$RUNNER_OS" == "Linux" ]; then
-          conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/csp_${{ matrix.os }}_solved.yml
-          conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/csp_${{ matrix.os }}_solved.txt
+          conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/${{ matrix.os }}_solved.yml
+          conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
         fi
-    - name: upload artifacts
+    - name: upload files
       uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.os }}
         path: |
-          ./environments/csp_${{ matrix.os }}_solved.txt
-          ./environments/csp_${{ matrix.os }}_solved.yml
+          ./environments/${{ matrix.os }}_solved.txt
+          ./environments/${{ matrix.os }}_solved.yml
   download-artifacts-and-push:
-    name: download artifacts and push to repo
-    needs: solve-environments-and-upload-artifacts
+    name: download files and push to repo if something has changed
+    needs: solve-environments-and-upload-files
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
-    - name: download multiple artifacts
+    - name: download all files that were created using different operating systems
       uses: actions/download-artifact@v3
       with:
         path: ./environments
-    - name: add and commit exported conda environment
+    - name: add and commit files (but only if something has changed)
       uses: stefanzweifel/git-auto-commit-action@v4
