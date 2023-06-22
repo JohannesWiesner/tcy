@@ -119,10 +119,12 @@ https://conda.anaconda.org/conda-forge/win-64/zlib-1.2.13-hcfcfb64_5.conda
 https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.2-h12be248_6.conda
 https://conda.anaconda.org/conda-forge/noarch/alabaster-0.7.13-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/annexremote-1.2.1-py_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/astor-0.8.1-pyh9f0ad1d_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/atomicwrites-1.4.1-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/attrs-23.1.0-pyh71513ae_1.conda
 https://conda.anaconda.org/conda-forge/noarch/backcall-0.2.0-pyh9f0ad1d_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/backports-1.0-pyhd8ed1ab_3.conda
+https://conda.anaconda.org/conda-forge/noarch/bids-validator-1.11.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/blinker-1.6.2-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/blosc-1.21.4-hdccc3a2_0.conda
 https://conda.anaconda.org/conda-forge/noarch/boto-2.49.0-py_0.tar.bz2
@@ -143,6 +145,7 @@ https://conda.anaconda.org/conda-forge/noarch/defusedxml-0.7.1-pyhd8ed1ab_0.tar.
 https://conda.anaconda.org/conda-forge/noarch/diff-match-patch-20230430-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/dill-0.3.6-pyhd8ed1ab_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/distro-1.8.0-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/docopt-0.6.2-py_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/docstring-to-markdown-0.12-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/docutils-0.20.1-py38haa244fe_0.conda
 https://conda.anaconda.org/conda-forge/noarch/entrypoints-0.4-pyhd8ed1ab_0.tar.bz2
@@ -157,9 +160,11 @@ https://conda.anaconda.org/conda-forge/win-64/frozenlist-1.3.3-py38h91455d4_0.ta
 https://conda.anaconda.org/conda-forge/noarch/fsspec-2023.6.0-pyh1a96a4e_0.conda
 https://conda.anaconda.org/conda-forge/noarch/future-0.18.3-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/gl2ps-1.4.2-h0597ee9_0.tar.bz2
+https://conda.anaconda.org/conda-forge/win-64/greenlet-2.0.2-py38hd3f51b4_1.conda
 https://conda.anaconda.org/conda-forge/noarch/idna-3.4-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/imagesize-1.4.1-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/inflection-0.5.1-pyh9f0ad1d_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/interface_meta-1.3.0-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/ipython_genutils-0.2.0-py_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/iso8601-2.0.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/itsdangerous-2.1.2-pyhd8ed1ab_0.tar.bz2
@@ -331,6 +336,7 @@ https://conda.anaconda.org/conda-forge/win-64/m2w64-xz-5.2.2-2.tar.bz2
 https://conda.anaconda.org/conda-forge/win-64/m2w64-zlib-1.2.8-10.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/markdown-it-py-2.2.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/matplotlib-inline-0.1.6-pyhd8ed1ab_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/num2words-0.5.12-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/openjpeg-2.5.0-ha2aaf27_2.conda
 https://conda.anaconda.org/conda-forge/noarch/overrides-7.3.1-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/partd-1.4.0-pyhd8ed1ab_0.conda
@@ -399,6 +405,7 @@ https://conda.anaconda.org/conda-forge/noarch/qdarkstyle-3.1-pyhd8ed1ab_0.tar.bz
 https://conda.anaconda.org/conda-forge/noarch/qstylizer-0.2.2-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/qtawesome-1.2.3-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/rdflib-6.3.2-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/win-64/sqlalchemy-2.0.16-py38h91455d4_0.conda
 https://conda.anaconda.org/conda-forge/noarch/stack_data-0.6.2-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/tbb-devel-2021.9.0-h91493d7_0.conda
 https://conda.anaconda.org/conda-forge/win-64/tzlocal-5.0.1-py38haa244fe_0.conda
@@ -471,7 +478,7 @@ https://conda.anaconda.org/conda-forge/win-64/graphviz-8.0.5-h51cb2cd_0.conda
 https://conda.anaconda.org/conda-forge/win-64/h5py-3.8.0-nompi_py38h3745352_100.conda
 https://conda.anaconda.org/conda-forge/win-64/imagecodecs-2023.1.23-py38h29c013e_2.conda
 https://conda.anaconda.org/conda-forge/noarch/imageio-2.31.1-pyh24c5eb1_0.conda
-https://conda.anaconda.org/conda-forge/noarch/ipykernel-6.23.1-pyh025b116_0.conda
+https://conda.anaconda.org/conda-forge/noarch/ipykernel-6.23.2-pyh6817e22_0.conda
 https://conda.anaconda.org/conda-forge/noarch/mffpy-0.8.0-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/nbconvert-core-7.6.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/nibabel-5.1.0-py38haa244fe_2.conda
@@ -577,6 +584,7 @@ https://conda.anaconda.org/conda-forge/noarch/bokeh-3.1.1-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/win-64/cvxpy-base-1.3.1-py38hf08cf0d_1.conda
 https://conda.anaconda.org/conda-forge/win-64/ecos-2.0.11-py38hbaf524b_0.conda
 https://conda.anaconda.org/conda-forge/noarch/eeglabio-0.0.2.post3-pyhd8ed1ab_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/formulaic-0.2.4-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/h5io-0.1.7-pyh8a188c0_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/ipyparallel-8.6.1-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/ipywidgets-8.0.6-pyhd8ed1ab_0.conda
@@ -647,6 +655,7 @@ https://conda.anaconda.org/conda-forge/win-64/osqp-0.6.3-py38hf08cf0d_1.conda
 https://conda.anaconda.org/conda-forge/noarch/pandas-flavor-0.2.0-py_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/panel-1.1.0-pyhd8ed1ab_2.conda
 https://conda.anaconda.org/conda-forge/noarch/prov-2.0.0-pyhd3deb0d_0.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/pybids-0.16.1-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/pynndescent-0.5.10-pyh1a96a4e_0.conda
 https://conda.anaconda.org/conda-forge/noarch/python-picard-0.7-pyh8a188c0_0.tar.bz2
 https://conda.anaconda.org/pytorch/win-64/pytorch-2.0.1-py3.8_cpu_0.tar.bz2
