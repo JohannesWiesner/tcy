@@ -36,14 +36,14 @@ jobs:
     - name: run tcy.py to create .yml file
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-          python tcy.py linux --yml_dir=./environments --yml_file_name=${{ matrix.os }}_input.yml --tsv_path=./environments/packages.tsv
+          python tcy.py linux --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
         elif [ "$RUNNER_OS" == "Windows" ]; then
-          python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}_input.yml --tsv_path=./environments/packages.tsv
+          python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
         fi
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: ./environments/${{ matrix.os }}_input.yml
+        environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
     - name: initialize conda for Git Bash (will be skipped for Linux)
       run: |
@@ -64,8 +64,9 @@ jobs:
       with:
         name: ${{ matrix.os }}
         path: |
-          ./environments/${{ matrix.os }}_solved.txt
+          ./environments/${{ matrix.os }}.yml
           ./environments/${{ matrix.os }}_solved.yml
+          ./environments/${{ matrix.os }}_solved.txt
   download-artifacts-and-push:
     name: download files and push to repo if something has changed
     needs: solve-environments-and-upload-files
