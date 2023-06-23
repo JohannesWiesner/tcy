@@ -332,7 +332,7 @@ https://conda.anaconda.org/conda-forge/noarch/rfc3986-validator-0.1.1-pyh9f0ad1d
 https://conda.anaconda.org/conda-forge/linux-64/rtree-1.0.1-py38h02d302b_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/scooby-0.7.2-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/send2trash-1.8.2-pyh41d4057_0.conda
-https://conda.anaconda.org/conda-forge/noarch/setuptools-67.7.2-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/setuptools-68.0.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/simplegeneric-0.8.1-py_1.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/simplejson-3.19.1-py38h1de0b5d_0.conda
 https://conda.anaconda.org/conda-forge/noarch/six-1.16.0-pyh6c4a22f_0.tar.bz2
@@ -538,7 +538,7 @@ https://conda.anaconda.org/conda-forge/linux-64/keyring-24.0.0-py38h578d9bd_0.co
 https://conda.anaconda.org/conda-forge/linux-64/librsvg-2.56.0-h5cef280_0.conda
 https://conda.anaconda.org/conda-forge/noarch/nbformat-5.9.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/numpydoc-1.5.0-pyhd8ed1ab_0.tar.bz2
-https://conda.anaconda.org/conda-forge/noarch/panel-1.1.0-pyhd8ed1ab_2.conda
+https://conda.anaconda.org/conda-forge/noarch/panel-1.1.1-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/prompt_toolkit-3.0.38-hd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/python-gitlab-3.15.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/python-lsp-server-1.7.3-pyhd8ed1ab_0.conda
@@ -730,7 +730,7 @@ https://conda.anaconda.org/conda-forge/linux-64/r-lubridate-1.9.2-r42h57805ef_2.
 https://conda.anaconda.org/conda-forge/noarch/r-memoise-2.0.1-r42hc72bb7e_2.conda
 https://conda.anaconda.org/conda-forge/linux-64/r-mgcv-1.8_42-r42h316c678_1.conda
 https://conda.anaconda.org/conda-forge/linux-64/r-openssl-2.0.6-r42hb353fa6_1.conda
-https://conda.anaconda.org/conda-forge/linux-64/r-proc-1.18.2-r42ha503ecb_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/r-proc-1.18.2-r42ha503ecb_2.conda
 https://conda.anaconda.org/conda-forge/linux-64/r-promises-1.2.0.1-r42ha503ecb_2.conda
 https://conda.anaconda.org/conda-forge/linux-64/r-rcppeigen-0.3.3.9.3-r42h08d816e_1.conda
 https://conda.anaconda.org/conda-forge/noarch/r-rversions-2.1.2-r42hc72bb7e_2.conda

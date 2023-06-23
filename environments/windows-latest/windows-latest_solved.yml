@@ -345,7 +345,7 @@ dependencies:
   - r-png=0.1_8=r41h6d2157b_1
   - r-praise=1.0.0=r41hc72bb7e_1006
   - r-prettyunits=1.1.1=r41hc72bb7e_2
-  - r-proc=1.18.2=r41ha856d6a_0
+  - r-proc=1.18.2=r41ha856d6a_2
   - r-processx=3.8.1=r41h6d2157b_1
   - r-prodlim=2023.03.31=r41ha856d6a_1
   - r-profvis=0.3.8=r41h6d2157b_0
@@ -513,7 +513,7 @@ dependencies:
       - brainrender==2.0.5.5
       - bs4==0.0.1
       - cached-property==1.5.2
-      - cca-zoo==2.0.4
+      - cca-zoo==2.0.5
       - certifi==2023.5.7
       - cffi==1.15.1
       - cftime==1.6.2
@@ -698,7 +698,7 @@ dependencies:
       - pandas==2.0.2
       - pandas-flavor==0.2.0
       - pandocfilters==1.5.0
-      - panel==1.1.0
+      - panel==1.1.1
       - param==1.13.0
       - paramiko==3.2.0
       - parso==0.8.3
@@ -754,7 +754,7 @@ dependencies:
       - pyqtwebengine==5.15.4
       - pyrsistent==0.19.3
       - pysocks==1.7.1
-      - pytest==7.3.2
+      - pytest==7.4.0
       - python-dateutil==2.8.2
       - python-gitlab==3.15.0
       - python-json-logger==2.0.7
@@ -801,7 +801,7 @@ dependencies:
       - scs==3.2.3
       - seaborn==0.11.2
       - send2trash==1.8.2
-      - setuptools==67.7.2
+      - setuptools==68.0.0
       - simplegeneric==0.8.1
       - simplejson==3.19.1
       - sip==6.7.9
