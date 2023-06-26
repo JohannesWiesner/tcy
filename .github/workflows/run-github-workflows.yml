@@ -33,9 +33,10 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install pandas
         python -m pip install pytest
-    - name: run tcy.py to create .yml file
+    - name: run tcy.py to create a .yml file for Linux
       if: runner.os == "Linux"
       run: python tcy.py linux --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
+    - name: run tcy.py to create a .yml file for Windows
       if: runner.os == "Windows"
       run: python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: setup micromamba and solve environment
