@@ -777,7 +777,7 @@ https://conda.anaconda.org/conda-forge/noarch/r-ids-1.0.1-r42hc72bb7e_3.conda
 https://conda.anaconda.org/conda-forge/noarch/r-jquerylib-0.1.4-r42hc72bb7e_2.conda
 https://conda.anaconda.org/conda-forge/linux-64/r-lme4-1.1_33-r42ha503ecb_1.conda
 https://conda.anaconda.org/conda-forge/noarch/r-pillar-1.9.0-r42hc72bb7e_1.conda
-https://conda.anaconda.org/conda-forge/noarch/r-pkgbuild-1.4.1-r42hc72bb7e_1.conda
+https://conda.anaconda.org/conda-forge/noarch/r-pkgbuild-1.4.2-r42hc72bb7e_0.conda
 https://conda.anaconda.org/conda-forge/noarch/r-pkgload-1.3.2-r42hc72bb7e_1.conda
 https://conda.anaconda.org/conda-forge/linux-64/r-purrr-1.0.1-r42h57805ef_1.conda
 https://conda.anaconda.org/conda-forge/linux-64/r-ragg-1.2.5-r42h85cdef0_2.conda
