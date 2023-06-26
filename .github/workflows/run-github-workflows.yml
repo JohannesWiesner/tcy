@@ -45,7 +45,7 @@ jobs:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
     - name: initialize conda for Git Bash (will be skipped for Linux)
-      if: runner.os == "Windows"
+      if: runner.os == 'Windows'
       run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
     - name: export conda environment as .yml file and as spec-file.txt
       run: |
