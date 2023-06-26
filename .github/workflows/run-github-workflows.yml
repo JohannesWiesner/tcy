@@ -34,31 +34,22 @@ jobs:
         python -m pip install pandas
         python -m pip install pytest
     - name: run tcy.py to create .yml file
-      run: |
-        if [ "$RUNNER_OS" == "Linux" ]; then
-          python tcy.py linux --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
-        elif [ "$RUNNER_OS" == "Windows" ]; then
-          python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
-        fi
+      if: runner.os == "Linux"
+      run: python tcy.py linux --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
+      if: runner.os == "Windows"
+      run: python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: setup micromamba and solve environment
       uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
     - name: initialize conda for Git Bash (will be skipped for Linux)
-      run: |
-        if [ "$RUNNER_OS" == "Windows" ]; then
-          echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
-        fi
+      if: runner.os == "Windows"
+      run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
     - name: export conda environment as .yml file and as spec-file.txt
       run: |
-        if [ "$RUNNER_OS" == "Windows" ]; then
           conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/${{ matrix.os }}_solved.yml
           conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
-        elif [ "$RUNNER_OS" == "Linux" ]; then
-          conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/${{ matrix.os }}_solved.yml
-          conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
-        fi
     - name: upload files
       uses: actions/upload-artifact@v3
       with:
