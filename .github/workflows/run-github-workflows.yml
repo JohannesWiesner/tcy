@@ -33,10 +33,10 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install pandas
         python -m pip install pytest
-    - name: run tcy.py to create a .yml file for Linux
+    - name: run tcy.py to create a .yml file for Linux (will be skipped for Windows)
       if: runner.os == 'Linux'
       run: python tcy.py linux --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
-    - name: run tcy.py to create a .yml file for Windows
+    - name: run tcy.py to create a .yml file for Windows (will be skipped for Linux)
       if: runner.os == 'Windows'
       run: python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: setup micromamba and solve environment
@@ -51,6 +51,7 @@ jobs:
       run: |
           conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/${{ matrix.os }}_solved.yml
           conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
+          pip freeze | grep -v "@ file" > ${{ matrix.os }}"_solved_pip-requirements.txt
     - name: upload files
       uses: actions/upload-artifact@v3
       with:
@@ -59,6 +60,7 @@ jobs:
           ./environments/${{ matrix.os }}.yml
           ./environments/${{ matrix.os }}_solved.yml
           ./environments/${{ matrix.os }}_solved.txt
+          ./environments/${{ matrix.os }}_solved_pip-requirements.txt
   download-artifacts-and-push:
     name: download files and push to repo if something has changed
     needs: solve-environments-and-upload-files
