@@ -27,6 +27,7 @@ dependencies:
 - neurokit2
 - oct2py
 - pybids
+- jupyter-book
 - yellowbrick
 - pymer4
 - plotly-orca
@@ -63,4 +64,5 @@ dependencies:
   - clustergrammer
   - nisupply
   - fmriprep-docker
+  - nimare
   - lckr-jupyterlab-variableinspector
