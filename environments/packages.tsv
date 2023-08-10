@@ -61,3 +61,5 @@ clustergrammer		pip install clustergrammer	pip		plotting	https://clustergrammer.
 nisupply		pip install nisupply	pip		data wrangling	https://github.com/JohannesWiesner/nisupply	required	Johannes Wiesner’s repository to deal with unstructured neuroimaging datasets		Python	
 fmriprep-docker		pip install fmriprep-docker	pip		neuroimaging	https://fmriprep.org/en/20.2.0/installation.html#the-fmriprep-docker-wrapper	optional	This package makes the invocation of fmriprep easier		Python	
 pybids		conda install -c conda-forge pybids	conda	conda-forge	data wrangling	https://bids-standard.github.io/pybids/	required	Pybids helps to query BIDS-datasets		Python	
+jupyter-book		conda install -c conda-forge jupyter-book	conda	conda-forge	ide	https://jupyterbook.org/en/stable/intro.html	optional	Used for creating workshop webpages. Not needed for any data analysis		Python	
+nimare		pip install nimare	pip		statistical modelling	https://nimare.readthedocs.io/en/stable/	optional	Used to derive statistical images from neurosynth.org		Python	
