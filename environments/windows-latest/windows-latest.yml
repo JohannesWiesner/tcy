@@ -1,0 +1,47 @@
+channels:
+- conda-forge
+- pyviz
+- plotly
+- r
+- ejolly
+- bokeh
+- defaults
+dependencies:
+- bokeh
+- python
+- datalad
+- tableone
+- spyder
+- scikit-learn
+- nilearn
+- nipype
+- statannotations
+- fastcluster
+- pingouin
+- mne
+- oct2py
+- pybids
+- pymer4
+- plotly-orca
+- plotly
+- holoviews
+- hvplot
+- r-essentials
+- r-repr
+- r-devtools
+- jupyterlab
+- r-base
+- r-reticulate
+- rtools
+- pip
+- pip:
+  - network_control
+  - cca-zoo
+  - bctpy
+  - gower
+  - antropy
+  - pyvis
+  - distro
+  - abagen
+  - clustergrammer
+  - nisupply
