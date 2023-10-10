@@ -39,19 +39,22 @@ jobs:
     - name: run tcy.py to create a .yml file for Windows (will be skipped for Linux)
       if: runner.os == 'Windows'
       run: python tcy.py windows --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
-    - name: setup micromamba and solve environment
+    - name: setup micromamba and create environment using .yml file
       uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
+      continue-on-error: true
     - name: initialize conda for Git Bash (will be skipped for Linux)
       if: runner.os == 'Windows'
       run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
+      continue-on-error: true
     - name: export conda environment as .yml file and as spec-file.txt
       run: |
         conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/${{ matrix.os }}_solved.yml
         conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
         pip freeze | grep -v "@ file" > ./environments/${{ matrix.os }}_solved_pip-requirements.txt
+      continue-on-error: true
     - name: upload files
       uses: actions/upload-artifact@v3
       with:
