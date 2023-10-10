@@ -257,7 +257,8 @@ if __name__ == '__main__':
                         help="Filter for certain programming languages. Valid inputs \
                         are Python, R, Julia.")
     parser.add_argument('--necessity',type=str,required=False,default='all',nargs='+',
-                        help="Filter for necessity. Valid inputs are \'required\', \'optional\'")
+                        help="Filter for necessity. Valid inputs are \'required\', \'optional\', or \'all\'. \
+                        The default is \'all\'")
 
     # parse arguments
     args = parser.parse_args()
