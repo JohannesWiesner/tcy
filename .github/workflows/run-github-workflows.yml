@@ -45,19 +45,15 @@ jobs:
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
-      continue-on-error: true
     - name: initialize conda for Git Bash (will be skipped for Linux)
       if: runner.os == 'Windows'
       run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
-      continue-on-error: true
-    - name: export conda environment as .yml file and as spec-file.txt
+    - name: export conda environment as .yml file and as spec-file.txt and export pip-packages as .txt file
       run: |
         conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " > ./environments/${{ matrix.os }}_solved.yml
         conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
         pip freeze | grep -v "@ file" > ./environments/${{ matrix.os }}_solved_pip-requirements.txt
-      continue-on-error: true
-    - name: upload files as artifacts (but only if the creation of the environment worked)
-      if: steps.createEnvironment.outcome == 'success'
+    - name: upload exported files as artifacts
       uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.os }}
@@ -68,6 +64,7 @@ jobs:
           ./environments/${{ matrix.os }}_solved_pip-requirements.txt
   download-artifacts-and-push:
     name: download files and push to repo if something has changed
+    if: ${{ always() }}
     needs: solve-environments-and-upload-files
     runs-on: ubuntu-latest
     steps:
