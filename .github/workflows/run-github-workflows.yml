@@ -9,8 +9,9 @@ on:
 
 jobs:
   solve-environments-and-upload-files:
-    name: run tcy, create environment, export environment files and push files back to repo
+    name: run tcy, create environment, and export environment files
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest,windows-latest]
     runs-on: ${{ matrix.os }}
