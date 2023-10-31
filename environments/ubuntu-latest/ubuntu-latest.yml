@@ -20,6 +20,7 @@ dependencies:
 - mne
 - oct2py
 - pybids
+- scikit-image
 - pymer4
 - plotly-orca
 - plotly
