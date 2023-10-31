@@ -8,9 +8,11 @@ boto==2.49.0
 cca-zoo==2.3.11
 certifi==2023.7.22
 clustergrammer==1.13.6
+cognitiveatlas==0.1.9
 colorspacious==1.1.2
 docopt==0.6.2
 fsspec==2023.10.0
+fuzzywuzzy==0.18.0
 gower==0.1.2
 ipython-genutils==0.2.0
 jsonpickle==3.0.2
@@ -29,6 +31,7 @@ munkres==1.1.4
 mvlearn==0.5.0
 nbclassic==1.0.0
 network-control==0.0.5
+NiMARE==0.1.1
 nisupply==2023.3.10
 notebook==6.5.6
 nvidia-cublas-cu12==12.1.3.1
@@ -43,10 +46,11 @@ nvidia-cusparse-cu12==12.1.0.106
 nvidia-nccl-cu12==2.18.1
 nvidia-nvjitlink-cu12==12.3.52
 nvidia-nvtx-cu12==12.1.105
-pandas==1.5.3
+pandas==2.1.2
 pandas-flavor==0.2.0
 ply==3.11
 pyct==0.4.6
+PyMARE==0.0.4rc2
 PyQt5==5.15.9
 PyQt5-sip==12.12.2
 PyQtWebEngine==5.15.4
@@ -54,12 +58,14 @@ pytorch-lightning==2.1.0
 pyvis==0.3.2
 pyzmq==24.0.1
 simplegeneric==0.8.1
+sparse==0.14.0
 stochastic==0.6.0
 sympy==1.12
 tensorly==0.8.1
 torch==2.1.0
 torchmetrics==1.2.0
 triton==2.1.0
+tzdata==2023.3
 vtk==9.2.6
 y-py==0.6.2
 ypy-websocket==0.8.4

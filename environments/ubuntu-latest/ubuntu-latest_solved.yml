@@ -355,7 +355,6 @@ dependencies:
   - p11-kit=0.24.1=hc5aa10d_0
   - p7zip=16.02=h9c3ff4c_1001
   - packaging=23.2=pyhd8ed1ab_0
-  - pandas=1.5.3=py311h2872171_1
   - pandas-flavor=0.2.0=py_0
   - pandoc=3.1.3=h32600fe_0
   - pandocfilters=1.5.0=pyhd8ed1ab_0
@@ -758,7 +757,6 @@ dependencies:
   - typing-extensions=4.8.0=hd8ed1ab_0
   - typing_extensions=4.8.0=pyha770c72_0
   - typing_utils=0.1.0=pyhd8ed1ab_0
-  - tzdata=2023c=h71feb2d_0
   - tzlocal=5.2=py311h38be061_0
   - uc-micro-py=1.0.1=pyhd8ed1ab_0
   - ujson=5.8.0=py311hb755f60_0
@@ -769,7 +767,7 @@ dependencies:
   - vtk-base=9.2.6=qt_py311h1234567_216
   - vtk-io-ffmpeg=9.2.6=qt_py311h1234567_216
   - watchdog=3.0.0=py311h38be061_1
-  - wcwidth=0.2.8=pyhd8ed1ab_0
+  - wcwidth=0.2.9=pyhd8ed1ab_0
   - webcolors=1.13=pyhd8ed1ab_0
   - webencodings=0.5.1=pyhd8ed1ab_2
   - websocket-client=1.6.4=pyhd8ed1ab_0
@@ -838,7 +836,9 @@ dependencies:
       - bctpy==0.6.1
       - cca-zoo==2.3.11
       - clustergrammer==1.13.6
+      - cognitiveatlas==0.1.9
       - fsspec==2023.10.0
+      - fuzzywuzzy==0.18.0
       - gower==0.1.2
       - jsonpickle==3.0.2
       - jupyter-client==7.4.9
@@ -853,6 +853,7 @@ dependencies:
       - mvlearn==0.5.0
       - nbclassic==1.0.0
       - network-control==0.0.5
+      - nimare==0.1.1
       - nisupply==2023.3.10
       - notebook==6.5.6
       - nvidia-cublas-cu12==12.1.3.1
@@ -867,14 +868,18 @@ dependencies:
       - nvidia-nccl-cu12==2.18.1
       - nvidia-nvjitlink-cu12==12.3.52
       - nvidia-nvtx-cu12==12.1.105
+      - pandas==2.1.2
+      - pymare==0.0.4rc2
       - pytorch-lightning==2.1.0
       - pyvis==0.3.2
       - pyzmq==24.0.1
+      - sparse==0.14.0
       - stochastic==0.6.0
       - sympy==1.12
       - tensorly==0.8.1
       - torch==2.1.0
       - torchmetrics==1.2.0
       - triton==2.1.0
+      - tzdata==2023.3
       - y-py==0.6.2
       - ypy-websocket==0.8.4

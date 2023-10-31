@@ -475,7 +475,7 @@ https://conda.anaconda.org/conda-forge/noarch/requests-2.31.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/rich-13.6.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/linux-64/sqlalchemy-2.0.22-py311h459d7ec_0.conda
 https://conda.anaconda.org/conda-forge/noarch/stack_data-0.6.2-pyhd8ed1ab_0.conda
-https://conda.anaconda.org/conda-forge/noarch/wcwidth-0.2.8-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/wcwidth-0.2.9-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/linux-64/xorg-libxtst-1.2.3-h7f98852_1002.tar.bz2
 https://conda.anaconda.org/conda-forge/linux-64/aiohttp-3.8.6-py311h459d7ec_1.conda
 https://conda.anaconda.org/conda-forge/noarch/argon2-cffi-23.1.0-pyhd8ed1ab_0.conda
@@ -501,7 +501,6 @@ https://conda.anaconda.org/conda-forge/linux-64/numba-0.57.1-py311h96b013e_0.con
 https://conda.anaconda.org/conda-forge/linux-64/numexpr-2.8.7-py311h039bad6_104.conda
 https://conda.anaconda.org/conda-forge/linux-64/openmeeg-2.5.6-py311h1c1d546_4.conda
 https://conda.anaconda.org/conda-forge/noarch/outdated-0.2.2-pyhd8ed1ab_0.tar.bz2
-https://conda.anaconda.org/conda-forge/linux-64/pandas-1.5.3-py311h2872171_1.conda
 https://conda.anaconda.org/conda-forge/linux-64/pango-1.50.14-ha41ecd1_2.conda
 https://conda.anaconda.org/conda-forge/noarch/pooch-1.8.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/prompt-toolkit-3.0.39-pyha770c72_0.conda
@@ -514,6 +513,7 @@ https://conda.anaconda.org/conda-forge/noarch/requests-toolbelt-1.0.0-pyhd8ed1ab
 https://conda.anaconda.org/conda-forge/noarch/rope-1.10.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/linux-64/scipy-1.11.3-py311h64a7726_1.conda
 https://conda.anaconda.org/conda-forge/linux-64/secretstorage-3.3.3-py311h38be061_2.conda
+https://conda.anaconda.org/conda-forge/noarch/xarray-2023.10.1-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/yapf-0.40.1-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/bokeh-3.3.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/colorcet-3.0.1-pyhd8ed1ab_0.tar.bz2
@@ -527,6 +527,7 @@ https://conda.anaconda.org/conda-forge/linux-64/keyring-24.2.0-py311h38be061_1.c
 https://conda.anaconda.org/conda-forge/linux-64/librsvg-2.56.3-h98fae49_0.conda
 https://conda.anaconda.org/conda-forge/noarch/mne-base-1.5.1-pyh57928b3_0.conda
 https://conda.anaconda.org/conda-forge/noarch/nbformat-5.9.2-pyhd8ed1ab_0.conda
+https://conda.anaconda.org/conda-forge/noarch/pandas-flavor-0.2.0-py_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/patsy-0.5.3-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/prompt_toolkit-3.0.39-hd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/pymatreader-0.0.32-pyhd8ed1ab_0.conda
@@ -539,7 +540,6 @@ https://conda.anaconda.org/conda-forge/linux-64/scikit-learn-1.3.2-py311hc009520
 https://conda.anaconda.org/conda-forge/noarch/seaborn-base-0.11.2-pyhd8ed1ab_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/tifffile-2023.9.26-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/wslink-1.12.4-pyhd8ed1ab_0.conda
-https://conda.anaconda.org/conda-forge/noarch/xarray-2023.10.1-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/linux-64/graphviz-8.1.0-h28d9a01_0.conda
 https://conda.anaconda.org/conda-forge/noarch/imageio-ffmpeg-0.4.9-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/ipython-8.16.1-pyh0d859eb_0.conda
@@ -548,7 +548,6 @@ https://conda.anaconda.org/conda-forge/noarch/keyrings.alt-4.2.0-pyhd8ed1ab_0.co
 https://conda.anaconda.org/conda-forge/noarch/mne-qt-browser-0.6.0-pyha770c72_0.conda
 https://conda.anaconda.org/conda-forge/noarch/nbclient-0.8.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/nilearn-0.10.2-pyhd8ed1ab_0.conda
-https://conda.anaconda.org/conda-forge/noarch/pandas-flavor-0.2.0-py_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/panel-1.3.0-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/pybids-0.16.3-pyhd8ed1ab_0.conda
 https://conda.anaconda.org/conda-forge/noarch/pyls-spyder-0.4.0-pyhd8ed1ab_0.tar.bz2
