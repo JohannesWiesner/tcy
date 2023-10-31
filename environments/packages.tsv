@@ -63,3 +63,4 @@ rstudio		conda install -c r rstudio	conda	r	ide	https://www.rstudio.com/	require
 jupyterlab		conda install -c conda-forge jupyterlab	conda	conda-forge	ide	https://jupyter.org/	required	An alternative IDE to RStudio, which might be faster and offers a more pythonic experience		R	
 r-base		conda install -c conda-forge r-base	conda	conda-forge	language	https://anaconda.org/conda-forge/r-base	required	the R programming language itself		R	
 r-reticulate		conda install -c conda-forge r-reticulate	conda	conda-forge	data wrangling	https://cran.r-project.org/web/packages/RcppCNPy/vignettes/UsingReticulate.pdf	required	reticulate allows you to read in data generated from Python (e.g. .npy files)		R	
+scikit-image		conda install -c conda-forge scikit-image	conda	conda-forge	statistical modelling	https://scikit-image.org/	required	We need that for otsu thresholding		Python	
