@@ -18,7 +18,6 @@ dependencies:
 - statannotations
 - fastcluster
 - pingouin
-- mne
 - oct2py
 - pybids
 - scikit-image
@@ -41,8 +40,6 @@ dependencies:
   - cca-zoo
   - bctpy
   - gower
-  - antropy
-  - pyvis
   - distro
   - abagen
   - clustergrammer
