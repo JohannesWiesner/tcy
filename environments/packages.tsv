@@ -16,7 +16,7 @@ neurokit2		conda install -c conda-forge neurokit2	conda	conda-forge	statistical 
 fmriprep-docker		pip install fmriprep-docker	pip		neuroimaging	https://fmriprep.org/en/20.2.0/installation.html#the-fmriprep-docker-wrapper	optional	This package makes the invocation of fmriprep easier		Python	
 jupyter-book		conda install -c conda-forge jupyter-book	conda	conda-forge	ide	https://jupyterbook.org/en/stable/intro.html	optional	Used for creating workshop webpages. Not needed for any data analysis		Python	
 nimare		pip install nimare	pip		statistical modelling	https://nimare.readthedocs.io/en/stable/	required	Used to derive statistical images from neurosynth.org		Python	
-python		conda install -c conda-forge python	conda	conda-forge	language	https://anaconda.org/conda-forge/python	required	the python programming language itself		Python	
+python	>=3.9,<=3.11	conda install -c conda-forge python	conda	conda-forge	language	https://anaconda.org/conda-forge/python	required	the python programming language itself		Python	
 sklearn-pandas		conda install -c conda-forge sklearn-pandas	conda	conda-forge	data wrangling	https://github.com/scikit-learn-contrib/sklearn-pandas	optional	Nötig, um scikit-learn transfomer direkt auf pandas data frames anzuwenden		Python	
 datalad		conda install -c conda-forge datalad	conda	conda-forge	data wrangling	https://www.datalad.org/	required	Allows you to download and manage datalad datasets	https://www.datalad.org/	Python	
 tableone		conda install -c conda-forge tableone	conda	conda-forge	data wrangling	https://github.com/tompollard/tableone	required	Package for plotting descriptive statistics		Python	
