@@ -27,7 +27,6 @@ dependencies:
   - attrs=23.1.0=pyh71513ae_1
   - autopep8=2.0.4=pyhd8ed1ab_0
   - babel=2.13.1=pyhd8ed1ab_0
-  - backcall=0.2.0=pyh9f0ad1d_0
   - backports=1.0=pyhd8ed1ab_3
   - backports.functools_lru_cache=1.6.5=pyhd8ed1ab_0
   - beautifulsoup4=4.12.2=pyha770c72_0
@@ -55,7 +54,7 @@ dependencies:
   - cffi=1.16.0=py311hb3a22ac_0
   - chardet=5.2.0=py311h38be061_1
   - charls=2.4.2=h59595ed_0
-  - charset-normalizer=3.3.1=pyhd8ed1ab_0
+  - charset-normalizer=3.3.2=pyhd8ed1ab_0
   - ci-info=0.3.0=pyhd8ed1ab_0
   - click=8.1.7=unix_pyh707e725_0
   - cloudpickle=3.0.0=pyhd8ed1ab_0
@@ -157,7 +156,7 @@ dependencies:
   - intervaltree=3.1.0=pyhd8ed1ab_1
   - ipykernel=6.26.0=pyhf8b6a83_0
   - ipyparallel=8.6.1=pyhd8ed1ab_0
-  - ipython=8.16.1=pyh0d859eb_0
+  - ipython=8.17.2=pyh41d4057_0
   - ipython_genutils=0.2.0=py_1
   - ipywidgets=8.1.1=pyhd8ed1ab_0
   - iso8601=2.1.0=pyhd8ed1ab_0
@@ -259,7 +258,7 @@ dependencies:
   - libsndfile=1.2.2=hc60ed4a_1
   - libsodium=1.0.18=h36c2ea0_1
   - libspatialindex=1.9.3=h9c3ff4c_4
-  - libsqlite=3.43.2=h2797004_0
+  - libsqlite=3.44.0=h2797004_0
   - libssh2=1.11.0=h0841786_0
   - libstdcxx-devel_linux-64=13.2.0=ha9c7c90_2
   - libstdcxx-ng=13.2.0=h7e041cc_2
@@ -294,7 +293,7 @@ dependencies:
   - lz4-c=1.9.4=hcb278e6_0
   - lzo=2.10=h516909a_1000
   - make=4.3=hd18ef5c_1
-  - markdown=3.5=pyhd8ed1ab_0
+  - markdown=3.5.1=pyhd8ed1ab_0
   - markdown-it-py=3.0.0=pyhd8ed1ab_0
   - markupsafe=2.1.3=py311h459d7ec_1
   - matplotlib-inline=0.1.6=pyhd8ed1ab_0
@@ -322,7 +321,7 @@ dependencies:
   - nbconvert-core=7.10.0=pyhd8ed1ab_0
   - nbconvert-pandoc=7.10.0=pyhd8ed1ab_0
   - nbformat=5.9.2=pyhd8ed1ab_0
-  - ncurses=6.4=h59595ed_1
+  - ncurses=6.4=h59595ed_2
   - nest-asyncio=1.5.8=pyhd8ed1ab_0
   - nettle=3.8.1=hc379101_1
   - networkx=3.2.1=pyhd8ed1ab_0
@@ -358,7 +357,7 @@ dependencies:
   - pandas-flavor=0.2.0=py_0
   - pandoc=3.1.3=h32600fe_0
   - pandocfilters=1.5.0=pyhd8ed1ab_0
-  - panel=1.3.0=pyhd8ed1ab_0
+  - panel=1.3.1=pyhd8ed1ab_0
   - pango=1.50.14=ha41ecd1_2
   - param=2.0.0=pyhca7485f_0
   - parso=0.8.3=pyhd8ed1ab_0
@@ -417,7 +416,7 @@ dependencies:
   - pyqtwebengine=5.15.9=py311hd529140_5
   - pysocks=1.7.1=pyha2e5f31_6
   - pytables=3.9.1=py311h10c7f7f_0
-  - python=3.11.6=hab00c5b_0_cpython
+  - python=3.11.0=he550d4f_1_cpython
   - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python-fastjsonschema=2.18.1=pyhd8ed1ab_0
   - python-gitlab=3.15.0=pyhd8ed1ab_0
@@ -492,7 +491,7 @@ dependencies:
   - r-emmeans=1.8.9=r43hc72bb7e_0
   - r-essentials=4.3=r43hd8ed1ab_2004
   - r-estimability=1.4.1=r43hc72bb7e_2
-  - r-evaluate=0.22=r43hc72bb7e_0
+  - r-evaluate=0.23=r43hc72bb7e_0
   - r-fansi=1.0.5=r43h57805ef_0
   - r-farver=2.1.1=r43ha503ecb_2
   - r-fastmap=1.1.1=r43ha503ecb_1
@@ -660,7 +659,7 @@ dependencies:
   - r-waldo=0.5.1=r43hc72bb7e_1
   - r-whisker=0.4.1=r43hc72bb7e_1
   - r-withr=2.5.2=r43hc72bb7e_0
-  - r-xfun=0.40=r43ha503ecb_0
+  - r-xfun=0.41=r43ha503ecb_0
   - r-xml2=1.3.5=r43h1ad5fc0_0
   - r-xopen=1.0.0=r43hc72bb7e_1005
   - r-xtable=1.8_4=r43hc72bb7e_5
@@ -712,7 +711,7 @@ dependencies:
   - spyder=5.4.5=py311h38be061_0
   - spyder-kernels=2.4.4=unix_pyh707e725_0
   - sqlalchemy=2.0.22=py311h459d7ec_0
-  - sqlite=3.43.2=h2c6b66d_0
+  - sqlite=3.44.0=h2c6b66d_0
   - stack_data=0.6.2=pyhd8ed1ab_0
   - statannotations=0.6.0=pyhd8ed1ab_0
   - statsmodels=0.14.0=py311h1f0f07a_2
@@ -748,7 +747,7 @@ dependencies:
   - trame-plotly=2.1.1=pyhd8ed1ab_0
   - trame-rca=0.4.1=pyhd8ed1ab_0
   - trame-router=2.1.0=pyhd8ed1ab_0
-  - trame-server=2.12.0=pyhd8ed1ab_0
+  - trame-server=2.12.1=pyhd8ed1ab_0
   - trame-simput=2.3.3=pyhd8ed1ab_0
   - trame-vega=2.0.3=pyhd8ed1ab_0
   - trame-vtk=2.5.9=pyhd8ed1ab_0

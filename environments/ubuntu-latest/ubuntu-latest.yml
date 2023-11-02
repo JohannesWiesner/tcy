@@ -7,7 +7,7 @@ channels:
 - defaults
 dependencies:
 - bokeh
-- python
+- python>=3.9,<=3.11
 - datalad
 - tableone
 - spyder
