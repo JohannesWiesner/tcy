@@ -1,3 +1,4 @@
+name: windows-latest
 channels:
 - conda-forge
 - pyviz

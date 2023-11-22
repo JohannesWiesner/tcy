@@ -1,3 +1,4 @@
+name: ubuntu-latest
 channels:
 - conda-forge
 - pyviz
