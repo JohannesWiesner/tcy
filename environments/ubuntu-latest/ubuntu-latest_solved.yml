@@ -1,4 +1,4 @@
-name: /home/runner/micromamba/envs/ubuntu-latest
+name: ubuntu-latest
 channels:
   - ejolly
   - defaults
@@ -91,7 +91,7 @@ dependencies:
   - fontconfig=2.14.2=h14ed4e7_0
   - fonts-conda-ecosystem=1=0
   - fonts-conda-forge=1=0
-  - fonttools=4.45.0=py39hd1e30aa_0
+  - fonttools=4.45.1=py39hd1e30aa_0
   - formulaic=0.5.2=pyhd8ed1ab_0
   - fqdn=1.5.1=pyhd8ed1ab_0
   - freetype=2.12.1=h267a509_2
@@ -155,10 +155,10 @@ dependencies:
   - jupyter_client=8.6.0=pyhd8ed1ab_0
   - jupyter_core=5.5.0=py39hf3d152e_0
   - jupyter_events=0.9.0=pyhd8ed1ab_0
-  - jupyter_server=2.11.0=pyhd8ed1ab_0
+  - jupyter_server=2.10.1=pyhd8ed1ab_0
   - jupyter_server_terminals=0.4.4=pyhd8ed1ab_1
   - jupyterlab=4.0.9=pyhd8ed1ab_0
-  - jupyterlab_pygments=0.2.2=pyhd8ed1ab_0
+  - jupyterlab_pygments=0.3.0=pyhd8ed1ab_0
   - jupyterlab_server=2.25.2=pyhd8ed1ab_0
   - jxrlib=1.1=h7f98852_2
   - kernel-headers_linux-64=2.6.32=he073ed8_16
@@ -222,7 +222,7 @@ dependencies:
   - libsndfile=1.2.2=hc60ed4a_1
   - libsodium=1.0.18=h36c2ea0_1
   - libspatialindex=1.9.3=h9c3ff4c_4
-  - libsqlite=3.44.0=h2797004_0
+  - libsqlite=3.44.1=h2797004_0
   - libssh2=1.11.0=h0841786_0
   - libstdcxx-devel_linux-64=13.2.0=ha9c7c90_103
   - libstdcxx-ng=13.2.0=h7e041cc_3
@@ -302,7 +302,7 @@ dependencies:
   - pandas-flavor=0.6.0=pyhd8ed1ab_1
   - pandoc=3.1.3=h32600fe_0
   - pandocfilters=1.5.0=pyhd8ed1ab_0
-  - panel=1.3.1=pyhd8ed1ab_0
+  - panel=1.3.2=pyhd8ed1ab_0
   - pango=1.50.14=ha41ecd1_2
   - param=2.0.1=pyhca7485f_0
   - parso=0.8.3=pyhd8ed1ab_0
@@ -391,7 +391,7 @@ dependencies:
   - r-brew=1.0_8=r43hc72bb7e_2
   - r-brio=1.1.3=r43h57805ef_2
   - r-broom=1.0.5=r43hc72bb7e_1
-  - r-bslib=0.5.1=r43hc72bb7e_0
+  - r-bslib=0.6.0=r43hc72bb7e_0
   - r-cachem=1.0.8=r43h57805ef_1
   - r-callr=3.7.3=r43hc72bb7e_1
   - r-caret=6.0_94=r43h57805ef_1
@@ -566,7 +566,7 @@ dependencies:
   - r-spatial=7.3_17=r43h57805ef_0
   - r-squarem=2021.1=r43hc72bb7e_2
   - r-statmod=1.5.0=r43hd8f1df9_1
-  - r-stringi=1.8.1=r43h9facbd6_0
+  - r-stringi=1.8.2=r43h9facbd6_0
   - r-stringr=1.5.1=r43h785f33e_0
   - r-survival=3.5_7=r43h57805ef_0
   - r-sys=3.4.2=r43h57805ef_1
@@ -579,7 +579,7 @@ dependencies:
   - r-tidyverse=2.0.0=r43h785f33e_1
   - r-timechange=0.2.0=r43ha503ecb_1
   - r-timedate=4022.108=r43hc72bb7e_1
-  - r-tinytex=0.48=r43hc72bb7e_1
+  - r-tinytex=0.49=r43hc72bb7e_0
   - r-triebeard=0.4.1=r43ha503ecb_1
   - r-ttr=0.24.3=r43h57805ef_2
   - r-tzdb=0.4.0=r43ha503ecb_1
@@ -642,10 +642,10 @@ dependencies:
   - sphinxcontrib-jsmath=1.0.1=pyhd8ed1ab_0
   - sphinxcontrib-qthelp=1.0.6=pyhd8ed1ab_0
   - sphinxcontrib-serializinghtml=1.1.9=pyhd8ed1ab_0
-  - spyder=5.5.0=py39hf3d152e_1
+  - spyder=5.5.0=py39hf3d152e_2
   - spyder-kernels=2.5.0=unix_pyhd8ed1ab_0
   - sqlalchemy=2.0.23=py39hd1e30aa_0
-  - sqlite=3.44.0=h2c6b66d_0
+  - sqlite=3.44.1=h2c6b66d_0
   - stack_data=0.6.2=pyhd8ed1ab_0
   - statannotations=0.6.0=pyhd8ed1ab_0
   - statsmodels=0.14.0=py39h44dd56e_2

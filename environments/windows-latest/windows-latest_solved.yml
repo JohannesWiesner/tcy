@@ -1,4 +1,4 @@
-name: C:\Users\runneradmin\micromamba\envs\windows-latest
+name: windows-latest
 channels:
   - r
   - conda-forge
@@ -47,9 +47,9 @@ dependencies:
   - jupyter_client=8.6.0=pyhd8ed1ab_0
   - jupyter_core=5.5.0=py39hcbf5309_0
   - jupyter_events=0.9.0=pyhd8ed1ab_0
-  - jupyter_server=2.11.0=pyhd8ed1ab_0
+  - jupyter_server=2.10.1=pyhd8ed1ab_0
   - jupyter_server_terminals=0.4.4=pyhd8ed1ab_1
-  - jupyterlab_pygments=0.2.2=pyhd8ed1ab_0
+  - jupyterlab_pygments=0.3.0=pyhd8ed1ab_0
   - jupyterlab_server=2.25.2=pyhd8ed1ab_0
   - jxrlib=1.1=h8ffe710_2
   - keyrings.alt=4.2.0=pyhd8ed1ab_0
@@ -80,7 +80,7 @@ dependencies:
   - libpng=1.6.39=h19919ed_0
   - libsodium=1.0.18=h8d14728_1
   - libspatialindex=1.9.3=h39d44d4_4
-  - libsqlite=3.44.0=hcfcfb64_0
+  - libsqlite=3.44.1=hcfcfb64_0
   - libssh2=1.11.0=h7dfc565_0
   - libtiff=4.6.0=h6e2ebb7_2
   - libvorbis=1.3.7=h0e60522_0
@@ -343,7 +343,7 @@ dependencies:
   - r-spatial=7.3_17=r41h6d2157b_0
   - r-squarem=2021.1=r41hc72bb7e_1
   - r-statmod=1.5.0=r41hd5c7e75_1
-  - r-stringi=1.8.1=r41ha856d6a_0
+  - r-stringi=1.8.2=r41ha856d6a_0
   - r-stringr=1.5.0=r41h785f33e_0
   - r-survival=3.5_7=r41h6d2157b_0
   - r-sys=3.4.2=r41h6d2157b_1
@@ -480,7 +480,7 @@ dependencies:
       - fastjsonschema==2.19.0
       - filelock==3.13.1
       - flake8==6.1.0
-      - fonttools==4.45.0
+      - fonttools==4.45.1
       - formulaic==0.5.2
       - fqdn==1.5.1
       - frozenlist==1.4.0
@@ -522,10 +522,10 @@ dependencies:
       - jupyter-core==5.5.0
       - jupyter-events==0.9.0
       - jupyter-lsp==2.2.0
-      - jupyter-server==2.11.0
+      - jupyter-server==2.10.1
       - jupyter-server-terminals==0.4.4
       - jupyterlab==4.0.9
-      - jupyterlab-pygments==0.2.2
+      - jupyterlab-pygments==0.3.0
       - jupyterlab-server==2.25.2
       - keyring==24.3.0
       - keyrings-alt==4.2.0
@@ -580,7 +580,7 @@ dependencies:
       - pandas==2.1.3
       - pandas-flavor==0.6.0
       - pandocfilters==1.5.0
-      - panel==1.3.1
+      - panel==1.3.2
       - param==2.0.1
       - paramiko==3.3.1
       - parso==0.8.3
