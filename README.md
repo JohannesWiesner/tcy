@@ -44,15 +44,19 @@ The input spreadsheet file needs to have the following columns:
 Some R-packages are not (yet) available as conda-packages. In order to semi-automate the installation process of these packages in your conda environment, run `install_cran_packages.sh`. This script will activate the conda environment, start R in this environment and then install the CRAN-packages via `install.packages()` Note that this is not the recommended way to do it, but some R-packages are simply not available as conda-packages (this should be checked though on a regular basis).
 
 ## Presolved environments
-This repository contains a subfolder called `environments` . Users can download this repository and use the  `.yml` files within that folder to create a conda environment. These files contain solved solutions of the package specifications found in `packages.tsv` for both Windows and Ubuntu. The `packages.tsv` file contains all packages that the [**Complex Systems in Psychiatry Lab**](https://www.zi-mannheim.de/en/research/departments-research-groups-institutes/psychiatry-psychotherapy/researchgroups-psychiatry-e/complex-systems-in-psychiatry.html) needs.
+This repository contains a subfolder called `environments` with a `datasets.tsv` file in it. The `packages.tsv` file contains all packages that the [**Complex Systems in Psychiatry Lab**](https://www.zi-mannheim.de/en/research/departments-research-groups-institutes/psychiatry-psychotherapy/researchgroups-psychiatry-e/complex-systems-in-psychiatry.html) needs for its research. On top, `environments` contains two subfolders `windows-latest` and `ubuntu-latest`. These folders contain pre-solved files of the package specifications found in `packages.tsv` for both Windows and Ubuntu using a Github Actions workflow that uses tcy & Micromamba behind the scenes to create these files.
+
+Users can download this repository and use the  `.yml` files within that folder to create a conda environment.
 
  1. After downloading this repo users have to set their name
     `name: ` attribute in the `.yml` file.
  2. After that they execute the following command to create their
     environment: `conda env create -f environment.yml` (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first setp. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
 
-## Use this repository for your own lab
-This repository is available as a template. You can create your own repo and adapt `packages.tsv` to your needs.
+# Use this repository for your own lab
+This repository is available as a template. You can create your own repo and adapt `packages.tsv` to your needs. Make sure to allow the Github Runners to push changes to your repository by doing:
+
+Settings -> Actions -> General -> Workflow permissions -> Checkmark "Read and write permissions"
 
 # Q & A
 
