@@ -4,6 +4,26 @@
 ## Aims
 Using `.yml` files as recipes to create conda environments is already a good step towards reproducible scientific computing environments. However, sometimes we want to know **why** a particular package was included (or not), **what** it does (improving transparency), and whether it runs without errors on all common operating systems (Linux, Mac OS, Windows). Spreadsheet files offer much more possibilities to document this. The goal of this repository is to have the documentation capabilities of a `.tsv` file and then be able to export the packages that are described in it to a `.yml` file.
 
+## Presolved environments using Github Actions
+
+This repository contains a subfolder called `environments` with a `packages.tsv` file in it. The `packages.tsv` file contains all packages that the [**Complex Systems in Psychiatry Lab**](https://www.zi-mannheim.de/en/research/departments-research-groups-institutes/psychiatry-psychotherapy/researchgroups-psychiatry-e/complex-systems-in-psychiatry.html) needs for its research (but can be easily adapted to your own needs). `environments` again contains two subfolders `windows-latest` and `ubuntu-latest`. These folders contain pre-solved files of the package specifications found in `packages.tsv` for both Windows and Ubuntu by running a Github Actions workflow that uses tcy & Micromamba behind the scenes to create these files.
+
+Users can download this repository and use the  `ubuntu-latest_solved.yml` or `windows-latest_solved.yml` files to create a conda environment.
+
+ 1. After downloading this repo users have to set their name
+    `name: ` attribute in the `.yml` file.
+ 2. After that they execute the following command to create their
+    environment: `conda env create -f environment.yml` (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first setp. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
+
+## Use this repository for your own lab
+The most easy way to use tcy is to create your own repository using tcy as a template. You can then adapt `packages.tsv` to own your needs. Follow these steps:
+
+1. Create your own repository using the `Use this template` button.
+
+2. Make sure to allow the Github Runners to push changes to your repository by going to Settings → Actions → General → Workflow permissions → Checkmark "Read and write permissions"
+
+3. Follow the steps from [Presolved environments using Github Actions](#Presolved-environments-using-Github-Actions)
+
 ## How to generate a custom .yml file using tcy
 With a python installation on their machines, users can run the  `tcy.py` script in the console (`tcy.py` by default will expect to find a `packages.tsv` file in the current working directory):
 
@@ -44,21 +64,6 @@ The input spreadsheet file needs to have the following columns:
 ### CRAN-packages
 **EDIT: Still in development!**
 Some R-packages are not (yet) available as conda-packages. In order to semi-automate the installation process of these packages in your conda environment, run `install_cran_packages.sh`. This script will activate the conda environment, start R in this environment and then install the CRAN-packages via `install.packages()` Note that this is not the recommended way to do it, but some R-packages are simply not available as conda-packages (this should be checked though on a regular basis).
-
-## Presolved environments
-This repository contains a subfolder called `environments` with a `datasets.tsv` file in it. The `packages.tsv` file contains all packages that the [**Complex Systems in Psychiatry Lab**](https://www.zi-mannheim.de/en/research/departments-research-groups-institutes/psychiatry-psychotherapy/researchgroups-psychiatry-e/complex-systems-in-psychiatry.html) needs for its research. On top, `environments` contains two subfolders `windows-latest` and `ubuntu-latest`. These folders contain pre-solved files of the package specifications found in `packages.tsv` for both Windows and Ubuntu by running a Github Actions workflow that uses tcy & Micromamba behind the scenes to create these files.
-
-Users can download this repository and use the  `.yml` files within that folder to create a conda environment.
-
- 1. After downloading this repo users have to set their name
-    `name: ` attribute in the `.yml` file.
- 2. After that they execute the following command to create their
-    environment: `conda env create -f environment.yml` (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first setp. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
-
-## Use this repository for your own lab
-This repository is available as a template. You can create your own repo and adapt `packages.tsv` to your needs. Make sure to allow the Github Runners to push changes to your repository by doing:
-
-Go to Settings → Actions → General → Workflow permissions → Checkmark "Read and write permissions"
 
 ## Q & A
 
