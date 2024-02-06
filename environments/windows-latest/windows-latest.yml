@@ -1,47 +1,8 @@
 name: windows-latest
 channels:
 - conda-forge
-- pyviz
-- plotly
-- r
-- ejolly
-- bokeh
 - defaults
 dependencies:
-- bokeh
-- python<3.10
-- datalad
-- tableone
-- spyder
-- scikit-learn
-- nilearn
-- nipype
-- statannotations
-- fastcluster
-- pingouin
-- oct2py
-- pybids
-- scikit-image
-- pymer4
-- plotly-orca
-- plotly
-- holoviews
-- hvplot
+- python
 - r-essentials
-- r-repr
-- r-devtools
-- jupyterlab
 - r-base
-- r-reticulate
-- rtools
-- pip
-- pip:
-  - nimare
-  - network_control
-  - cca-zoo
-  - bctpy
-  - gower
-  - distro
-  - abagen
-  - clustergrammer
-  - nisupply
