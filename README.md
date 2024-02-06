@@ -6,7 +6,7 @@ Using `.yml` files as recipes to create conda environments is already a good ste
 
 ## Presolved environments using Github Actions
 
-This repository contains a subfolder called `environments` with a `packages.tsv` file in it. The `packages.tsv` file contains all packages that the [**Complex Systems in Psychiatry Lab**](https://www.zi-mannheim.de/en/research/departments-research-groups-institutes/psychiatry-psychotherapy/researchgroups-psychiatry-e/complex-systems-in-psychiatry.html) needs for its research (but can be easily adapted to your own needs). `environments` again contains two subfolders `windows-latest` and `ubuntu-latest`. These folders contain pre-solved files of the package specifications found in `packages.tsv` for both Windows and Ubuntu by running a Github Actions workflow that uses tcy & Micromamba behind the scenes to create these files.
+This repository contains a subfolder called `environments` with a `packages.tsv` file in it. The `packages.tsv` file by default only contains Python, R and the essential R-packages (but can be easily adapted to your own needs, see next section). `environments` also contains two subfolders `windows-latest` and `ubuntu-latest`. These folders contain files that have the solved package specifications found in `packages.tsv` for both Windows and Ubuntu by running a Github Actions workflow that uses tcy & Micromamba behind the scenes to create these files.
 
 Users can download this repository and use the  `ubuntu-latest_solved.yml` or `windows-latest_solved.yml` files to create a conda environment.
 
