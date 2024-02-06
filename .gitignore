@@ -1,3 +1,7 @@
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
+
+# ignore any .tsv or .yml files
+*.tsv
+*.yml
