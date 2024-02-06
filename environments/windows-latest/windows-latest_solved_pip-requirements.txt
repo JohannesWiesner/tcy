@@ -10,6 +10,7 @@ docopt==0.6.2
 future==0.18.3
 fuzzywuzzy==0.18.0
 gower==0.1.2
+hpack==4.0.0
 littleutils==0.2.2
 llvmlite==0.42.0
 lxml==5.1.0
