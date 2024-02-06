@@ -13,7 +13,7 @@ Users can download this repository and use the  `ubuntu-latest_solved.yml` or `w
  1. After downloading this repo users have to set their name
     `name: ` attribute in the `.yml` file.
  2. After that they execute the following command to create their
-    environment: `conda env create -f environment.yml` (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first setp. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
+    environment: `conda env create -f ubuntu_latest_solved.yml` (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first setp. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
 
 ## Use this repository for your own lab
 The most easy way to use tcy is to create your own repository using tcy as a template. You can then adapt `packages.tsv` to own your needs. Follow these steps:
@@ -24,7 +24,8 @@ The most easy way to use tcy is to create your own repository using tcy as a tem
 
 3. Follow the steps from [Presolved environments using Github Actions](#Presolved-environments-using-Github-Actions)
 
-## How to generate a custom .yml file using tcy
+## For developers
+### How to generate a custom .yml file using tcy
 With a python installation on their machines, users can run the  `tcy.py` script in the console (`tcy.py` by default will expect to find a `packages.tsv` file in the current working directory):
 
  `python tcy.py linux`
@@ -60,6 +61,18 @@ The input spreadsheet file needs to have the following columns:
 - `comment` (optional comments if something is buggy or if you want to tell other users some useful information)
 - `language` (Python, R, Julia)
 - `bug_flag` (can be 'linux','windows' or 'cross_platform')
+
+### Automatic testing of the datasets.tsv file
+
+This repository includes a testing pipeline that checks for the integrity of / valid entries in the `packages.tsv`. Which tests are running is decided using the `test_configs.json` file. Each tests corresponds to a key within the `json` file. If the corresponding value is `null` the test is not being executed. Here's an explanation of each test and rules for how the values should be provided in case the test should be executed.
+
+| key                 | value                                                              | description                                                                                            |
+|---------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| valid_columns       | list of column names                                               | tsv file must only have these columns in that specific order                                           |
+| filled_out_columns  | list of column names                                               | cells in these columns must not contain NaNs, i.e. every row within these columns must contain a value |
+| valid_options       | dict with column names as keys and list of valid options as values | cells in these columns must only contain these values                                                  |
+| column_dependencies | dict with column names as keys and list of other columns as values | if a cell in this column is filled out, cells in this/these other column(s) also have to be filled out |
+| multi_option_columns| dict with column names as keys and list of valid options as values | cells in these columns must only contain valid options separated by commas                             |
 
 ### CRAN-packages
 **EDIT: Still in development!**
