@@ -4,25 +4,28 @@
 ## Aims
 Using `.yml` files as recipes to create conda environments is already a good step towards reproducible scientific computing environments. However, sometimes we want to know **why** a particular package was included (or not), **what** it does (improving transparency), and whether it runs without errors on all common operating systems (Linux, Mac OS, Windows). Spreadsheet files offer much more possibilities to document this. The goal of this repository is to have the documentation capabilities of a `.tsv` file and then be able to export the packages that are described in it to a `.yml` file.
 
-## Presolved environments using Github Actions
+## Use this repository for your own work
 
-This repository contains a subfolder called `environments` with a `packages.tsv` file in it. The `packages.tsv` file by default only contains Python, R and the essential R-packages (but can be easily adapted to your own needs, see next section). `environments` also contains two subfolders `windows-latest` and `ubuntu-latest`. These folders contain files that have the solved package specifications found in `packages.tsv` for both Windows and Ubuntu by running a Github Actions workflow that uses tcy & Micromamba behind the scenes to create these files.
-
-Users can download this repository and use the  `ubuntu-latest_solved.yml` or `windows-latest_solved.yml` files to create a conda environment.
-
- 1. After downloading this repo users have to set their name
-    `name: ` attribute in the `.yml` file.
- 2. After that they execute the following command to create their
-    environment: `conda env create -f ubuntu_latest_solved.yml` (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first setp. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
-
-## Use this repository for your own lab
-The most easy way to use tcy is to create your own repository using tcy as a template. You can then adapt `packages.tsv` to own your needs. Follow these steps:
+The most easy way to use tcy is to create your own repository using tcy as a template. You can then adapt the included `packages.tsv` file to own your needs. Follow these steps:
 
 1. Create your own repository using the `Use this template` button.
 
-2. Make sure to allow the Github Runners to push changes to your repository by going to Settings → Actions → General → Workflow permissions → Checkmark "Read and write permissions"
+2. Make sure to allow Github Runners to push changes to your repository by going to Settings → Actions → General → Workflow permissions → Checkmark "Read and write permissions"
 
-3. Follow the steps from [Presolved environments using Github Actions](#Presolved-environments-using-Github-Actions)
+3. Clone your repository to your local machine
+
+4. Make local changes to `environments/packages.tsv`
+
+5. Push your changes. This will start a Github-Action-Worfklow that uses tcy and micromamba to create `.yml` files with solved package specification solutions. The workflow will automatically push the files to your repo, so wait until it's finished.
+
+6. After the workflow has finished, pull the latest changes to your local repository.
+
+7. Create your conda environment using either the `ubuntu-latest_solved.yml` or `windows-latest_solved.yml` file (depending on your OS) by doing this:
+
+   * Set the name of the environment by overwriting the `name: ` attribute in the `.yml` file.
+   * After that execute the following command to create your environment: `conda env create -f ubuntu_latest_solved.yml` (or `conda env create -f windows_latest_solved.yml`)
+   (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first step.
+   More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
 
 ## For developers
 ### How to generate a custom .yml file using tcy
