@@ -5,3 +5,6 @@ __pycache__/
 # ignore any .tsv or .yml files
 *.tsv
 *.yml
+
+# ignore lock files created by spreadsheet programs
+.~lock*.tsv

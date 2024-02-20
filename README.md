@@ -53,7 +53,7 @@ The following **optional arguments** can be set for further customization:
 ### The packages.tsv file
 The input spreadsheet file needs to have the following columns:
 - `package_name` (the offical name of the package)
-- `version` (specify the version of the package you need, this can include )
+- `version` (specify the version of the package you need by following the [package match specification syntax](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications))
 - `installation_command` (the full installation command)
 - `package_manager` (pip, conda, cran)
 - `conda_channel` (which conda channel to install from)
@@ -62,7 +62,7 @@ The input spreadsheet file needs to have the following columns:
 - `necessity` ("required": you find that this package should be available for all lab members, "optional": only you need it for your current project but maybe any future lab member might find it also useful in the future)
 - `description` (a short description of what this package does)
 - `comment` (optional comments if something is buggy or if you want to tell other users some useful information)
-- `language` (Python, R, Julia)
+- `language` (python, r, julia)
 - `bug_flag` (can be 'linux','windows' or 'cross_platform')
 
 ### Automatic testing of the datasets.tsv file

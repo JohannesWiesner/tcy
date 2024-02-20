@@ -68,7 +68,7 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
         A valid URL to a CRAN-Mirror where packages should be downloaded from.
         The default is 'https://cloud.r-project.org'
     languages: str or list of str, optional
-        Filter for languages. Valid arguments are Python, Julia, R.
+        Filter for languages. Valid arguments are python, julia, r, or all.
         The default is 'all'
     necessity: str or list of str, optional
         Filter for necessity. Valid arguments are optional, required.
@@ -255,7 +255,7 @@ if __name__ == '__main__':
                         The default is \'https://cloud.r-project.org\'")
     parser.add_argument('--languages',type=str,required=False,default='all',nargs='+',
                         help="Filter for certain programming languages. Valid inputs \
-                        are Python, R, Julia.")
+                        are python, julia, r or all.")
     parser.add_argument('--necessity',type=str,required=False,default='all',nargs='+',
                         help="Filter for necessity. Valid inputs are \'required\', \'optional\', or \'all\'. \
                         The default is \'all\'")
