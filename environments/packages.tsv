@@ -1,4 +1,4 @@
 package_name	version	installation_command	package_manager	conda_channel	area	link	necessity	description	comment	language	bug_flag
-python		conda install -c conda-forge python	conda	conda-forge	language	https://anaconda.org/conda-forge/python	required	the python programming language itself		Python	
-r-essentials		conda install -c conda-forge r-essentials	conda	conda-forge	data wrangling	https://tinyurl.com/54j96j5x	required	The R Essentials bundle contains approximately 200 of the most popular R packages for data science, including the IRKernel, dplyr, shiny, ggplot2, tidyr, caret, and nnet. It is used as an example in the following guides.		R	
-r-base		conda install -c conda-forge r-base	conda	conda-forge	language	https://anaconda.org/conda-forge/r-base	required	the R programming language itself		R	
+python		conda install -c conda-forge python	conda	conda-forge	language	https://anaconda.org/conda-forge/python	required	the python programming language itself		python	
+r-essentials		conda install -c conda-forge r-essentials	conda	conda-forge	data wrangling	https://tinyurl.com/54j96j5x	required	The R Essentials bundle contains approximately 200 of the most popular R packages for data science, including the IRKernel, dplyr, shiny, ggplot2, tidyr, caret, and nnet. It is used as an example in the following guides.		r	
+r-base		conda install -c conda-forge r-base	conda	conda-forge	language	https://anaconda.org/conda-forge/r-base	required	the R programming language itself		r	

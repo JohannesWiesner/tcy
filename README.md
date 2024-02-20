@@ -47,7 +47,7 @@ The following **optional arguments** can be set for further customization:
 - `--yml_dir`(Path to a valid directory where the .yml file should be placed in. If not given the file will  be placed in the current working directory. If a `requirements.txt` for pip is generated it will always be placed in the same directory  as the .yml file)
 - `--cran_installation_script` (If set, generates a bash script `install_cran_packages.sh`that allows to install CRAN-packages within the conda-environment. Only valid when `--yml_name` is set)
 - `--cran_mirror`(A valid URL to a CRAN-Mirror where packages should be downloaded from. The default is https://cloud.r-project.org)
-- `--languages` (Filter for certain languages. Valid inputs are 'Python', 'R' & 'Julia')
+- `--languages` (Filter for certain languages. Valid inputs are 'python', 'r', 'julia' or 'all'. The default is 'all')
 - `--necessity` (Filter for necessity. Valid inputs are 'optional' and 'required').
 
 ### The packages.tsv file
