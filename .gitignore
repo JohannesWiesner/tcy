@@ -7,4 +7,4 @@ __pycache__/
 *.yml
 
 # ignore lock files created by spreadsheet programs
-*.~lock*.tsv
+.*~lock*.tsv#
