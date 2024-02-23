@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tcy"
+version= "1.0.0"
+authors = [
+    {name = "Johannes Wiesner", email = "joh.wiesner@gmail.com"},
+]
+description = "A python package for converting tsv files into conda yml files"
+readme = "README.md"
+keywords = ["python","tsv","environment","conda","yml","tsv-parser"]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "pandas",
+    "pytest"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/JohannesWiesner/tcy"
+
+[tool.setuptools]
+packages = ["tcy"]
