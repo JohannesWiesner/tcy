@@ -107,7 +107,7 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
     if not languages == 'all':
         df = df.loc[df['language'].isin(languages),:]
     
-    # filter for necessitiy if specified by user
+    # filter for necessity if specified by user
     if not necessity == 'all':
         df = df.loc[df['necessity'].isin(necessity),:]
     

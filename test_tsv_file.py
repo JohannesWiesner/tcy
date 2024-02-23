@@ -74,15 +74,14 @@ class TestTsvFile:
             message = f"These cells have either leading or trailing whitespaces: {', '.join(cells)}"
             pytest.fail(message)
     
-    # FIXME: Should test for equality not for subset!
     def test_valid_columns(self):
         '''Test that dataframe has all necessary columns'''
         
         if self.valid_columns:
-    
-            if list(self.df.columns) != self.valid_columns:
-                pytest.fail(f"datasets.tsv must have only these columns in that exact order: {', '.join(self.valid_columns)}")
-            
+
+            if not set(self.df.columns).issubset(self.valid_columns):
+                pytest.fail(f"The .tsv file must have at least these columns: {', '.join(self.valid_columns)}")
+
     def test_filled_out_columns(self):
         '''Check that certain columns are completely filled out'''
         

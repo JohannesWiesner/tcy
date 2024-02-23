@@ -1,10 +1,7 @@
 {
-  "valid_columns": ["package_name", "version", "installation_command", "package_manager", "conda_channel", "area","link", "necessity", "description", "comment", "language", "bug_flag"],
+  "valid_columns": ["package_name", "version","package_manager","conda_channel","necessity","language","bug_flag"],
   "filled_out_columns": ["package_name","language"],
   "valid_options": {"package_manager":["conda","pip","cran"],"language":["python","r","julia"],"bug_flag":["linux","windows","cross-platform"]},
   "column_dependencies": null,
   "multi_option_columns": null
 }
-
-
-
