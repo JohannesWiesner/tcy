@@ -79,7 +79,7 @@ class TestTsvFile:
         
         if self.valid_columns:
 
-            if not set(self.df.columns).issubset(self.valid_columns):
+            if not set(self.valid_columns).issubset(self.df.columns):
                 pytest.fail(f"The .tsv file must have at least these columns: {', '.join(self.valid_columns)}")
 
     def test_filled_out_columns(self):
