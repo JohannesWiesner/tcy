@@ -22,22 +22,22 @@ jobs:
         shell: bash -el {0}
     steps:
     - name: checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
     - name: setup python in order to run tcy.py
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.7
+        python-version: 3.11
     - name: install python dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install pandas
         python -m pip install pytest
-    - name: run tcy.py to create a .yml file for Linux (will be skipped for Windows)
+    - name: run tcy.py to create a .yml file for Linux (will be skipped for windows-latest runner)
       if: runner.os == 'Linux'
       run: python tcy.py linux --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
-    - name: run tcy.py to create a .yml file for Windows (will be skipped for Linux)
+    - name: run tcy.py to create a .yml file for Windows (will be skipped for ubuntu-latest runner)
       if: runner.os == 'Windows'
       run: python tcy.py windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
     - name: setup micromamba and create environment using .yml file
@@ -46,7 +46,7 @@ jobs:
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
-    - name: initialize conda for Git Bash (will be skipped for Linux)
+    - name: initialize conda for Git Bash (will be skipped for linux runner)
       if: runner.os == 'Windows'
       run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
     - name: export conda environment as .yml file and as spec-file.txt and export pip-packages as .txt file
@@ -55,7 +55,7 @@ jobs:
         conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
         pip freeze | grep -v "@ file" > ./environments/${{ matrix.os }}_solved_pip-requirements.txt
     - name: upload exported files as artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.os }}
         path: |
@@ -64,18 +64,18 @@ jobs:
           ./environments/${{ matrix.os }}_solved.txt
           ./environments/${{ matrix.os }}_solved_pip-requirements.txt
   download-artifacts-and-push:
-    name: download files and push to repo if something has changed
+    name: download all files that where created by the runners and push them to repo (but only if something has changed)
     if: ${{ always() }}
     needs: solve-environments-and-upload-files
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
     - name: download all files that were created using different operating systems
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         path: ./environments
     - name: add and commit files (but only if something has changed)
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v5
