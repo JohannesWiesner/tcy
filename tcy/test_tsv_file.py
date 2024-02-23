@@ -67,7 +67,7 @@ class TestTsvFile:
             else:
                 return False
         
-        whitespace_mask = self.df.astype(str).applymap(create_mask)
+        whitespace_mask = self.df.astype(str).map(create_mask)
         
         if whitespace_mask.any(axis=None):
             cells = self.get_affected_cells(whitespace_mask)
