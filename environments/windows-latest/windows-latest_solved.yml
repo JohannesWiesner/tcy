@@ -197,7 +197,7 @@ dependencies:
   - r-nnet=7.3_19=r41h6d2157b_1
   - r-numderiv=2016.8_1.1=r41hc72bb7e_4
   - r-openssl=2.0.6=r41h81a3cea_1
-  - r-parallelly=1.36.0=r41hc72bb7e_0
+  - r-parallelly=1.37.0=r41h6d2157b_1
   - r-pbdzmq=0.3_11=r41h05e23a2_0
   - r-pillar=1.9.0=r41hc72bb7e_0
   - r-pkgconfig=2.0.3=r41hc72bb7e_2
@@ -318,14 +318,14 @@ dependencies:
       - h11==0.14.0
       - h2==4.1.0
       - hpack==4.0.0
-      - httpcore==1.0.3
-      - httpx==0.26.0
+      - httpcore==1.0.4
+      - httpx==0.27.0
       - hyperframe==6.0.1
       - idna==3.6
       - importlib-metadata==7.0.1
       - importlib-resources==6.1.1
       - ipykernel==6.29.2
-      - ipython==8.21.0
+      - ipython==8.22.0
       - isoduration==20.11.0
       - jedi==0.19.1
       - jinja2==3.1.3

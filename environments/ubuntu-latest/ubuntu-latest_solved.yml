@@ -19,7 +19,7 @@ dependencies:
   - brotli-python=1.1.0=py312h30efb56_1
   - bwidget=1.9.14=ha770c72_1
   - bzip2=1.0.8=hd590300_5
-  - c-ares=1.26.0=hd590300_0
+  - c-ares=1.27.0=hd590300_0
   - ca-certificates=2024.2.2=hbcca054_0
   - cached-property=1.5.2=hd8ed1ab_1
   - cached_property=1.5.2=pyha770c72_1
@@ -55,8 +55,8 @@ dependencies:
   - h2=4.1.0=pyhd8ed1ab_0
   - harfbuzz=8.3.0=h3d44ed6_0
   - hpack=4.0.0=pyh9f0ad1d_0
-  - httpcore=1.0.3=pyhd8ed1ab_0
-  - httpx=0.26.0=pyhd8ed1ab_0
+  - httpcore=1.0.4=pyhd8ed1ab_0
+  - httpx=0.27.0=pyhd8ed1ab_0
   - hyperframe=6.0.1=pyhd8ed1ab_0
   - icu=73.2=h59595ed_0
   - idna=3.6=pyhd8ed1ab_0
@@ -64,7 +64,7 @@ dependencies:
   - importlib_metadata=7.0.1=hd8ed1ab_0
   - importlib_resources=6.1.1=pyhd8ed1ab_0
   - ipykernel=6.29.2=pyhd33586a_0
-  - ipython=8.21.0=pyh707e725_0
+  - ipython=8.22.0=pyh707e725_0
   - isoduration=20.11.0=pyhd8ed1ab_0
   - jedi=0.19.1=pyhd8ed1ab_0
   - jinja2=3.1.3=pyhd8ed1ab_0
@@ -214,7 +214,7 @@ dependencies:
   - r-future.apply=1.11.1=r43hc72bb7e_0
   - r-gargle=1.5.2=r43h785f33e_0
   - r-generics=0.1.3=r43hc72bb7e_2
-  - r-ggplot2=3.4.4=r43hc72bb7e_0
+  - r-ggplot2=3.5.0=r43hc72bb7e_0
   - r-gistr=0.9.0=r43hc72bb7e_2
   - r-glmnet=4.1_8=r43hcf54a89_0
   - r-globals=0.16.2=r43hc72bb7e_1
@@ -266,7 +266,7 @@ dependencies:
   - r-nnet=7.3_19=r43h57805ef_1
   - r-numderiv=2016.8_1.1=r43hc72bb7e_5
   - r-openssl=2.1.1=r43hb353fa6_0
-  - r-parallelly=1.37.0=r43hc72bb7e_0
+  - r-parallelly=1.37.0=r43h57805ef_1
   - r-pbdzmq=0.3_11=r43hc2df49b_0
   - r-pillar=1.9.0=r43hc72bb7e_1
   - r-pkgconfig=2.0.3=r43hc72bb7e_3
