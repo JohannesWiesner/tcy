@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tcy"
-version= "1.0.0"
+version= "1.0.3"
 authors = [
     {name = "Johannes Wiesner", email = "joh.wiesner@gmail.com"},
 ]
@@ -28,3 +28,7 @@ dependencies = [
 
 [tool.setuptools]
 packages = ["tcy"]
+
+[tool.pytest.ini_options]
+addopts = "--tsv_path=packages.tsv"
+testpaths = ["tcy"]
