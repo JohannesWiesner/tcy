@@ -16,6 +16,7 @@ Notes:
 
 import pandas as pd
 import os
+from pathlib import Path
 import argparse
 import pytest
 
@@ -92,7 +93,7 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
         cran_installation_script_path = 'install_cran_packages.sh'
         
     # check provided .tsv file for errors using pytest
-    pytest.main(["test_tsv_file.py","--tsv_path",tsv_path,'-qqqq','--tb','no'])
+    pytest.main([os.path.join(Path(__file__).resolve().parent,'test_tsv_file.py'),"--tsv_path",tsv_path,'-qqqq','--tb','no'])
     
     # read in .tsv file
     df = pd.read_csv(tsv_path,sep='\t',index_col=None,header=0)
