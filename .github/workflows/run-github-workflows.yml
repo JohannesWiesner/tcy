@@ -25,23 +25,23 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
-    - name: setup python in order to run tcy.py
+    - name: setup a python environment
       uses: actions/setup-python@v5
       with:
         python-version: 3.11
-    - name: install python dependencies
+    - name: install pip-packages in that python environment including tcy
       run: |
         python -m pip install --upgrade pip
+        python -m pip install tcy
         python -m pip install pandas
         python -m pip install pytest
-    - name: run tcy.py to create a .yml file for Linux (will be skipped for windows-latest runner)
+    - name: run tcy to create a .yml file for Linux (will be skipped for windows-latest runner)
       if: runner.os == 'Linux'
-      run: python tcy.py linux --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
+      run: tcy linux --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
     - name: run tcy.py to create a .yml file for Windows (will be skipped for ubuntu-latest runner)
       if: runner.os == 'Windows'
-      run: python tcy.py windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
-    - name: setup micromamba and create environment using .yml file
-      id: createEnvironment
+      run: tcy windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
+    - name: setup micromamba and create an environment using the .yml file that tcy produced
       uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
@@ -49,7 +49,7 @@ jobs:
     - name: initialize conda for Git Bash (will be skipped for linux runner)
       if: runner.os == 'Windows'
       run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
-    - name: export conda environment as .yml file and as spec-file.txt and export pip-packages as .txt file
+    - name: export conda environment both as .yml file and as a spec-file.txt and export the pip-packages as requirements.txt file
       run: |
         conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " | sed -E 's/^name:.*(ubuntu-latest|windows-latest)/name: \1/' > ./environments/${{ matrix.os }}_solved.yml
         conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
