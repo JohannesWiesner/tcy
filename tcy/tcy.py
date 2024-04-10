@@ -16,6 +16,7 @@ Notes:
 
 import pandas as pd
 import os
+from pathlib import Path
 import argparse
 import pytest
 
@@ -92,7 +93,11 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
         cran_installation_script_path = 'install_cran_packages.sh'
         
     # check provided .tsv file for errors using pytest
-    pytest.main(["test_tsv_file.py","--tsv_path",tsv_path,'-qqqq','--tb','no'])
+    # Note: We need to pass the absolute filepath of the test script to pytest
+    # to this script can be excuted from anywhere (otherwise it would
+    # only work if the test script would be in the current working directory)
+    filepath_test = os.path.join(Path(__file__).resolve().parent,'test_tsv_file.py')
+    pytest.main([filepath_test,"--tsv_path",tsv_path,'-qqqq','--tb','no'])
     
     # read in .tsv file
     df = pd.read_csv(tsv_path,sep='\t',index_col=None,header=0)
@@ -209,9 +214,9 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
                 f.write('#!/bin/bash\n')
                 f.write("CONDA_BASE=$(conda info --base) && source $CONDA_BASE/etc/profile.d/conda.sh\n")
                 f.write(f"conda activate {yml_name} && Rscript -e \"install.packages(c({cran_packages}),repos=\'{cran_mirror}\')\"")
-    
-if __name__ == '__main__':
-    
+
+def main():
+
     parser = argparse.ArgumentParser(description='Parse the information from packages.tsv and return environment.yml file')
 
     # add positional arguments
@@ -262,7 +267,7 @@ if __name__ == '__main__':
 
     # parse arguments
     args = parser.parse_args()
-    
+
     # parse .tsv file and get .yml file
     run(operating_system=args.os,
         yml_name=args.yml_name,
@@ -275,3 +280,6 @@ if __name__ == '__main__':
         cran_mirror=args.cran_mirror,
         languages=args.languages,
         necessity=args.necessity)
+
+if __name__ == '__main__':
+    main()

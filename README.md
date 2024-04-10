@@ -6,9 +6,14 @@ Using `.yml` files as recipes to create conda environments is already a good ste
 
 ## Use this repository for your own work
 
-The most easy way to use tcy is to create your own repository using tcy as a template. You can then adapt the included `packages.tsv` file to own your needs. Follow these steps:
+The most easy way to use tcy is to create your own repository by using this repository as a template. This has two advantages over using tcy locally on your machine:
 
-1. Create your own repository using the `Use this template` button.
+1. Your "recipes" will be stored in a Github repository and are therefore available from any machine as long as you have an internet connection.
+2. Creating environments can take a lot of time, depending on the number of packages that need to be included. Using the following approach, the computionally heavy solving process is outsourced to a Github-Runner so your personal machine can be used for other things.
+
+If you want to use this approach, then follow these steps:
+
+1. Create your own repository by clicking on the `Use this template` button in the upper right.
 
 2. Make sure to allow Github Runners to push changes to your repository by going to Settings → Actions → General → Workflow permissions → Checkmark "Read and write permissions"
 
@@ -29,9 +34,11 @@ The most easy way to use tcy is to create your own repository using tcy as a tem
 
 ## For developers
 ### How to generate a custom .yml file using tcy
-With a python installation on their machines, users can run the  `tcy.py` script in the console (`tcy.py` by default will expect to find a `packages.tsv` file in the current working directory):
 
- `python tcy.py linux`
+tcy can be pip-installed using `pip install tcy`. There are two ways to use tcy:
+
+1.) You can import the `run` function in your own code-base using `from tcy import run`
+2.) tcy can also be used as a command-line application by simply running `tcy` in the terminal
 
 The following **positional arguments** have to be specified:
 
@@ -62,7 +69,9 @@ The input spreadsheet file needs to have the following columns:
 
 ### Automatic testing of the datasets.tsv file
 
-This repository includes a testing pipeline that checks for the integrity of / valid entries in the `packages.tsv`. Which tests are running is decided using the `test_configs.json` file. Each tests corresponds to a key within the `json` file. If the corresponding value is `null` the test is not being executed. Here's an explanation of each test and rules for how the values should be provided in case the test should be executed.
+This repository includes a testing pipeline that checks for the integrity of / valid entries in the `packages.tsv`. Which tests are running is decided using the `test_configs.json` file. Each tests corresponds to a key within the `json` file. If the corresponding value is `null` the test is not being executed. Here's an explanation of each test and rules for how the values should be provided [![Github](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)](https://github.com/)
+
+[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30"/>](https://github.com/)in case the test should be executed.
 
 | key                 | value                                                              | description                                                                                            |
 |---------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|

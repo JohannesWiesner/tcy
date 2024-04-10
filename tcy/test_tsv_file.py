@@ -8,6 +8,7 @@ import pandas as pd
 import string
 import pytest
 import os
+from pathlib import Path
 import json
 
 class TestTsvFile:
@@ -21,7 +22,7 @@ class TestTsvFile:
         self.df = pd.read_csv(self.tsv_path,sep='\t',index_col=None,header=0)
         self.excel_mapper = dict(zip(self.df.columns,string.ascii_uppercase))
         
-        with open('./test_configs.json') as f:
+        with open(os.path.join(Path(__file__).resolve().parent,'test_configs.json')) as f:
             self.test_configs = json.load(f)
             self.valid_columns = self.test_configs['valid_columns']
             self.filled_out_columns = self.test_configs['filled_out_columns']
@@ -67,7 +68,7 @@ class TestTsvFile:
             else:
                 return False
         
-        whitespace_mask = self.df.astype(str).applymap(create_mask)
+        whitespace_mask = self.df.astype(str).map(create_mask)
         
         if whitespace_mask.any(axis=None):
             cells = self.get_affected_cells(whitespace_mask)
