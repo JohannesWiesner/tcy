@@ -1,3 +1,9 @@
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/JohannesWiesner/tcy/generate" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template JohannesWiesner/tcy on GitHub">Use this template</a>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
 # TCY
 **T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files using a `.tsv` file as input.
 
