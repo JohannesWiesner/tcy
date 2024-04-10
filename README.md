@@ -34,9 +34,11 @@ If you want to use this approach, then follow these steps:
 
 ## For developers
 ### How to generate a custom .yml file using tcy
-With a python installation on their machines, users can run the  `tcy.py` script in the console (`tcy.py` by default will expect to find a `packages.tsv` file in the current working directory):
 
- `python tcy.py linux`
+tcy can be pip-installed using `pip install tcy`. There are two ways to use tcy:
+
+1.) You can import the `run` function in your own code-base using `from tcy import run`
+2.) tcy can also be used as a command-line application by simply running `tcy` in the terminal
 
 The following **positional arguments** have to be specified:
 
