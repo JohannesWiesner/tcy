@@ -214,9 +214,9 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
                 f.write('#!/bin/bash\n')
                 f.write("CONDA_BASE=$(conda info --base) && source $CONDA_BASE/etc/profile.d/conda.sh\n")
                 f.write(f"conda activate {yml_name} && Rscript -e \"install.packages(c({cran_packages}),repos=\'{cran_mirror}\')\"")
-    
-if __name__ == '__main__':
-    
+
+def main():
+
     parser = argparse.ArgumentParser(description='Parse the information from packages.tsv and return environment.yml file')
 
     # add positional arguments
@@ -267,7 +267,7 @@ if __name__ == '__main__':
 
     # parse arguments
     args = parser.parse_args()
-    
+
     # parse .tsv file and get .yml file
     run(operating_system=args.os,
         yml_name=args.yml_name,
@@ -280,3 +280,6 @@ if __name__ == '__main__':
         cran_mirror=args.cran_mirror,
         languages=args.languages,
         necessity=args.necessity)
+
+if __name__ == '__main__':
+    main()
