@@ -21,7 +21,7 @@ If you want to use this approach, then follow these steps:
 
 4. Make local changes to `environments/packages.tsv`
 
-5. Push your changes. This will start a Github-Action-Worfklow that uses tcy and micromamba to create `.yml` files with solved package specification solutions. The workflow will automatically push the files to your repo, so wait until it's finished.
+5. Push your changes. This will start a Github-Action-Worfklow (that uses tcy and micromamba) to create `.yml` files with solved package specification solutions. The workflow will automatically push the files to your repo, so wait until it's finished.
 
 6. After the workflow has finished, pull the latest changes to your local repository.
 
@@ -29,20 +29,19 @@ If you want to use this approach, then follow these steps:
 
    * Set the name of the environment by overwriting the `name: ` attribute in the `.yml` file.
    * After that execute the following command to create your environment: `conda env create -f ubuntu_latest_solved.yml` (or `conda env create -f windows_latest_solved.yml`)
-   (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first step.
-   More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
+   (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first step. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
 
 ## For developers
 ### How to generate a custom .yml file using tcy
 
 tcy can be pip-installed using `pip install tcy`. There are two ways to use tcy:
 
-1.) You can import the `run` function in your own code-base using `from tcy import run`
-2.) tcy can also be used as a command-line application by simply running `tcy` in the terminal
+1. You can import the `run` function in your own code-base using `from tcy import run`.
+2. tcy can also be used as a command-line application by simply running `tcy` in the terminal.
 
-The following **positional arguments** have to be specified:
+The following **positional arguments** have to be specified in both cases:
 
-- `{linux,windows}` (Operating system under which the `.yml` file will be used to create a conda environment. Can be 'linux' or 'windows'. Depending on the input only packages that run bug-free under the specified OS are  selected. Packages that are flagged with `cross-platform` in the `bug_flag` column of the input `.tsv` file are never included.
+- `{linux,windows}` (Operating system under which the `.yml` file will be used to create a conda environment. Can be 'linux' or 'windows'. Depending on the input only packages that run bug-free under the specified OS are selected. Packages that are flagged with `cross-platform` in the `bug_flag` column of the input `.tsv` file are never included.
 
 The following **optional arguments** can be set for further customization:
 
