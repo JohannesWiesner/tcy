@@ -68,9 +68,7 @@ The input spreadsheet file needs to have the following columns:
 
 ### Automatic testing of the datasets.tsv file
 
-This repository includes a testing pipeline that checks for the integrity of / valid entries in the `packages.tsv`. Which tests are running is decided using the `test_configs.json` file. Each tests corresponds to a key within the `json` file. If the corresponding value is `null` the test is not being executed. Here's an explanation of each test and rules for how the values should be provided [![Github](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)](https://github.com/)
-
-[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30"/>](https://github.com/)in case the test should be executed.
+This repository includes a testing pipeline that checks for the integrity of / valid entries in the `packages.tsv`. Which tests are running is decided using the `test_configs.json` file. Each tests corresponds to a key within the `json` file. If the corresponding value is `null` the test is not being executed. Here's an explanation of each test and rules for how the values should be provided in case the test should be executed.
 
 | key                 | value                                                              | description                                                                                            |
 |---------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
