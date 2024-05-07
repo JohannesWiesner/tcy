@@ -70,13 +70,14 @@ The input spreadsheet file needs to have the following columns:
 
 This repository includes a testing pipeline that checks for the integrity of / valid entries in the `packages.tsv`. Which tests are running is decided using the `test_configs.json` file. Each tests corresponds to a key within the `json` file. If the corresponding value is `null` the test is not being executed. Here's an explanation of each test and rules for how the values should be provided in case the test should be executed.
 
-| key                 | value                                                              | description                                                                                            |
-|---------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| valid_columns       | list of column names                                               | tsv file must only have these columns in that specific order                                           |
-| filled_out_columns  | list of column names                                               | cells in these columns must not contain NaNs, i.e. every row within these columns must contain a value |
-| valid_options       | dict with column names as keys and list of valid options as values | cells in these columns must only contain these values                                                  |
-| column_dependencies | dict with column names as keys and list of other columns as values | if a cell in this column is filled out, cells in this/these other column(s) also have to be filled out |
-| multi_option_columns| dict with column names as keys and list of valid options as values | cells in these columns must only contain valid options separated by commas                             |
+| key                            | value                                                              | description                                                                                            |
+|--------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| valid_columns                  | list of column names                                               | tsv file must only have these columns in that specific order                                           |
+| filled_out_columns             | list of column names                                               | cells in these columns must not contain NaNs, i.e. every row within these columns must contain a value |
+| valid_options                  | dict with column names as keys and list of valid options as values | cells in these columns must only contain these values                                                  |
+| column_dependencies            | dict with column names as keys and list of other columns as values | if a cell in this column is filled out, cells in this/these other column(s) also to be filled out      |
+| conditional_column_dependencies| dict of dict of lists                                              | if a cell in this column has this value, cells in this/these other column(s) have to be filled out     |
+| multi_option_columns           | dict with column names as keys and list of valid options as values | cells in these columns must only contain valid options separated by commas                             |
 
 ### CRAN-packages
 **EDIT: Still in development!**
