@@ -20,10 +20,17 @@ from pathlib import Path
 import argparse
 import pytest
 
-def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requirements_file=False,
-        write_conda_channels=False,tsv_path='./packages.tsv',yml_dir=None,
-        cran_installation_script=False,cran_mirror='https://cloud.r-project.org',
-        languages='all',necessity='all'):
+def run(operating_system,
+        yml_name=None,
+        yml_file_name='environment.yml',
+        pip_requirements_file=False,
+        write_conda_channels=False,
+        tsv_path='./packages.tsv',
+        yml_dir=None,
+        cran_installation_script=False,
+        cran_mirror='https://cloud.r-project.org',
+        languages='all'):
+
     '''Parses the .tsv file and creates an environment.yml file
     
     Parameters
@@ -71,11 +78,7 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
     languages: str or list of str, optional
         Filter for languages. Valid arguments are python, julia, r, or all.
         The default is 'all'
-    necessity: str or list of str, optional
-        Filter for necessity. Valid arguments are optional, required.
-        The default is 'all'
-        
-    
+
     Returns
     -------
     None.
@@ -112,9 +115,8 @@ def run(operating_system,yml_name=None,yml_file_name='environment.yml',pip_requi
     if not languages == 'all':
         df = df.loc[df['language'].isin(languages),:]
     
-    # filter for necessity if specified by user
-    if not necessity == 'all':
-        df = df.loc[df['necessity'].isin(necessity),:]
+    # filter for only for packages that should be included
+    df = df.loc[df['include'] == True]
     
     # sort by language, then by package manager, then by conda channel
     df.sort_values(by=['language','package_manager','conda_channel'],inplace=True)
@@ -261,9 +263,6 @@ def main():
     parser.add_argument('--languages',type=str,required=False,default='all',nargs='+',
                         help="Filter for certain programming languages. Valid inputs \
                         are python, julia, r or all.")
-    parser.add_argument('--necessity',type=str,required=False,default='all',nargs='+',
-                        help="Filter for necessity. Valid inputs are \'required\', \'optional\', or \'all\'. \
-                        The default is \'all\'")
 
     # parse arguments
     args = parser.parse_args()
@@ -278,8 +277,7 @@ def main():
         yml_dir=args.yml_dir,
         cran_installation_script=args.cran_installation_script,
         cran_mirror=args.cran_mirror,
-        languages=args.languages,
-        necessity=args.necessity)
+        languages=args.languages)
 
 if __name__ == '__main__':
     main()

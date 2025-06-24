@@ -15,9 +15,8 @@ def setup(request):
     '''Returns everything that the tests need in order to run'''
 
     # read in the .tsv file as dataframe
+    # FIXME: Already here something can go wrong, if the .tsv file is corrupted! See issue #7
     tsv_path = request.config.getoption("tsv_path")
-    # FIXME: Already here something can go wrong, if the .tsv file
-    # is corrupted! See issue #7
     df = pd.read_csv(tsv_path,sep='\t',index_col=None,header=0,dtype=str)
 
     # map each column name to the alphabet (needed for get_affected_cells function)
