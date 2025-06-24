@@ -37,10 +37,10 @@ jobs:
         python -m pip install pytest
     - name: run tcy to create a .yml file for Linux (will be skipped for windows-latest runner)
       if: runner.os == 'Linux'
-      run: tcy linux --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
+      run: tcy linux --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: run tcy.py to create a .yml file for Windows (will be skipped for ubuntu-latest runner)
       if: runner.os == 'Windows'
-      run: tcy windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv --necessity=required
+      run: tcy windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: setup micromamba and create an environment using the .yml file that tcy produced
       uses: mamba-org/setup-micromamba@v1
       with:
