@@ -1,4 +1,2 @@
-hpack==4.0.0
-setuptools==72.2.0
-wheel==0.44.0
+setuptools==80.9.0
 zstandard==0.23.0

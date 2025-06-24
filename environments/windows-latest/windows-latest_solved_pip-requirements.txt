@@ -1,5 +1,3 @@
-hpack==4.0.0
-pywin32==306
-setuptools==72.2.0
-wheel==0.44.0
+pywin32==307
+setuptools==80.9.0
 zstandard==0.23.0
