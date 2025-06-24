@@ -38,7 +38,7 @@ The input spreadsheet file must have the following columns:
 - `version` : Can be empty, or specify the version of the package following the [package match specification syntax](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications).
 - `package_manager` : Must be `pip`, `conda`, or `cran`.
 - `conda_channel` : Can be empty in case the package manager is `pip` or `cran` but must contain the name of the conda channel to install from if `conda` is the package manager.
-- `necessity` : Must be `required`, or `optional`.
+- `include` : Must be `True`, or `False`.
 - `language` : Must be `python`, `r`, or  `julia`.
 - `bug_flag`: Can be empty or  `linux`, `windows` or `cross_platform`.
 
@@ -70,7 +70,6 @@ The following **optional arguments** can be set for further customization:
 - `--cran_installation_script` (If set, generates a bash script `install_cran_packages.sh`that allows to install CRAN-packages within the conda-environment. Only valid when `--yml_name` is set)
 - `--cran_mirror`(A valid URL to a CRAN-Mirror where packages should be downloaded from. The default is https://cloud.r-project.org)
 - `--languages` (Filter for certain languages. Valid inputs are 'python', 'r', 'julia' or 'all'. The default is 'all')
-- `--necessity` (Filter for necessity. Valid inputs are 'optional' and 'required').
 
 ### Automatic testing of the packages.tsv file
 
