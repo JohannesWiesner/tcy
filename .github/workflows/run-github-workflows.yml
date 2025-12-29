@@ -48,7 +48,7 @@ jobs:
         environment-name: ${{ matrix.os }}
     - name: export conda environment both as .yml file and as a spec-file.txt and export the pip-packages as requirements.txt file
       run: |
-        micromamba env export | grep -v "^prefix: " | sed -E 's/^name:.*(ubuntu-latest|windows-latest)/name: \1/' > ./environments/${{ matrix.os }}_solved.yml
+        micromamba env export | grep -vE '^prefix: ' | sed -E "s/^name:.*/name: ${{ matrix.os }}/" > "./environments/${{ matrix.os }}_solved.yml"
         micromamba env export --explicit > ./environments/${{ matrix.os }}_solved.txt
         pip freeze | grep -v "@ file" > ./environments/${{ matrix.os }}_solved_pip-requirements.txt
     - name: upload exported files as artifacts
