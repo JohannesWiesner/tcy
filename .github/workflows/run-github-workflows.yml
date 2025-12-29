@@ -46,9 +46,6 @@ jobs:
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
-    - name: initialize conda for Git Bash (will be skipped for linux runner)
-      if: runner.os == 'Windows'
-      run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
     - name: export conda environment both as .yml file and as a spec-file.txt and export the pip-packages as requirements.txt file
       run: |
         micromamba env export | grep -v "^prefix: " | sed -E 's/^name:.*(ubuntu-latest|windows-latest)/name: \1/' > ./environments/${{ matrix.os }}_solved.yml
