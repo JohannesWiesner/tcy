@@ -1,7 +1,7 @@
 {
   "valid_columns": ["package_name","version","package_manager","conda_channel","include","language","bug_flag"],
   "filled_out_columns": ["package_name","package_manager","include","language"],
-  "valid_options": {"package_manager":["conda","pip","cran"],"language":["python","r","julia"],"bug_flag":["linux","windows","cross-platform","nan"],"include":["True","False"]},
+  "valid_options": {"package_manager":["conda","pip","cran"],"language":["python","r","julia"],"bug_flag":["linux","windows","cross-platform","nan"],"include":["true","false"]},
   "column_dependencies": null,
   "conditional_column_dependencies": null,
   "multi_option_columns": null

@@ -66,7 +66,7 @@ The input spreadsheet file must contain the following columns:
 | `version` | May be left empty, or may specify the package version using the [package match specification syntax](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications). |
 | `package_manager` | Must be one of: `pip`, `conda`, or `cran`. |
 | `conda_channel` | May be left empty if the package manager is `pip` or `cran`, but must contain the name of the conda channel to install from if the package manager is `conda`. |
-| `include` | Must be either `True` or `False`. |
+| `include` | Must be either `true` or `false`. |
 | `language` | Must be one of: `python`, `r`, or `julia`. |
 | `bug_flag` | May be left empty, or must be one of: `linux`, `windows`, or `cross_platform`. |
 
