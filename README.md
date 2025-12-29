@@ -1,102 +1,153 @@
-# TCY
-**T**svto**C**onda**Y**ml. A package for easy creation of conda `.yml` files using a `.tsv` file as input.
+# TCY  
+**T**sv → **C**onda **Y**ML
 
-## Aims
-Using `.yml` files as recipes to create conda environments is already a good step towards reproducible scientific computing environments. However, sometimes we want to know **why** a particular package was included (or not), **what** it does (improving transparency), and whether it runs without errors on all common operating systems (Linux, Mac OS, Windows). Spreadsheet files offer much more possibilities to document this. The goal of this repository is to have the documentation capabilities of a `.tsv` file while also be able to export the packages that are described in it to a `.yml` file that can be interpreted by conda.
+`TCY` is a lightweight tool for generating reproducible Conda environment `.yml` files from a documented `.tsv` (spreadsheet-style) input file. Instead of maintaining opaque YAML files, TCY lets you **document the why, what, and where** of every package—while still producing Conda-ready environment definitions.
 
-## Use this repository for your own work
+---
 
-The most easy way to use tcy is to create your own repository by using this repository as a template. This has two advantages over using tcy locally on your machine:
+## Why TCY?
 
-1. Your spreadsheet files will be stored in a Github repository and are therefore available from any machine as long as you have an internet connection.
-2. Creating environments can take a lot of time, depending on the number of packages that need to be included. Using the following approach, the computionally heavy solving process is outsourced to a Github-Runner so your personal machine can be used for other things. The Github-Runner will output solved environment specification files that you can use to quickly create your environment.
+Conda environment files are great for reproducibility, but they have limitations:
 
-If you want to use this approach, then follow these steps:
+- ❓ *Why* was a package included?
+- 📦 *What* does it do?
+- 🖥️ Does it work on Linux, macOS, and Windows?
+- ⚠️ Are there known platform-specific bugs?
 
-1. Create your own repository by clicking on the `Use this template` button in the upper right.
+Spreadsheet formats (like `.tsv`) are much better for documentation, annotations, and validation.   **TCY bridges this gap** by letting you maintain a richly documented package list and exporting it into valid Conda `.yml` files.
 
-2. Make sure to allow Github Runners to push changes to your repository by going to Settings → Actions → General → Workflow permissions → Checkmark "Read and write permissions"
+---
 
-3. Clone your repository to your local machine
+## Recommended Workflow (Using This Repository as a Template)
 
-4. Make local changes to `environments/packages.tsv`. See next section [What goes into the packages.tsv file?](#What-goes-into-the-packages.tsv-file?) on how to properly fill out this file.
+The easiest way to use TCY is to create your own repository **from this template**.
 
-5. Push your changes. This will start a Github-Action-Worfklow (that uses tcy and micromamba) to create `.yml` files with solved package specification solutions. Note that this workflow will also check if you filled out the file correctly by using (see [Automatic testing of the packages.tsv file](#Automatic-testing-of-the-packages.tsv-file) for more information). The workflow will automatically push the files to your repo, so wait until it's finished.
+### Why use the template?
 
-6. After the workflow has finished, pull the latest changes to your local repository.
+1. Your package documentation lives in a GitHub repository and is accessible from anywhere.
+2. Conda environment solving can be slow. This workflow offloads that work to GitHub Actions, producing **pre-solved environment files** that you can create locally in seconds.
 
-7. Create your conda environment using either the `ubuntu-latest_solved.yml` or `windows-latest_solved.yml` file (depending on your OS) by doing this:
+---
 
-   * Set the name of the environment by overwriting the `name: ` attribute in the `.yml` file.
-   * After that execute the following command to create your environment: `conda env create -f ubuntu_latest_solved.yml` (or `conda env create -f windows_latest_solved.yml`)
-   (Note: There is no need to specify `-n environment_name` in this command because the name of the environment was already specified in the first step. More information can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file))
+### Step-by-Step Setup
 
-### What goes into the packages.tsv file?
-The input spreadsheet file must have the following columns:
+1. **Create a new repository**  
+   Click **“Use this template”** in the upper right of this repository.
 
-- `package_name` : The offical name of the package.
-- `version` : Can be empty, or specify the version of the package following the [package match specification syntax](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications).
-- `package_manager` : Must be `pip`, `conda`, or `cran`.
-- `conda_channel` : Can be empty in case the package manager is `pip` or `cran` but must contain the name of the conda channel to install from if `conda` is the package manager.
-- `include` : Must be `True`, or `False`.
-- `language` : Must be `python`, `r`, or  `julia`.
-- `bug_flag`: Can be empty or  `linux`, `windows` or `cross_platform`.
+2. **Allow GitHub Actions to push changes**  
+   Go to:  
+   `Settings → Actions → General → Workflow permissions`  
+   Enable **“Read and write permissions”**.
 
-## For developers
-### How to generate a custom .yml file using tcy
+3. **Clone your repository locally**
 
-There are two ways to use tcy that both require the same installation using `pip install tcy`.  After this you can use tcy as a python library or command-line application:
+4. **Edit the package list**  
+   Modify `environments/packages.tsv`.
 
-#### Using tcy as a python library
+5. **Push your changes**  
+   This triggers a GitHub Actions workflow that validates the TSV file and generates OS-specific solved `.yml` files.
 
-You can import the `run` function in your own code base using `from tcy import run`.
+6. **Pull the generated files**
 
-#### Using tcy as a command line application
+7. **Create your Conda environment**
+   ```bash
+   conda env create -f ubuntu-latest_solved.yml
+   ```
 
-As a command-line application: tcy can also be used as a command-line application by simply running `tcy` in the terminal.
+---
 
-The following **positional arguments** have to be specified:
+## What Goes inside the `packages.tsv` File?
 
-- `{linux,windows}` (Operating system under which the `.yml` file will be used to create a conda environment. Can be 'linux' or 'windows'. Depending on the input only packages that run bug-free under the specified OS are selected. Packages that are flagged with `cross-platform` in the `bug_flag` column of the input `.tsv` file are never included.
+The input spreadsheet file must contain the following columns:
 
-The following **optional arguments** can be set for further customization:
+| Column name | Description |
+|------------|-------------|
+| `package_name` | The official name of the package. |
+| `version` | May be left empty, or may specify the package version using the [package match specification syntax](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications). |
+| `package_manager` | Must be one of: `pip`, `conda`, or `cran`. |
+| `conda_channel` | May be left empty if the package manager is `pip` or `cran`, but must contain the name of the conda channel to install from if the package manager is `conda`. |
+| `include` | Must be either `True` or `False`. |
+| `language` | Must be one of: `python`, `r`, or `julia`. |
+| `bug_flag` | May be left empty, or must be one of: `linux`, `windows`, or `cross_platform`. |
 
-- `--yml_name` (Sets the \"name:\" attribute of the .yml file. If not given, the .yml file will not have a \"name:\" attribute. This is useful if the file should only be used for updating an existing environment that already has a name, i.e. not to create a new one)
-- `--yml_file_name` (Sets the name of the .yml file. The default is 'environment.yml')
-- `--pip_requirements_file` (Write pip packages to a separate `requirements.txt` file. This will file will always be placed in the same directory as the .yml file)
-- `--write_conda_channels` (Specifies conda channels directly for each conda package (e.g. conda-forge::spyder). In this case the \'defaults\' channel is the only channel that appears in the \'channels:\' section. See: [this link](https://stackoverflow.com/a/65983247/8792159) for a preview)
-- `--tsv_path` (Optional path to the `.tsv` file. If not given, the function will expect a  `"packages.tsv"` file to be in the current working directory)
-- `--yml_dir`(Path to a valid directory where the .yml file should be placed in. If not given the file will  be placed in the current working directory. If a `requirements.txt` for pip is generated it will always be placed in the same directory  as the .yml file)
-- `--cran_installation_script` (If set, generates a bash script `install_cran_packages.sh`that allows to install CRAN-packages within the conda-environment. Only valid when `--yml_name` is set)
-- `--cran_mirror`(A valid URL to a CRAN-Mirror where packages should be downloaded from. The default is https://cloud.r-project.org)
-- `--languages` (Filter for certain languages. Valid inputs are 'python', 'r', 'julia' or 'all'. The default is 'all')
 
-### Automatic testing of the packages.tsv file
+---
 
-This repository includes a testing pipeline that checks for the integrity of / valid entries in the `packages.tsv`. Which tests are running is decided using the `test_configs.json` file. Each tests corresponds to a key within the `json` file. If the corresponding value is `null` the test is not being executed. Here's an explanation of each test and rules for how the values should be provided in case the test should be executed.
+## 🛠️🛠️ Only For Developers 🛠️🛠️
 
-| key                            | value                                                              | description                                                                                            |
-|--------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| valid_columns                  | list of column names                                               | tsv file must only have these columns in that specific order                                           |
-| filled_out_columns             | list of column names                                               | cells in these columns must not contain NaNs, i.e. every row within these columns must contain a value |
-| valid_options                  | dict with column names as keys and list of valid options as values | cells in these columns must only contain these values                                                  |
-| column_dependencies            | dict with column names as keys and list of other columns as values | if a cell in this column is filled out, cells in this/these other column(s) also to be filled out      |
-| conditional_column_dependencies| dict of dict of lists                                              | if a cell in this column has this value, cells in this/these other column(s) have to be filled out     |
-| multi_option_columns           | dict with column names as keys and list of valid options as values | cells in these columns must only contain valid options separated by commas                             |
+### Installation
 
-### CRAN-packages
-**EDIT: Still in development!**
-Some R-packages are not (yet) available as conda-packages. In order to semi-automate the installation process of these packages in your conda environment, run `install_cran_packages.sh`. This script will activate the conda environment, start R in this environment and then install the CRAN-packages via `install.packages()` Note that this is not the recommended way to do it, but some R-packages are simply not available as conda-packages (this should be checked though on a regular basis).
+```bash
+pip install tcy
+```
 
-## Q & A
+TCY can be used both as a **Python library** and a **command-line application**.
 
-### What about dependencies?
+---
 
-It's not necesary to specifiy dependencies in the `.tsv` file! Conda will take care of that. So for example, there's no need to put `numpy` in the `.tsv` file because `numpy` is a common dependency of most scientific python packages (e.g. `scikit-learn`,`pytorch`, etc.) There might however be cases where there are optional dependencies that can but do not have to be installed (Example: The plotting package `plotly` works completely fine if we install it as it is. But if we want the nice feature of creating interactive plots we also have to install the dependency `orca`).
+### Using TCY as a Python Library
 
-### Why not create the  environment and share the exported .yml file?
-Theoretically there would be an even better option than everyone creating the same environment over and over: The environment should be only created once (which can take a long time because conda has to resolve a dependency graph where each of the packages is *‘happy’* with the versions of all other packages). Then this environment could be exported via `conda env export > environment.yml` . Finally, other users could then take this `.yml` file to create the environment without the need to resolve the dependency graph one more time, because this file already contains the ‘solution’. More information on that can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-the-environment-yml-file).
+```python
+from tcy import run
+```
 
-**But here comes the catch**: This file will probably not work across operating systems and their versions (e.g. your own personal laptop which might run on Windows vs. your server which runs on Linux). The reason for that is, that complex dependency graphs contain packages that are only available for a specific OS/OS-version.
+The `run` function allows you to generate Conda `.yml` files programmatically inside your own codebase.
 
-The longterm solution for this problem is to create a containerized solution that includes a conda environment as aimed in [csp_docker](https://github.com/JohannesWiesner/csp_neurodocker)
+---
+
+### Using TCY as a Command-Line Application
+
+```bash
+tcy {linux|windows} [OPTIONS]
+```
+
+#### Required positional argument
+
+- `{linux,windows}`  
+  Target operating system for which the environment file is generated.  
+  Packages flagged as incompatible with this OS are excluded.  
+  Packages flagged as `cross_platform` are never included.
+
+---
+
+### CLI Options
+
+| Option | Description |
+|------|-------------|
+| `--yml_name` | Sets the `name:` field in the `.yml` file |
+| `--yml_file_name` | Output filename (default: `environment.yml`) |
+| `--pip_requirements_file` | Write pip packages to `requirements.txt` |
+| `--write_conda_channels` | Inline channels (e.g. `conda-forge::numpy`) |
+| `--tsv_path` | Path to `.tsv` file (default: `packages.tsv`) |
+| `--yml_dir` | Output directory |
+| `--cran_installation_script` | Generate `install_cran_packages.sh` |
+| `--cran_mirror` | CRAN mirror URL (default: https://cloud.r-project.org) |
+| `--languages` | Filter by `python`, `r`, `julia`, or `all` |
+
+---
+
+## Automatic Validation of `packages.tsv`
+
+This repository includes a testing pipeline that checks the integrity of, and the validity of entries in, the `packages.tsv` file.   Which tests are executed is determined by the `test_configs.json` file. Each test corresponds to a key in this JSON file. If the corresponding value is set to `null`, the test is not executed.
+
+Below is an explanation of each test and the rules for how the values should be provided if the test is enabled.
+
+| key                             | value                                                              | description                                                                                              |
+|---------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| `valid_columns`                 | list of column names                                               | The TSV file must contain only these columns, and they must appear in this exact order.                  |
+| `filled_out_columns`            | list of column names                                               | Cells in these columns must not contain NaN values; every row in these columns must contain a value.    |
+| `valid_options`                 | dict with column names as keys and lists of valid options as values| Cells in these columns must contain only the one the specified valid options.                                    |
+| `column_dependencies`           | dict with column names as keys and lists of other columns as values| If a cell in this column is filled, the corresponding cells in the specified other column(s) must also be filled. |
+| `conditional_column_dependencies` | dict of dicts of lists                                           | If a cell in this column has a specific value, the corresponding cells in the specified other column(s) must be filled. |
+| `multi_option_columns`          | dict with column names as keys and lists of valid options as values| Cells in these columns must contain only a set of these valid options, separated by commas.                             |
+
+---
+
+## CRAN Packages (Experimental)
+
+Some R packages are not available via Conda.
+
+TCY can generate an `install_cran_packages.sh` script that should:
+1. Activate the Conda environment
+2. Start R
+3. Install CRAN packages inside this environment using `install.packages()`
