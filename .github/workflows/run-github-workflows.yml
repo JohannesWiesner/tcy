@@ -41,18 +41,15 @@ jobs:
     - name: run tcy.py to create a .yml file for Windows (will be skipped for ubuntu-latest runner)
       if: runner.os == 'Windows'
       run: tcy windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
-    - name: setup micromamba and create an environment using the .yml file that tcy produced
-      uses: mamba-org/setup-micromamba@v1
+    - name: setup micromamba and create a conda environment using the .yml file that tcy produced
+      uses: mamba-org/setup-micromamba@v2
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
-    - name: initialize conda for Git Bash (will be skipped for linux runner)
-      if: runner.os == 'Windows'
-      run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
     - name: export conda environment both as .yml file and as a spec-file.txt and export the pip-packages as requirements.txt file
       run: |
-        conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " | sed -E 's/^name:.*(ubuntu-latest|windows-latest)/name: \1/' > ./environments/${{ matrix.os }}_solved.yml
-        conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
+        micromamba env export | grep -v "^prefix: " | sed -E 's/^name:.*(ubuntu-latest|windows-latest)/name: \1/' > ./environments/${{ matrix.os }}_solved.yml
+        micromamba env export --explicit > ./environments/${{ matrix.os }}_solved.txt
         pip freeze | grep -v "@ file" > ./environments/${{ matrix.os }}_solved_pip-requirements.txt
     - name: upload exported files as artifacts
       uses: actions/upload-artifact@v4

@@ -1,3 +1,6 @@
-pywin32==307
+joblib==1.5.3
+numpy==2.4.0
+scikit-learn==1.8.0
+scipy==1.16.3
 setuptools==80.9.0
-zstandard==0.23.0
+threadpoolctl==3.6.0
