@@ -6,3 +6,6 @@ dependencies:
 - python
 - r-essentials
 - r-base
+- pip
+- pip:
+  - scikit-learn

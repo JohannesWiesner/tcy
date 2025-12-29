@@ -391,4 +391,10 @@ dependencies:
   - zeromq=4.3.5=h5bddc39_9
   - zipp=3.23.0=pyhcf101f3_1
   - zstd=1.5.7=h534d264_6
+  - pip:
+    - joblib==1.5.3
+    - numpy==2.4.0
+    - scikit-learn==1.8.0
+    - scipy==1.16.3
+    - threadpoolctl==3.6.0
 
