@@ -1,0 +1,11 @@
+name: ubuntu-22.04
+channels:
+- conda-forge
+- defaults
+dependencies:
+- python
+- r-essentials
+- r-base
+- pip
+- pip:
+  - scikit-learn
