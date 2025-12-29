@@ -51,8 +51,8 @@ jobs:
       run: echo ". /c/Miniconda/etc/profile.d/conda.sh" >> ~/.bash_profile
     - name: export conda environment both as .yml file and as a spec-file.txt and export the pip-packages as requirements.txt file
       run: |
-        conda env export -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" | grep -v "^prefix: " | sed -E 's/^name:.*(ubuntu-latest|windows-latest)/name: \1/' > ./environments/${{ matrix.os }}_solved.yml
-        conda list -p "${MAMBA_ROOT_PREFIX}/envs/${{ matrix.os }}" --explicit > ./environments/${{ matrix.os }}_solved.txt
+        micromamba env export | grep -v "^prefix: " | sed -E 's/^name:.*(ubuntu-latest|windows-latest)/name: \1/' > ./environments/${{ matrix.os }}_solved.yml
+        micromamba env export --explicit > ./environments/${{ matrix.os }}_solved.txt
         pip freeze | grep -v "@ file" > ./environments/${{ matrix.os }}_solved_pip-requirements.txt
     - name: upload exported files as artifacts
       uses: actions/upload-artifact@v4
