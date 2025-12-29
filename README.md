@@ -56,7 +56,7 @@ The easiest way to use TCY is to create your own repository **from this template
 
 ---
 
-## What Goes inside the `packages.tsv` File?
+## What goes into the `packages.tsv` file?
 
 The input spreadsheet file must contain the following columns:
 
@@ -110,7 +110,7 @@ tcy {linux|windows} [OPTIONS]
 
 ---
 
-### CLI Options
+#### CLI Options
 
 | Option | Description |
 |------|-------------|
