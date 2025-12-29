@@ -41,8 +41,8 @@ jobs:
     - name: run tcy.py to create a .yml file for Windows (will be skipped for ubuntu-latest runner)
       if: runner.os == 'Windows'
       run: tcy windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
-    - name: setup micromamba and create an environment using the .yml file that tcy produced
-      uses: mamba-org/setup-micromamba@v1
+    - name: setup micromamba and create a conda environment using the .yml file that tcy produced
+      uses: mamba-org/setup-micromamba@v2
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
