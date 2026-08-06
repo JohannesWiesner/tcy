@@ -136,7 +136,6 @@ def run(operating_system,
             for channel in conda_channels:
                 f.write(f"- {channel}\n")   
         
-        f.write('- defaults\n')
         f.write('dependencies:\n')
     
     # write conda packages
