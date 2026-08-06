@@ -22,14 +22,14 @@ jobs:
         shell: bash -el {0}
     steps:
     - name: checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         ref: ${{ github.head_ref }}
-    - name: setup a python environment
-      uses: actions/setup-python@v5
+    - name: set up a python environment
+      uses: actions/setup-python@v7
       with:
         python-version: 3.11
-    - name: install pip-packages in that python environment including tcy
+    - name: install pip packages in that python environment, including tcy
       run: |
         python -m pip install --upgrade pip
         python -m pip install tcy
@@ -42,7 +42,7 @@ jobs:
       if: runner.os == 'Windows'
       run: tcy windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: setup micromamba and create a conda environment using the .yml file that tcy produced
-      uses: mamba-org/setup-micromamba@v2
+      uses: mamba-org/setup-micromamba@v3
       with:
         environment-file: ./environments/${{ matrix.os }}.yml
         environment-name: ${{ matrix.os }}
@@ -52,7 +52,7 @@ jobs:
         micromamba env export -n "${{ matrix.os }}" --explicit > "./environments/${{ matrix.os }}_solved.txt"
         micromamba run -n "${{ matrix.os }}" pip freeze | grep -v "@ file" > "./environments/${{ matrix.os }}_solved_pip-requirements.txt"
     - name: upload exported files as artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.os }}
         path: |
@@ -60,19 +60,20 @@ jobs:
           ./environments/${{ matrix.os }}_solved.yml
           ./environments/${{ matrix.os }}_solved.txt
           ./environments/${{ matrix.os }}_solved_pip-requirements.txt
+
   download-artifacts-and-push:
-    name: download all files that where created by the runners and push them to repo (but only if something has changed)
+    name: download all files that were created by the runners and push them to repo (but only if something has changed)
     if: ${{ always() }}
     needs: solve-environments-and-upload-files
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         ref: ${{ github.head_ref }}
     - name: download all files that were created using different operating systems
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         path: ./environments
     - name: add and commit files (but only if something has changed)
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v7
