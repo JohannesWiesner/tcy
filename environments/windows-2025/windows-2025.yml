@@ -1,7 +1,6 @@
 name: windows-2025
 channels:
 - conda-forge
-- defaults
 dependencies:
 - python
 - r-essentials

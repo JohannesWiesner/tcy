@@ -29,18 +29,17 @@ jobs:
       uses: actions/setup-python@v7
       with:
         python-version: 3.11
-    - name: install pip packages in that python environment, including tcy
+    - name: install tcy in that environment
       run: |
         python -m pip install --upgrade pip
-        python -m pip install tcy
         python -m pip install pandas
-        python -m pip install pytest
+        python -m pip install frictionless
     - name: run tcy to create a .yml file for Linux (will be skipped for windows-latest runner)
       if: runner.os == 'Linux'
-      run: tcy linux --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
+      run: python ./tcy/tcy.py linux --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: run tcy.py to create a .yml file for Windows (will be skipped for ubuntu-latest runner)
       if: runner.os == 'Windows'
-      run: tcy windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
+      run: python ./tcy/tcy.py windows --yml_name=${{ matrix.os }} --yml_dir=./environments --yml_file_name=${{ matrix.os }}.yml --tsv_path=./environments/packages.tsv
     - name: setup micromamba and create a conda environment using the .yml file that tcy produced
       uses: mamba-org/setup-micromamba@v3
       with:
@@ -60,7 +59,6 @@ jobs:
           ./environments/${{ matrix.os }}_solved.yml
           ./environments/${{ matrix.os }}_solved.txt
           ./environments/${{ matrix.os }}_solved_pip-requirements.txt
-
   download-artifacts-and-push:
     name: download all files that were created by the runners and push them to repo (but only if something has changed)
     if: ${{ always() }}

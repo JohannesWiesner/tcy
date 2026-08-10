@@ -1,0 +1,69 @@
+version: 1
+schema:
+  missingValues:
+  - ''
+  fields:
+  - name: package_name
+    type: string
+    constraints:
+      required: true
+  - name: version
+    type: string
+  - name: package_manager
+    type: string
+    constraints:
+      required: true
+      enum:
+      - conda
+      - pip
+      - cran
+  - name: conda_channel
+    type: string
+  - name: include
+    type: boolean
+    trueValues:
+    - 'true'
+    falseValues:
+    - 'false'
+    constraints:
+      required: true
+  - name: language
+    type: string
+    constraints:
+      required: true
+      enum:
+      - python
+      - r
+      - julia
+  - name: bug_flag
+    type: string
+    constraints:
+      enum:
+      - linux
+      - windows
+      - cross-platform
+rules:
+  noLeadingOrTrailingWhitespace: true
+  columns:
+    requireOrder: true
+    allowAdditional: true
+  conditionalColumnDependencies:
+    package_manager:
+      conda:
+      - conda_channel
+  columnDependencies: {}
+  # Example:
+  # columnDependencies:
+  #   version:
+  #     - package_name
+  multiOptionColumns: {}
+  # Example:
+  # multiOptionColumns:
+  #   bug_flag:
+  #     separator: ","
+  #     stripItems: false
+  #     unique: true
+  #     options:
+  #       - linux
+  #       - windows
+  #       - cross-platform

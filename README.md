@@ -11,8 +11,8 @@ Conda environment files are great for reproducibility, but they have limitations
 
 - ❓ *Why* was a package included?
 - 📦 *What* does it do?
-- 🖥️ Does it work on Linux, macOS, and Windows?
-- ⚠️ Are there known platform-specific bugs?
+- 🖥️ Does it work on Linux, macOS, and Windows or only on specific platforms?
+- ⚠️ Are there known (platform-specific) bugs?
 
 Spreadsheet formats (like `.tsv`) are much better for documentation, annotations, and validation.   **TCY bridges this gap** by letting you maintain a richly documented package list and exporting it into valid Conda `.yml` files.
 
@@ -126,20 +126,144 @@ tcy {linux|windows} [OPTIONS]
 
 ---
 
-## Automatic Validation of `packages.tsv`
+## Customizing `packages.validation.yml`
 
-This repository includes a testing pipeline that checks the integrity of, and the validity of entries in, the `packages.tsv` file.   Which tests are executed is determined by the `test_configs.json` file. Each test corresponds to a key in this JSON file. If the corresponding value is set to `null`, the test is not executed.
+Validation of `packages.tsv` is controlled by `packages.validation.yml`.
 
-Below is an explanation of each test and the rules for how the values should be provided if the test is enabled.
+The file has two main sections:
 
-| key                             | value                                                              | description                                                                                              |
-|---------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| `valid_columns`                 | list of column names                                               | The TSV file must contain only these columns, and they must appear in this exact order.                  |
-| `filled_out_columns`            | list of column names                                               | Cells in these columns must not contain NaN values; every row in these columns must contain a value.    |
-| `valid_options`                 | dict with column names as keys and lists of valid options as values| Cells in these columns must contain only the one the specified valid options.                                    |
-| `column_dependencies`           | dict with column names as keys and lists of other columns as values| If a cell in this column is filled, the corresponding cells in the specified other column(s) must also be filled. |
-| `conditional_column_dependencies` | dict of dicts of lists                                           | If a cell in this column has a specific value, the corresponding cells in the specified other column(s) must be filled. |
-| `multi_option_columns`          | dict with column names as keys and lists of valid options as values| Cells in these columns must contain only a set of these valid options, separated by commas.                             |
+* `schema`: defines the expected columns, their types, required values, and allowed values.
+* `rules`: defines additional checks such as column order, dependencies, and whitespace validation.
+
+| Setting                         | What it does                                                                                     | Example                                |
+| ------------------------------- | ------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| `missingValues`                 | Defines values that count as missing.                                                            | `[""]` means an empty cell is missing. |
+| `fields[].name`                 | Defines a column that must exist in the TSV.                                                     | `name: package_name`                   |
+| `fields[].type`                 | Defines the expected data type.                                                                  | `type: string`, `type: boolean`        |
+| `constraints.required`          | Requires every row to contain a value in this column.                                            | `required: true`                       |
+| `constraints.enum`              | Restricts non-empty cells to specific values.                                                    | `enum: [conda, pip, cran]`             |
+| `trueValues` / `falseValues`    | Defines accepted representations of boolean values.                                              | `trueValues: ["true"]`                 |
+| `noLeadingOrTrailingWhitespace` | Rejects leading or trailing whitespace in all cells and column names.                            | `true`                                 |
+| `columns.requireOrder`          | Requires schema-defined columns to occur in the same relative order as in `fields`.              | `true`                                 |
+| `columns.allowAdditional`       | Allows columns that are not listed under `fields`.                                               | `true`                                 |
+| `columnDependencies`            | Requires other columns when a particular column is filled.                                       | See example below.                     |
+| `conditionalColumnDependencies` | Requires other columns when a particular column has a specific value.                            | See example below.                     |
+| `multiOptionColumns`            | Allows multiple separator-delimited values in one cell and restricts them to predefined options. | See example below.                     |
+
+### Column dependencies
+
+Use `columnDependencies` when filling one column should require another column to be filled as well.
+
+```yaml
+columnDependencies:
+  version:
+    - package_name
+```
+
+This means:
+
+> If `version` is filled, `package_name` must also be filled.
+
+Multiple required columns can be specified:
+
+```yaml
+columnDependencies:
+  version:
+    - package_name
+    - package_manager
+```
+
+If no such dependencies are needed, use:
+
+```yaml
+columnDependencies: {}
+```
+
+### Conditional column dependencies
+
+Use `conditionalColumnDependencies` when another column should only be required for a specific value.
+
+```yaml
+conditionalColumnDependencies:
+  package_manager:
+    conda:
+      - conda_channel
+```
+
+This means:
+
+> If `package_manager` is `conda`, `conda_channel` must be filled.
+
+### Multi-option columns
+
+Use `multiOptionColumns` if one cell may contain several values separated by a delimiter.
+
+```yaml
+multiOptionColumns:
+  bug_flag:
+    separator: ","
+    stripItems: false
+    unique: true
+    options:
+      - linux
+      - windows
+      - cross-platform
+```
+
+With this configuration:
+
+```text
+linux
+linux,windows
+linux,windows,cross-platform
+```
+
+are valid, while:
+
+```text
+linux,macos
+linux,linux
+```
+
+are invalid.
+
+The options mean:
+
+* `separator`: character used to separate values.
+* `stripItems`: whether whitespace around individual values should be removed before validation.
+* `unique`: whether the same option may appear more than once.
+* `options`: list of allowed values.
+
+If no multi-option columns are needed, use:
+
+```yaml
+multiOptionColumns: {}
+```
+
+### Example field definitions
+
+A required column:
+
+```yaml
+- name: package_name
+  type: string
+  constraints:
+    required: true
+```
+
+An optional column with restricted values:
+
+```yaml
+- name: bug_flag
+  type: string
+  constraints:
+    enum:
+      - linux
+      - windows
+      - cross-platform
+```
+
+Here, an empty `bug_flag` is allowed, but a non-empty value must be one of the listed options.
 
 ---
 

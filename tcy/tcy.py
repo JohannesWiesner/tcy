@@ -16,9 +16,10 @@ Notes:
 
 import pandas as pd
 import os
-from pathlib import Path
+import sys
 import argparse
-import pytest
+from pathlib import Path
+from validate_tsv import validate_tsv
 
 def run(operating_system,
         yml_name=None,
@@ -95,12 +96,12 @@ def run(operating_system,
         requirements_path = 'requirements.txt'
         cran_installation_script_path = 'install_cran_packages.sh'
         
-    # check provided .tsv file for errors using pytest
-    # Note: We need to pass the absolute filepath of the test script to pytest
-    # to this script can be excuted from anywhere (otherwise it would
-    # only work if the test script would be in the current working directory)
-    filepath_test = os.path.join(Path(__file__).resolve().parent,'test_tsv_file.py')
-    pytest.main([filepath_test,"--tsv_path",tsv_path,'-qqqq','--tb','no'])
+    # validate .tsv file using frictionless
+    script_dir = Path(__file__).resolve().parent
+    validation_path = script_dir / "packages.validation.yml"
+    errors = validate_tsv(tsv_path, validation_path=str(validation_path))
+    if errors:
+        sys.exit(1)
     
     # read in .tsv file
     df = pd.read_csv(tsv_path,sep='\t',index_col=None,header=0)
