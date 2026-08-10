@@ -29,7 +29,7 @@ jobs:
       uses: actions/setup-python@v7
       with:
         python-version: 3.11
-    - name: install pip packages in that python environment, including tcy
+    - name: install tcy in that environment
       run: |
         python -m pip install --upgrade pip
         python -m pip install tcy
@@ -60,7 +60,6 @@ jobs:
           ./environments/${{ matrix.os }}_solved.yml
           ./environments/${{ matrix.os }}_solved.txt
           ./environments/${{ matrix.os }}_solved_pip-requirements.txt
-
   download-artifacts-and-push:
     name: download all files that were created by the runners and push them to repo (but only if something has changed)
     if: ${{ always() }}
