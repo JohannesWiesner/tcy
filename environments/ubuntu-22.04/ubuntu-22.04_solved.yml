@@ -140,7 +140,7 @@ dependencies:
   - nbclient=0.11.0=pyhd8ed1ab_0
   - nbconvert-core=7.17.1=pyhcf101f3_0
   - nbformat=5.11.0=pyhd8ed1ab_0
-  - ncurses=6.6=hdb14827_0
+  - ncurses=6.6=hdb14827_1
   - nest-asyncio2=1.7.2=pyhcf101f3_0
   - notebook=7.6.1=pyhcf101f3_0
   - notebook-shim=0.2.4=pyhd8ed1ab_1
