@@ -18,6 +18,7 @@ import pandas as pd
 import os
 import sys
 import argparse
+from pathlib import Path
 from validate_tsv import validate_tsv
 
 def run(operating_system,
@@ -96,9 +97,11 @@ def run(operating_system,
         cran_installation_script_path = 'install_cran_packages.sh'
         
     # validate .tsv file using frictionless
-    errors = validate_tsv(tsv_path, validation_path='./packages.validation.yml')
+    script_dir = Path(__file__).resolve().parent
+    validation_path = script_dir / "packages.validation.yml"
+    errors = validate_tsv(tsv_path, validation_path=str(validation_path))
     if errors:
-        sys.exit()
+        sys.exit(1)
     
     # read in .tsv file
     df = pd.read_csv(tsv_path,sep='\t',index_col=None,header=0)
