@@ -101,6 +101,8 @@ def run(operating_system,
     validation_path = script_dir / "packages.validation.yml"
     errors = validate_tsv(tsv_path, validation_path=str(validation_path))
     if errors:
+        for error in errors:
+            print(f"  - {error}")
         sys.exit(1)
     
     # read in .tsv file
