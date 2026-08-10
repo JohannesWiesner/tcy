@@ -1,7 +1,6 @@
 name: ubuntu-24.04
 channels:
 - conda-forge
-- defaults
 dependencies:
 - python
 - r-essentials
