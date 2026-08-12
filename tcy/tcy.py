@@ -19,7 +19,7 @@ import os
 import sys
 import argparse
 from pathlib import Path
-from validate_tsv import validate_tsv
+from .validate_tsv import validate_tsv
 
 def run(operating_system,
         yml_name=None,
