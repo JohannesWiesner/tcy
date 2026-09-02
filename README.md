@@ -147,6 +147,7 @@ The file has two main sections:
 | `constraints.enum`              | Restricts non-empty cells to specific values.                                                    | `enum: [conda, pip, cran]`             |
 | `trueValues` / `falseValues`    | Defines accepted representations of boolean values.                                              | `trueValues: ["true"]`                 |
 | `noLeadingOrTrailingWhitespace` | Rejects leading or trailing whitespace in all cells and column names.                            | `true`                                 |
+| `noUppercaseCellStart`          | Rejects non-missing cells whose first character is an uppercase letter.                          | `true`                                 |
 | `columns.requireOrder`          | Requires schema-defined columns to occur in the same relative order as in `fields`.              | `true`                                 |
 | `columns.allowAdditional`       | Allows columns that are not listed under `fields`.                                               | `true`                                 |
 | `columnDependencies`            | Requires other columns when a particular column is filled.                                       | See example below.                     |

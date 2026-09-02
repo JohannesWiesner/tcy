@@ -44,6 +44,7 @@ schema:
       - cross-platform
 rules:
   noLeadingOrTrailingWhitespace: true
+  noUppercaseCellStart: true
   columns:
     requireOrder: true
     allowAdditional: true

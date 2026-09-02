@@ -200,6 +200,53 @@ def validate_whitespace(
 
     return errors
 
+def validate_uppercase_cell_starts(
+    header: list[str],
+    rows: list[dict[str, str | None]],
+    descriptor: dict[str, Any],
+    missing_values: set[str],
+) -> list[str]:
+    """Check that no non-missing cell starts with an uppercase letter.
+
+        The check is only performed when ``noUppercaseCellStart`` is enabled in
+        the validation rules. Values that start with a number or symbol are
+        allowed because their first character is not an uppercase letter.
+
+        Args:
+            header: Column names found in the TSV file.
+            rows: Raw TSV rows.
+            descriptor: Parsed validation descriptor.
+            missing_values: Values that represent missing cells.
+
+        Returns:
+            Human-readable validation errors. An empty list means the check passed.
+
+        Raises:
+            ValidationConfigError: If the capitalization rule is not boolean.
+        """
+    enabled = descriptor.get("rules", {}).get("noUppercaseCellStart", False)
+    if not isinstance(enabled, bool):
+        raise ValidationConfigError(
+            "rules.noUppercaseCellStart must be boolean."
+        )
+    if not enabled:
+        return []
+
+    errors = []
+
+    for row_number, row in enumerate(rows, start=2):
+        for column in header:
+            value = row.get(column)
+            if value is None or value in missing_values:
+                continue
+            if value and value[0].isupper():
+                errors.append(
+                    f"Row {row_number}, column {column!r}: "
+                    f"{value!r} must not start with an uppercase letter."
+                )
+
+    return errors
+
 def validate_schema(
     rows: list[dict[str, str | None]],
     descriptor: dict[str, Any],
@@ -398,8 +445,8 @@ def validate_tsv(
 ) -> list[str]:
     """Validate a TSV file against a YAML validation descriptor.
 
-        This runs the custom whitespace, column, dependency, and multi-option
-        checks together with the Frictionless schema validation.
+        This runs the custom whitespace, capitalization, column, dependency,
+        and multi-option checks together with the Frictionless schema validation.
 
         Args:
             tsv_path: Path to the TSV file to validate.
@@ -431,6 +478,9 @@ def validate_tsv(
 
     errors = []
     errors.extend(validate_whitespace(header, rows, descriptor, missing_values))
+    errors.extend(
+        validate_uppercase_cell_starts(header, rows, descriptor, missing_values)
+    )
     errors.extend(validate_columns(header, descriptor))
 
     required_columns = [field["name"] for field in schema["fields"]]
