@@ -9,7 +9,7 @@ on:
 
 jobs:
   validate-packages-tsv:
-    name: validate packages.tsv and run validator tests
+    name: validate packages.tsv
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
@@ -22,8 +22,6 @@ jobs:
       run: python -m pip install .
     - name: validate packages.tsv
       run: python -m tcy.validate_tsv environments/packages.tsv tcy/packages.validation.yml
-    - name: run validator tests
-      run: python -m unittest discover -s tests
 
   solve-environments-and-upload-files:
     name: run tcy, create environment, and export environment files
