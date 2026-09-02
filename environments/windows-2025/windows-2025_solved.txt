@@ -88,8 +88,8 @@ https://conda.anaconda.org/conda-forge/noarch/comm-0.2.3-pyhe01879c_0.conda#2da1
 https://conda.anaconda.org/conda-forge/win-64/krb5-1.22.2-h719d79b_2.conda#93f5a01dec294a2228f757fe2f3432d4
 https://conda.anaconda.org/conda-forge/win-64/libpsl-0.23.1-h9b16d47_1.conda#39cdf8c4f59e4d253cfa8091c8b3d7de
 https://conda.anaconda.org/conda-forge/win-64/libssh2-1.11.1-h734d217_1.conda#a21dd9ca39e74910bb96989feb916420
-https://conda.anaconda.org/conda-forge/win-64/libcurl-8.21.0-hdb0ef4a_5.conda#50861643cbe90dc7267feb7854b8efdf
-https://conda.anaconda.org/conda-forge/win-64/curl-8.21.0-hdb0ef4a_5.conda#b0dcd6182bfd56a219563a153d550d20
+https://conda.anaconda.org/conda-forge/win-64/libcurl-8.22.0-hdb0ef4a_0.conda#e8405e754eaac42d66f957222fcfd876
+https://conda.anaconda.org/conda-forge/win-64/curl-8.22.0-hdb0ef4a_0.conda#a21861ac889a38415844187508d6d56a
 https://conda.anaconda.org/conda-forge/win-64/debugpy-1.8.21-py314hb98de8c_0.conda#945786ac874b8e821a675fbdd885f844
 https://conda.anaconda.org/conda-forge/noarch/defusedxml-0.7.1-pyhd8ed1ab_0.tar.bz2#961b3a227b437d82ad7054484cfa71b2
 https://conda.anaconda.org/conda-forge/noarch/executing-2.2.1-pyhd8ed1ab_0.conda#ff9efb7f7469aed3c4a8106ffa29593c
