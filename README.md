@@ -1,7 +1,10 @@
 # TCY  
-**T**sv → **C**onda **Y**ML
 
-`TCY` is a lightweight tool for generating reproducible Conda environment `.yml` files from a documented `.tsv` (spreadsheet-style) input file. Instead of maintaining opaque YAML files, TCY lets you **document the why, what, and where** of every package—while still producing Conda-ready environment definitions.
+<img  src="assets/logo_tcy_transparent_background.png"
+      alt="tcy logo"
+      width="100">
+
+`TCY` (**T**sv → **C**onda **Y**ML) is a lightweight tool for generating reproducible Conda environment `.yml` files from `.tsv` (spreadsheet-style) input files. Instead of maintaining opaque YAML files, TCY lets you **document the why, what, and where** of every package—while still producing Conda-ready environment definitions.
 
 ---
 
