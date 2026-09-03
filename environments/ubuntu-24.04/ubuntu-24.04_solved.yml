@@ -31,7 +31,7 @@ dependencies:
   - cffi=2.1.1=py314h8d76f0c_2
   - charset-normalizer=3.5.1=pyhd8ed1ab_0
   - comm=0.2.3=pyhe01879c_0
-  - cpython=3.14.7=py314hd8ed1ab_104
+  - cpython=3.14.7=py314hd8ed1ab_106
   - curl=8.22.0=ha042cf0_0
   - debugpy=1.8.21=py314h42812f9_0
   - defusedxml=0.7.1=pyhd8ed1ab_0
@@ -46,7 +46,7 @@ dependencies:
   - fonts-conda-forge=1=hc364b38_1
   - fqdn=1.5.1=pyhd8ed1ab_1
   - freetype=2.14.3=ha770c72_2
-  - fribidi=1.0.16=hb03c661_1
+  - fribidi=1.0.16=h7cc23a3_2
   - gcc_impl_linux-64=16.2.0=h176d5d0_4
   - gcc_linux-64=16.2.0=h0ab548f_1
   - gfortran_impl_linux-64=16.2.0=hf930d89_4
@@ -56,7 +56,7 @@ dependencies:
   - gxx_linux-64=16.2.0=h38dc33c_1
   - h11=0.16.0=pyhcf101f3_1
   - h2=4.4.1=pyhcf101f3_0
-  - harfbuzz=14.4.0=ha770c72_0
+  - harfbuzz=14.4.0=ha770c72_1
   - hpack=4.2.0=pyhd8ed1ab_0
   - httpcore=1.0.9=pyh29332c3_0
   - httpx=0.28.1=pyhd8ed1ab_0
@@ -108,8 +108,8 @@ dependencies:
   - libgfortran5=16.2.0=h6b99dfc_4
   - libglib=2.88.3=he503a2a_2
   - libgomp=16.2.0=he0feb66_4
-  - libharfbuzz=14.4.0=h23af247_0
-  - libharfbuzz-devel=14.4.0=h23af247_0
+  - libharfbuzz=14.4.0=h23af247_1
+  - libharfbuzz-devel=14.4.0=h23af247_1
   - libiconv=1.18=h0cb94f2_3
   - libjpeg-turbo=3.2.0=hb03c661_1
   - liblapack=3.11.0=10_h47877c9_openblas
@@ -119,7 +119,7 @@ dependencies:
   - libopenblas=0.3.34=pthreads_hcf972fe_1
   - libpng=1.6.58=h922cc85_1
   - libpsl=0.23.1=hd9e3e90_1
-  - libpython=3.14.7=hdc7f604_104_cp314
+  - libpython=3.14.7=hdc7f604_106_cp314
   - libsanitizer=16.2.0=h3048135_4
   - libsodium=1.0.22=hebe6cf0_2
   - libsqlite=3.53.4=h13e7031_1
@@ -160,16 +160,16 @@ dependencies:
   - prometheus_client=0.26.0=pyhd8ed1ab_0
   - prompt-toolkit=3.0.53=pyha770c72_0
   - psutil=7.2.2=py314hfe1a184_2
-  - pthread-stubs=0.4=hb03c661_1003
+  - pthread-stubs=0.4=h7cc23a3_1004
   - ptyprocess=0.7.0=pyhd8ed1ab_1
   - pure_eval=0.2.3=pyhd8ed1ab_1
   - pycparser=3.0=pyhcf101f3_0
   - pygments=2.21.0=pyhcf101f3_0
   - pysocks=1.7.1=pyha55dd90_7
-  - python=3.14.7=hcd007b5_104_cp314
+  - python=3.14.7=hcd007b5_106_cp314
   - python-dateutil=2.9.0.post0=pyhe01879c_2
   - python-fastjsonschema=2.22.2=pyhcf101f3_0
-  - python-gil=3.14.7=h4df99d1_104
+  - python-gil=3.14.7=h4df99d1_106
   - python-json-logger=4.2.0=pyhd8ed1ab_0
   - python-tzdata=2026.3=pyhd8ed1ab_0
   - python_abi=3.14=9_cp314

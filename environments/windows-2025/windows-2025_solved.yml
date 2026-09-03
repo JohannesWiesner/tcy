@@ -30,7 +30,7 @@ dependencies:
   - charset-normalizer=3.5.1=pyhd8ed1ab_0
   - colorama=0.4.6=pyhd8ed1ab_1
   - comm=0.2.3=pyhe01879c_0
-  - cpython=3.14.7=py314hd8ed1ab_104
+  - cpython=3.14.7=py314hd8ed1ab_106
   - curl=8.22.0=hdb0ef4a_0
   - debugpy=1.8.21=py314hb98de8c_0
   - defusedxml=0.7.1=pyhd8ed1ab_0
@@ -45,7 +45,7 @@ dependencies:
   - fonts-conda-forge=1=hc364b38_1
   - fqdn=1.5.1=pyhd8ed1ab_1
   - freetype=2.14.3=h57928b3_2
-  - fribidi=1.0.16=hfd05255_1
+  - fribidi=1.0.16=hfd05255_2
   - gcc_impl_win-64=16.2.0=h6b76af2_4
   - gfortran_impl_win-64=16.2.0=h408695e_4
   - glib=2.88.3=h2e94c43_2
@@ -55,7 +55,7 @@ dependencies:
   - gxx_impl_win-64=16.2.0=hdbe55fc_4
   - h11=0.16.0=pyhcf101f3_1
   - h2=4.4.1=pyhcf101f3_0
-  - harfbuzz=14.4.0=h57928b3_0
+  - harfbuzz=14.4.0=h57928b3_1
   - hpack=4.2.0=pyhd8ed1ab_0
   - httpcore=1.0.9=pyh29332c3_0
   - httpx=0.28.1=pyhd8ed1ab_0
@@ -102,8 +102,8 @@ dependencies:
   - libgfortran5=16.2.0=h7c9de5e_4
   - libglib=2.88.3=he810d59_2
   - libgomp=16.2.0=h8ee18e1_4
-  - libharfbuzz=14.4.0=h03b5201_0
-  - libharfbuzz-devel=14.4.0=h03b5201_0
+  - libharfbuzz=14.4.0=h03b5201_1
+  - libharfbuzz-devel=14.4.0=h03b5201_1
   - libhwloc=2.13.0=default_h049141e_1000
   - libiconv=1.18=hc1393d2_3
   - libintl=0.22.5=h5728263_4
@@ -115,7 +115,7 @@ dependencies:
   - libnghttp2=1.68.1=hac47afa_1
   - libpng=1.6.58=hdc8cecf_1
   - libpsl=0.23.1=h9b16d47_1
-  - libpython=3.14.7=h4f90d01_104_cp314
+  - libpython=3.14.7=h4f90d01_106_cp314
   - libsodium=1.0.22=h6a83c73_2
   - libsqlite=3.53.4=hf5d6505_1
   - libssh2=1.11.1=h734d217_1
@@ -161,10 +161,10 @@ dependencies:
   - pycparser=3.0=pyhcf101f3_0
   - pygments=2.21.0=pyhcf101f3_0
   - pysocks=1.7.1=pyh09c184e_7
-  - python=3.14.7=h53f6dd8_104_cp314
+  - python=3.14.7=h53f6dd8_106_cp314
   - python-dateutil=2.9.0.post0=pyhe01879c_2
   - python-fastjsonschema=2.22.2=pyhcf101f3_0
-  - python-gil=3.14.7=h4df99d1_104
+  - python-gil=3.14.7=h4df99d1_106
   - python-json-logger=4.2.0=pyhd8ed1ab_0
   - python-tzdata=2026.3=pyhd8ed1ab_0
   - python_abi=3.14=9_cp314
