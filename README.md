@@ -279,3 +279,5 @@ TCY can generate an `install_cran_packages.sh` script that should:
 1. Activate the Conda environment
 2. Start R
 3. Install CRAN packages inside this environment using `install.packages()`
+
+</details>
